@@ -1,186 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fortizo_SL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fortizo Technologies SL — Digital Innovation, Branding & Events</title>
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#330072',  // Deep purple
+              magenta: '#9E1F63',  // Magenta accent
+              teal: '#00AEEF',     // Teal accent
+              charcoal: '#1A1A1A', // Text
+              soft: '#F5F5F5',     // Background
+            }
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'xl-soft': '0 20px 50px -20px rgba(0,0,0,0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    @keyframes slideUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-50px);} to { opacity: 1; transform: translateY(0);} }
-    .slide-up { animation: slideUp 0.7s ease-out; }
-    .slide-down { animation: slideDown 0.7s ease-out; }
+    /* Small polish for focus rings and smooth scrolling */
+    html { scroll-behavior: smooth; }
+    .focus-ring { outline: none; box-shadow: 0 0 0 3px rgba(158,31,99,0.3); }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-inter">
+<body class="font-inter bg-brand-soft text-brand-charcoal">
 
-  <!-- Navbar -->
-  <nav class="flex justify-between items-center px-8 py-4 bg-purple-900 text-white fixed w-full top-0 z-50">
-    <h1 class="text-2xl font-bold">Fortizo</h1>
-    <ul class="flex gap-6">
-      <li><a href="#home" class="hover:text-magenta-500">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">What We Do</a></li>
-      <li><a href="#market">Key Market</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <!-- Navigation -->
+  <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand -->
+        <a href="#home" class="flex items-center space-x-3 group">
+          <!-- Simple geometric F mark -->
+          <span class="inline-flex h-9 w-9 rounded-xl bg-gradient-to-br from-brand-primary to-brand-magenta items-center justify-center shadow-xl-soft">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-white">
+              <path fill="currentColor" d="M5 4h14v4H9v4h8v4H9v4H5z"/>
+            </svg>
+          </span>
+          <div class="leading-tight">
+            <div class="text-xl font-poppins font-extrabold tracking-tight text-brand-primary group-hover:text-brand-magenta transition-colors">Fortizo</div>
+            <div class="text-xs text-gray-500">Technologies SL</div>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#services" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Services</a>
+          <a href="#markets" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Key Markets</a>
+          <a href="#stakeholders" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Stakeholders</a>
+          <a href="#events" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Events</a>
+          <a href="#about" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">About</a>
+          <a href="#contact" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Contact</a>
+          <a href="#contact" class="ml-2 inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-white bg-brand-primary hover:bg-brand-magenta transition-colors">Request a Quote</a>
+        </div>
+
+        <!-- Mobile Button -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg border border-gray-200 hover:border-brand-magenta" aria-label="Open menu">
+          <svg class="h-6 w-6 text-brand-charcoal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#services" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Services</a>
+        <a href="#markets" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Key Markets</a>
+        <a href="#stakeholders" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Stakeholders</a>
+        <a href="#events" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Events</a>
+        <a href="#about" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">About</a>
+        <a href="#contact" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-brand-primary hover:bg-brand-soft">Contact</a>
+        <a href="#contact" class="block px-3 py-2 rounded-xl text-sm font-semibold text-white text-center bg-brand-primary hover:bg-brand-magenta">Request a Quote</a>
+      </div>
+    </div>
   </nav>
 
-  <!-- Sections -->
-  <main class="pt-24">
-    <!-- Home -->
-    <section id="home" class="section px-8 py-20 hidden">
-      <div class="text-center slide-up">
-        <h2 class="text-4xl font-bold mb-4 text-purple-900">Driving Tech Innovation in Sierra Leone</h2>
-        <p class="text-lg max-w-2xl mx-auto">Fortizo is a hub for technology, innovation, and growth in Sierra Leone. We empower communities through digital solutions.</p>
-      </div>
-    </section>
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-magenta"></div>
+    <!-- Decorative grid -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+            <path d="M32 0H0v32" fill="none" stroke="white" stroke-opacity="0.15"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+      </svg>
+    </div>
 
-    <!-- About -->
-    <section id="about" class="section px-8 py-20 hidden">
-      <div class="slide-down">
-        <h2 class="text-3xl font-bold mb-6 text-purple-900">About Fortizo</h2>
-        <p class="max-w-3xl">We focus on fostering innovation, entrepreneurship, and technology adoption in Sierra Leone. Fortizo is dedicated to bridging gaps between local skills and global opportunities.</p>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-white">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-poppins font-extrabold tracking-tight leading-tight">
+          Digital Innovation, Branding & Event Marketing — built for impact
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
+          Fortizo empowers businesses across Africa and the Middle East with modern digital products,
+          strategic brand systems, and events that spark partnerships and growth.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 rounded-xl font-semibold bg-white text-brand-primary hover:bg-brand-soft transition-colors">
+            Talk to our team
+          </a>
+          <a href="#services" class="inline-flex items-center justify-center px-8 py-3 rounded-xl font-semibold border border-white/60 text-white hover:bg-white hover:text-brand-primary transition-colors">
+            Explore services
+          </a>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Services -->
-    <section id="services" class="section px-8 py-20 hidden bg-gray-100">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">What We Do</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Digital Transformation -->
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
-          <div class="flex justify-center mb-4">
-            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+  <!-- Highlights -->
+  <section class="py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-brand-soft p-8 rounded-2xl shadow-xl-soft text-center">
+          <div class="text-4xl font-poppins font-extrabold text-brand-primary">16+</div>
+          <div class="mt-1 text-gray-600 font-medium">Years of Experience</div>
+        </div>
+        <div class="bg-brand-soft p-8 rounded-2xl shadow-xl-soft text-center">
+          <div class="text-4xl font-poppins font-extrabold text-brand-primary">10+</div>
+          <div class="mt-1 text-gray-600 font-medium">Countries Reached</div>
+        </div>
+        <div class="bg-brand-soft p-8 rounded-2xl shadow-xl-soft text-center">
+          <div class="text-4xl font-poppins font-extrabold text-brand-primary">100+</div>
+          <div class="mt-1 text-gray-600 font-medium">Client Engagements</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 bg-brand-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold text-brand-charcoal">What we do</h2>
+        <p class="mt-3 text-lg text-gray-600">Comprehensive solutions tailored to your growth journey.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Meeting Facilitation -->
+        <div class="bg-white p-6 rounded-2xl shadow-xl-soft hover:shadow-2xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-center">Digital Transformation</h3>
-          <p class="text-gray-700 mb-4 text-center">We guide organizations into the digital era with tailored solutions.</p>
-          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+          <h3 class="text-xl font-poppins font-semibold">Meeting Facilitation</h3>
+          <p class="mt-2 text-gray-600">Outcome-driven facilitation for boards, product sprints, and multi-stakeholder sessions.</p>
         </div>
 
-        <!-- Innovation Hubs -->
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
-          <div class="flex justify-center mb-4">
-            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 7-9 7-9-7 9-7z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 22V9" />
+        <!-- Market Research -->
+        <div class="bg-white p-6 rounded-2xl shadow-xl-soft hover:shadow-2xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-center">Innovation Hubs</h3>
-          <p class="text-gray-700 mb-4 text-center">We create collaborative spaces for tech startups and innovators.</p>
-          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+          <h3 class="text-xl font-poppins font-semibold">Market Research</h3>
+          <p class="mt-2 text-gray-600">Africa & MENA-focused insights, TAM sizing, and validation for product/market fit.</p>
         </div>
 
-        <!-- Training & Capacity Building -->
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
-          <div class="flex justify-center mb-4">
-            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+        <!-- Marketing & Branding -->
+        <div class="bg-white p-6 rounded-2xl shadow-xl-soft hover:shadow-2xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 12l2 2 4-4"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2 text-center">Training & Capacity Building</h3>
-          <p class="text-gray-700 mb-4 text-center">We equip individuals with essential digital skills for the future.</p>
-          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+          <h3 class="text-xl font-poppins font-semibold">Marketing & Branding</h3>
+          <p class="mt-2 text-gray-600">Brand identity systems, messaging, campaigns, and go-to-market playbooks.</p>
+        </div>
+
+        <!-- Digital Solutions & E-Learning -->
+        <div class="bg-white p-6 rounded-2xl shadow-xl-soft hover:shadow-2xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Digital Solutions & E-Learning</h3>
+          <p class="mt-2 text-gray-600">Web apps, portals, and LMS deployments with modern UX and accessibility.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Key Market -->
-    <section id="market" class="section px-8 py-20 hidden">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900">Key Market</h2>
-      <p class="slide-down">Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
-    </section>
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Why Fortizo</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-poppins font-semibold">Trusted</h3>
+          <p class="text-gray-600 mt-2">Integrity, transparency, and delivery you can measure.</p>
+        </div>
 
-    <!-- Team -->
-    <section id="team" class="section px-8 py-20 hidden bg-gray-100">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">Meet Our Team</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">Jane Doe</h3>
-          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
-            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+        <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
-            CEO & Founder
-          </p>
+          </div>
+          <h3 class="text-2xl font-poppins font-semibold">Experienced</h3>
+          <p class="text-gray-600 mt-2">16+ years across tech, public, and development sectors.</p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">John Smith</h3>
-          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
-            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 7-9 7-9-7 9-7z" />
+
+        <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"/>
             </svg>
-            CTO
-          </p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">Mary Johnson</h3>
-          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
-            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-            </svg>
-            Innovation Lead
-          </p>
+          </div>
+          <h3 class="text-2xl font-poppins font-semibold">Connected</h3>
+          <p class="text-gray-600 mt-2">A strong partner network across Africa & the Middle East.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section px-8 py-20 hidden">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900">Get in Touch</h2>
-      <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4 slide-down">
-        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
-        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
-        <textarea placeholder="Message" class="w-full p-3 border rounded"></textarea>
-        <button class="bg-purple-900 text-white px-6 py-3 rounded hover:bg-purple-700">Send Message</button>
-      </form>
-    </section>
-  </main>
+  <!-- Key Markets -->
+  <section id="markets" class="py-20 bg-brand-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Key Markets</h2>
+        <p class="mt-3 text-lg text-gray-600">We execute where your growth matters most.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">Middle East</h3>
+          <p class="mt-2 text-gray-600">Strategic partnerships across the Gulf.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">Nigeria</h3>
+          <p class="mt-2 text-gray-600">Depth in West Africa’s largest market.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">West Africa</h3>
+          <p class="mt-2 text-gray-600">Regional coverage and delivery.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">South Africa</h3>
+          <p class="mt-2 text-gray-600">Established presence in a key hub.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">Central Africa</h3>
+          <p class="mt-2 text-gray-600">Emerging opportunities and programs.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-poppins font-semibold text-brand-primary">Sierra Leone</h3>
+          <p class="mt-2 text-gray-600">Local roots, regional reach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stakeholders -->
+  <section id="stakeholders" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Stakeholders</h2>
+        <p class="mt-3 text-lg text-gray-600">Partnering to unlock ecosystem value.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h3 class="text-2xl font-poppins font-semibold">Who we engage</h3>
+          <ul class="mt-6 space-y-4">
+            <li class="flex items-center">
+              <span class="h-2 w-2 rounded-full bg-brand-magenta mr-3"></span>
+              Government & Public Sector
+            </li>
+            <li class="flex items-center">
+              <span class="h-2 w-2 rounded-full bg-brand-magenta mr-3"></span>
+              Private Sector & Startups
+            </li>
+            <li class="flex items-center">
+              <span class="h-2 w-2 rounded-full bg-brand-magenta mr-3"></span>
+              Development Partners & Donors
+            </li>
+            <li class="flex items-center">
+              <span class="h-2 w-2 rounded-full bg-brand-magenta mr-3"></span>
+              NGOs & Civil Society
+            </li>
+            <li class="flex items-center">
+              <span class="h-2 w-2 rounded-full bg-brand-magenta mr-3"></span>
+              Academia & Research
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-brand-soft p-8 rounded-2xl">
+          <h4 class="text-xl font-poppins font-semibold">Engagement approach</h4>
+          <p class="mt-3 text-gray-700">
+            We co-design with stakeholders, align incentives, and focus on measurable outcomes across
+            policy, product, and people.
+          </p>
+          <a href="#contact" class="mt-6 inline-flex items-center px-6 py-3 rounded-xl bg-brand-primary text-white font-semibold hover:bg-brand-magenta transition-colors">
+            Partner with Fortizo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="py-20 bg-brand-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Events</h2>
+        <p class="mt-3 text-lg text-gray-600">Curated experiences that catalyze partnerships.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4M8 7h8M8 7a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V8a1 1 0 00-1-1"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Corporate Events</h3>
+          <p class="mt-2 text-gray-600">Investor briefings, partner showcases, and launches.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13M7.5 5C5.754 5 4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253M12 6.253C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Conferences & Summits</h3>
+          <p class="mt-2 text-gray-600">Large-scale convenings with high-impact programming.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow">
+          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Workshops & Training</h3>
+          <p class="mt-2 text-gray-600">Interactive learning that builds capability and momentum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials / Proposals -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Credentials & Proposals</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-brand-soft p-8 rounded-2xl">
+          <h3 class="text-2xl font-poppins font-semibold">Messaging Workshops</h3>
+          <p class="mt-3 text-gray-700">Align communications to business goals and stakeholder needs.</p>
+          <ul class="mt-5 space-y-2 text-gray-700">
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Brand messaging alignment</li>
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Stakeholder communication strategies</li>
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Crisis communication planning</li>
+          </ul>
+        </div>
+
+        <div class="bg-brand-soft p-8 rounded-2xl">
+          <h3 class="text-2xl font-poppins font-semibold">Branding Solutions</h3>
+          <p class="mt-3 text-gray-700">Identity systems, positioning, and implementation guidelines.</p>
+          <ul class="mt-5 space-y-2 text-gray-700">
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Brand identity development</li>
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Market positioning strategies</li>
+            <li class="flex items-center"><span class="h-2 w-2 rounded-full bg-brand-primary mr-3"></span>Brand implementation guidelines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Values -->
+  <section id="about" class="py-20 bg-brand-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Our Brand Values</h2>
+        <p class="mt-3 text-lg text-gray-600">Principles that guide everything we build.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center bg-white p-8 rounded-2xl shadow-sm">
+          <div class="w-20 h-20 rounded-full bg-brand-soft flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Bridge</h3>
+          <p class="mt-2 text-gray-600">We connect people, ideas, and opportunities.</p>
+        </div>
+
+        <div class="text-center bg-white p-8 rounded-2xl shadow-sm">
+          <div class="w-20 h-20 rounded-full bg-brand-soft flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Connector</h3>
+          <p class="mt-2 text-gray-600">We build relationships that compound value.</p>
+        </div>
+
+        <div class="text-center bg-white p-8 rounded-2xl shadow-sm">
+          <div class="w-20 h-20 rounded-full bg-brand-soft flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Thinkers</h3>
+          <p class="mt-2 text-gray-600">We solve complex challenges with clarity.</p>
+        </div>
+
+        <div class="text-center bg-white p-8 rounded-2xl shadow-sm">
+          <div class="w-20 h-20 rounded-full bg-brand-soft flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-poppins font-semibold">Success</h3>
+          <p class="mt-2 text-gray-600">We deliver results that last.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Trusted by Partners</h2>
+        <p class="mt-3 text-lg text-gray-600">We collaborate with leading institutions and innovators.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center opacity-70">
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 1</span></div>
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 2</span></div>
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 3</span></div>
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 4</span></div>
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 5</span></div>
+        <div class="bg-brand-soft h-16 rounded-xl flex items-center justify-center"><span class="text-gray-500 font-semibold">Partner 6</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-brand-soft">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-poppins font-extrabold">Contact Fortizo</h2>
+        <p class="mt-3 text-lg text-gray-600">Ready to start your next project? Let’s build it together.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Info -->
+        <div>
+          <h3 class="text-2xl font-poppins font-semibold">Get in touch</h3>
+          <div class="mt-6 space-y-6">
+            <div class="flex items-start">
+              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold">Address</h4>
+                <p class="text-gray-600">Freetown, Sierra Leone</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold">Email</h4>
+                <p class="text-gray-600">hello@fortizo.sl</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.26 1.13a11.04 11.04 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold">Phone</h4>
+                <p class="text-gray-600">+232 00 000 000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-white p-8 rounded-2xl shadow-xl-soft">
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+              <input id="name" name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-magenta focus:border-transparent">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-magenta focus:border-transparent">
+            </div>
+            <div>
+              <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+              <input id="company" name="company" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-magenta focus:border-transparent">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-magenta focus:border-transparent"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-brand-primary text-white py-3 px-6 rounded-xl font-semibold hover:bg-brand-magenta transition-colors">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-purple-900 text-white text-center py-10 mt-10">
-    <div class="flex justify-center gap-6 mb-4">
-      <a href="#" class="hover:text-magenta-500">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 11-20 0 10 10 0 0120 0z"/></svg>
-      </a>
-      <a href="#" class="hover:text-magenta-500">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.995 4.388 10.95 10.125 11.854v-8.385H7.078V12h3.047V9.356c0-3.007 1.793-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.492 0-1.956.927-1.956 1.877V12h3.328l-.532 3.469h-2.796v8.385C19.612 22.95 24 17.995 24 12c0-6.627-5.373-12-12-12z"/></svg>
-      </a>
+  <footer class="bg-brand-primary text-white pt-14 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center space-x-3">
+            <span class="inline-flex h-9 w-9 rounded-xl bg-white/10 items-center justify-center">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-white">
+                <path fill="currentColor" d="M5 4h14v4H9v4h8v4H9v4H5z"/>
+              </svg>
+            </span>
+            <h3 class="text-2xl font-poppins font-extrabold">Fortizo</h3>
+          </div>
+          <p class="text-white/80 mt-4 max-w-xl">
+            Digital products, brand systems, and events that move markets across Africa and the Middle East.
+          </p>
+          <div class="flex space-x-4 mt-4">
+            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="Twitter">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </a>
+            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="LinkedIn">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-poppins font-semibold">Quick Links</h4>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#services" class="text-white/80 hover:text-white">Services</a></li>
+            <li><a href="#markets" class="text-white/80 hover:text-white">Key Markets</a></li>
+            <li><a href="#about" class="text-white/80 hover:text-white">About</a></li>
+            <li><a href="#contact" class="text-white/80 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-poppins font-semibold">Services</h4>
+          <ul class="mt-4 space-y-2">
+            <li><span class="text-white/80">Meeting Facilitation</span></li>
+            <li><span class="text-white/80">Market Research</span></li>
+            <li><span class="text-white/80">Marketing & Branding</span></li>
+            <li><span class="text-white/80">Digital Solutions & E-Learning</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/20 mt-10 pt-6 text-center">
+        <p class="text-white/70">&copy; <span id="year"></span> Fortizo Technologies SL. All rights reserved.</p>
+      </div>
     </div>
-    <p>&copy; 2025 Fortizo. Innovating Sierra Leone. All rights reserved.</p>
   </footer>
 
-  <!-- Script for Section Animations -->
+  <!-- Scripts -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const links = document.querySelectorAll("nav a");
-      const sections = document.querySelectorAll(".section");
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-      // Show home at start
-      sections.forEach((sec, i) => sec.style.display = i === 0 ? "block" : "none");
-
-      links.forEach(link => {
-        link.addEventListener("click", e => {
+    // Smooth anchor handling (closes menu on click)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
           e.preventDefault();
-          const targetId = link.getAttribute("href").substring(1);
-          const targetSection = document.getElementById(targetId);
-
-          sections.forEach(sec => sec.style.display = "none");
-
-          targetSection.style.display = "block";
-          targetSection.classList.remove("slide-up", "slide-down");
-          void targetSection.offsetWidth; // restart animation
-          targetSection.classList.add(Math.random() > 0.5 ? "slide-up" : "slide-down");
-        });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          mobileMenu?.classList.add('hidden');
+        }
       });
     });
+
+    // Elevate nav on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 12) {
+        nav.classList.add('shadow-xl');
+      } else {
+        nav.classList.remove('shadow-xl');
+      }
+    });
+
+    // Contact form (basic demo)
+    document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      const name = data.get('name');
+      const email = data.get('email');
+      alert(`Thank you, ${name}! We've received your message and will reply to ${email}.`);
+      this.reset();
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
