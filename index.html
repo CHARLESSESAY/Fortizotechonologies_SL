@@ -1,178 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fortizo Technologies SL</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-900 font-sans scroll-smooth">
-    <!-- Navbar -->
-    <header class="fixed w-full bg-white shadow-md z-50">
-      <div class="container mx-auto flex justify-between items-center p-4">
-        <h1 class="text-2xl font-bold text-purple-700">Fortizo Technologies SL</h1>
-        <nav class="hidden md:flex space-x-6">
-          <a href="#home" class="hover:text-purple-600 transition">Home</a>
-          <a href="#about" class="hover:text-purple-600 transition">About</a>
-          <a href="#values" class="hover:text-purple-600 transition">Values</a>
-          <a href="#services" class="hover:text-purple-600 transition">Services</a>
-          <a href="#contact" class="hover:text-purple-600 transition">Contact</a>
-        </nav>
-        <div class="md:hidden">
-          <button id="menu-btn">
-            <svg class="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden flex-col space-y-4 p-4 bg-white md:hidden">
-        <a href="#home" class="hover:text-purple-600">Home</a>
-        <a href="#about" class="hover:text-purple-600">About</a>
-        <a href="#values" class="hover:text-purple-600">Values</a>
-        <a href="#services" class="hover:text-purple-600">Services</a>
-        <a href="#contact" class="hover:text-purple-600">Contact</a>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fortizo Technologies SL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <!-- Hero -->
-    <section id="home" class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
-      <video autoplay muted loop class="absolute w-full h-full object-cover">
-        <source src="https://cdn.pixabay.com/vimeo/373852987/Technology_Background_720p.mp4" type="video/mp4">
-      </video>
-      <div class="relative z-10 px-4">
-        <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Innovating the Future of Technology</h2>
-        <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in delay-200">We empower businesses with innovative digital solutions, bridging technology and impact in Sierra Leone and beyond.</p>
-        <a href="#services" class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-500 transition">Explore Services</a>
+  <!-- Navbar -->
+  <header class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-purple-700">Fortizo Technologies SL</h1>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-purple-600 transition">Home</a>
+        <a href="#about" class="hover:text-purple-600 transition">About</a>
+        <a href="#values" class="hover:text-purple-600 transition">Values</a>
+        <a href="#services" class="hover:text-purple-600 transition">Services</a>
+        <a href="#contact" class="hover:text-purple-600 transition">Contact</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menu-btn"><i class="fas fa-bars text-2xl"></i></button>
       </div>
-      <div class="absolute inset-0 bg-black opacity-40"></div>
-    </section>
+    </div>
+    <div id="mobile-menu" class="hidden flex-col space-y-4 p-4 bg-white md:hidden">
+      <a href="#home" class="hover:text-purple-600">Home</a>
+      <a href="#about" class="hover:text-purple-600">About</a>
+      <a href="#values" class="hover:text-purple-600">Values</a>
+      <a href="#services" class="hover:text-purple-600">Services</a>
+      <a href="#contact" class="hover:text-purple-600">Contact</a>
+    </div>
+  </header>
 
-    <!-- About -->
-    <section id="about" class="py-20 container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <img src="https://via.placeholder.com/500x350" alt="About Fortizo" class="rounded-2xl shadow-lg">
-        <div>
-          <h3 class="text-3xl font-bold mb-4">Who We Are</h3>
-          <p class="text-lg mb-4">Fortizo Technologies SL is a Sierra Leonean tech company building innovative digital platforms, products, and services that create measurable impact for businesses, institutions, and communities.</p>
-          <a href="#contact" class="text-purple-700 font-semibold hover:underline">Get in Touch →</a>
-        </div>
+  <!-- Hero with Video Background -->
+  <section id="home" class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
+      <source src="https://www.videvo.net/videvo_files/converted/2016_10/preview/160809_A_001_HD.mp442204.mp4" type="video/mp4">
+    </video>
+    <div class="relative z-10 px-4">
+      <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Innovating the Future of Technology</h2>
+      <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in delay-200">We empower businesses with innovative digital solutions, bridging technology and impact in Sierra Leone and beyond.</p>
+      <a href="#services" class="px-6 py-3 bg-purple-700 font-semibold rounded-lg shadow-md hover:bg-purple-600 transition animate-fade-in delay-400">Explore Services</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 container mx-auto px-4 fade-in">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <img src="https://via.placeholder.com/500x350" alt="About Fortizo" class="rounded-2xl shadow-lg">
+      <div>
+        <h3 class="text-3xl font-bold mb-4">Who We Are</h3>
+        <p class="text-lg mb-4">Fortizo Technologies SL is a Sierra Leonean tech company building innovative digital platforms, products, and services that create measurable impact for businesses, institutions, and communities.</p>
+        <a href="#contact" class="text-purple-700 font-semibold hover:underline">Get in Touch →</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Values -->
-    <section id="values" class="py-20 bg-gray-100">
-      <div class="container mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-12">Our Brand Values</h3>
-        <div class="grid md:grid-cols-3 gap-10">
-          <!-- Innovation -->
-          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <svg class="mx-auto mb-4 w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3h2m-1 1v3m4.22 1.22l2.12-2.12M21 11h-3M19.78 16.78l-2.12 2.12M13 21v-3m-4.22-1.22l-2.12 2.12M3 13h3m1.22-4.22l-2.12-2.12"/>
-            </svg>
-            <h4 class="font-bold text-xl mb-2">Innovation</h4>
-            <p>We embrace creativity and new ideas to deliver impactful solutions.</p>
-          </div>
-          <!-- Collaboration -->
-          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <svg class="mx-auto mb-4 w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11c1.657 0 3-1.343 3-3S17.657 5 16 5s-3 1.343-3 3 1.343 3 3 3zM8 11c1.657 0 3-1.343 3-3S9.657 5 8 5 5 6.343 5 8s1.343 3 3 3zM2 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2H2z"/>
-            </svg>
-            <h4 class="font-bold text-xl mb-2">Collaboration</h4>
-            <p>We work hand-in-hand with clients and partners to achieve shared success.</p>
-          </div>
-          <!-- Impact -->
-          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-            <svg class="mx-auto mb-4 w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M3 18h18M3 6h18"/>
-            </svg>
-            <h4 class="font-bold text-xl mb-2">Impact</h4>
-            <p>We design solutions that create lasting change in communities and businesses.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-20 container mx-auto px-4">
-      <h3 class="text-3xl font-bold text-center mb-12">Our Services</h3>
+  <!-- Values -->
+  <section id="values" class="py-20 bg-gray-100 fade-in">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-12">Our Brand Values</h3>
       <div class="grid md:grid-cols-3 gap-10">
-        <!-- Software Development -->
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-          <svg class="mx-auto mb-4 w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16h8M8 12h8M8 8h8M4 6h16v12H4z"/>
-          </svg>
-          <h4 class="font-bold text-xl mb-2">Software Development</h4>
-          <p>Custom software and web applications tailored to your needs.</p>
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-lightbulb text-purple-600 text-4xl mb-4"></i>
+          <h4 class="font-bold text-xl mb-2">Innovation</h4>
+          <p>We embrace creativity and new ideas to deliver impactful solutions.</p>
         </div>
-        <!-- IT Infrastructure -->
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-          <svg class="mx-auto mb-4 w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"/>
-          </svg>
-          <h4 class="font-bold text-xl mb-2">IT Infrastructure</h4>
-          <p>Robust networking, cloud, and IT systems for businesses and organizations.</p>
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-handshake text-green-600 text-4xl mb-4"></i>
+          <h4 class="font-bold text-xl mb-2">Collaboration</h4>
+          <p>We work hand-in-hand with clients and partners to achieve shared success.</p>
         </div>
-        <!-- Digital Strategy -->
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-          <svg class="mx-auto mb-4 w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h6v6h5v-8h-16v8h5z"/>
-          </svg>
-          <h4 class="font-bold text-xl mb-2">Digital Strategy</h4>
-          <p>Helping organizations embrace digital transformation with measurable impact.</p>
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <i class="fas fa-globe text-indigo-600 text-4xl mb-4"></i>
+          <h4 class="font-bold text-xl mb-2">Impact</h4>
+          <p>We design solutions that create lasting change in communities and businesses.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-gray-900 text-white">
-      <div class="container mx-auto px-4 text-center">
-        <h3 class="text-3xl font-bold mb-6">Let’s Work Together</h3>
-        <p class="mb-8">Reach out to us for partnerships, collaborations, and services.</p>
-        <a href="mailto:info@fortizotechnologies.com" class="px-6 py-3 bg-purple-600 rounded-lg font-semibold shadow hover:bg-purple-500 transition">Contact Us</a>
+  <!-- Services -->
+  <section id="services" class="py-20 container mx-auto px-4 fade-in">
+    <h3 class="text-3xl font-bold text-center mb-12">Our Services</h3>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+        <i class="fas fa-code text-purple-700 text-4xl mb-4"></i>
+        <h4 class="font-bold text-xl mb-2">Software Development</h4>
+        <p>Custom software and web applications tailored to your needs.</p>
       </div>
-    </section>
+      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+        <i class="fas fa-network-wired text-indigo-600 text-4xl mb-4"></i>
+        <h4 class="font-bold text-xl mb-2">IT Infrastructure</h4>
+        <p>Robust networking, cloud, and IT systems for businesses and organizations.</p>
+      </div>
+      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+        <i class="fas fa-chart-line text-green-600 text-4xl mb-4"></i>
+        <h4 class="font-bold text-xl mb-2">Digital Strategy</h4>
+        <p>Helping organizations embrace digital transformation with measurable impact.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-8">
-      <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+  <!-- Contact Form -->
+  <section id="contact" class="py-20 bg-gray-900 text-white fade-in">
+    <div class="container mx-auto px-4 max-w-2xl">
+      <h3 class="text-3xl font-bold mb-6 text-center">Let’s Work Together</h3>
+      <p class="mb-8 text-center">Reach out to us for partnerships, collaborations, and services.</p>
+
+      <form action="https://formspree.io/f/yourformid" method="POST" class="space-y-6 bg-gray-800 p-8 rounded-xl shadow-lg">
         <div>
-          <h4 class="text-xl font-bold text-white mb-2">Fortizo Technologies SL</h4>
-          <p>Innovating the future of technology in Sierra Leone.</p>
+          <label for="name" class="block mb-2 font-semibold">Name</label>
+          <input type="text" name="name" id="name" required
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600">
         </div>
         <div>
-          <h4 class="text-xl font-bold text-white mb-2">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="#home" class="hover:text-white">Home</a></li>
-            <li><a href="#about" class="hover:text-white">About</a></li>
-            <li><a href="#services" class="hover:text-white">Services</a></li>
-            <li><a href="#contact" class="hover:text-white">Contact</a></li>
-          </ul>
+          <label for="email" class="block mb-2 font-semibold">Email</label>
+          <input type="email" name="email" id="email" required
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600">
         </div>
         <div>
-          <h4 class="text-xl font-bold text-white mb-2">Follow Us</h4>
-          <div class="flex space-x-4 justify-center md:justify-start">
-            <!-- Facebook -->
-            <a href="#" class="hover:text-white">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M22 12a10 10 0 1 0-11 9.95v-7.05h-3v-2.9h3V9.5c0-3 1.79-4.65 4.53-4.65 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 2.9h-2.79V22A10 10 0 0 0 22 12z"/>
-              </svg>
-            </a>
-            <!-- Twitter -->
-            <a href="#" class="hover:text-white">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 11.1 4.23 12.84 12.84 0 0 1 1.64 2.15 4.5 4.5 0 0 0 3 7.72a4.52 4.52 0 0 1-2-.55v.05a4.52 4.52 0 0 0 3.63 4.42 4.52 4.52 0 0 1-2 .08 4.52 4.52 0 0 0 4.21 3.13A9.05 9.05 0 0 1 1 19.54a12.75 12.75 0 0 0 6.92 2.03c8.3 0 12.84-6.88 12.84-12.84 0-.2-.01-.42-.02-.63A9.22 9.22 0 0 0 23 3z"/>
-              </svg>
-            </a>
-            <!-- LinkedIn -->
-            <a href="#" class="hover:text-white">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4 8h3.96v12H4V8zm7 0h3.78v1.71h.05c.53-1 1.82-2.05 3.74-2.05 3.99 0 4.73 2.63 4.73 6.05V20H15v-5.53c0-1.32-.03-3-1.83-3-1.84 0-2.12 1.44-2.12 2.92V20H11V8z"/>
-              </svg>
-            </a>
-            <!-- Instagram -->
-            <a href="#" class="hover:text-white">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.2c3.2 0 3.584.01 4.85.07 1.17.056 1.95.24 2.4.415a4.92 4.92 0 0 1 1.77 1.145 4.92 4.92 0 0 1 1.145 1.77c.176.45.36 1.23.415 2.4.06 1.266.07 1.65.07 4.85s-.01 3.584-.07 4.85c-.056 1.17-.24 1.95-.415 2.4a4.92 4.92 0 0 1-1.145 1.77 4.92 4.92 0 0 1-1.77 1.145c-.45.176-1.23.36-2.4.415-1.266.06-1.65.07-4.85.07s-3.584-.01-4.85-.07c-1.17-.056-1.95-.24-2.4-.415a4.92 4.92 0 0 1-1.77-1.145 4.92 4.92 0 0 1-1.145-1.77c-.176-.45-.36-1.23-.415-2.4C2.21 15.784 2.2 15.4 2.2 12s.01-3.584.07-4.85c.056-1.17.24-1.95.415-2.4a4.92 4.92 0 0 1 1.145-1.77 4.92 4.92 0 0 1 1.77-1.145c.45-.176 1.23-.36 2.4-.415C8.416 2.21 8.8 2.2 12 2.2zm0-2.2C8.735 0 8.332.012 7.052.072 5.77.133 4.862.313 4.052.615A7.09 7.09 0 0 0 1.615
+          <label for="message" class="block mb-2 font-semibold">Message</label>
+          <textarea name="message" id="message" rows="5" required
+            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+        </div>
+        <button type="submit" class="w-full px-6 py-3 bg-purple-600 font-semibold rounded-lg shadow hover:bg-purple-500 transition">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-8 fade-in">
+    <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="text-xl font-bold text-white mb-2">Fortizo Technologies SL</h4>
+        <p>Innovating the future of technology in Sierra Leone.</p>
+      </div>
+      <div>
+        <h4 class="text-xl font-bold text-white mb-2">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-white">Home</a></li>
+          <li><a href="#about" class="hover:text-white">About</a></li>
+          <li><a href="#services" class="hover:text-white">Services</a></li>
+          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xl font-bold text-white mb-2">Follow Us</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white"><i class="fab fa-facebook text-2xl"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
+          <a href="#" class="hover:text-white"><i class="fab fa-instagram text-2xl"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-8 text-sm">© 2025 Fortizo Technologies SL. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Scroll reveal animations
+    ScrollReveal().reveal(".fade-in", {
+      delay: 200,
+      duration: 800,
+      origin: "bottom",
+      distance: "30px",
+      easing: "ease-in-out",
+      interval: 200,
+    });
+  </script>
+</body>
+</html>
