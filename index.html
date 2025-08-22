@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortizotechnologies_sl - Digital Solutions & Event Marketing</title>
+    <title>Fortizotechnologies_sl - Digital Solutions & Digital Marketing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -48,7 +48,7 @@
                         <a href="#home" class="text-purple-700 hover:text-purple-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
                         <a href="#services" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
                         <a href="#markets" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Key Markets</a>
-                        <a href="#stakeholders" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Stakeholders</a>
+                        <a href="#stakeholders" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Team</a>
                         <a href="#events" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Events</a>
                         <a href="#about" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">About Us</a>
                         <a href="#contact" class="text-gray-700 hover:text-purple-700 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
@@ -69,7 +69,7 @@
                 <a href="#home" class="text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Home</a>
                 <a href="#services" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Services</a>
                 <a href="#markets" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Key Markets</a>
-                <a href="#stakeholders" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Stakeholders</a>
+                <a href="#stakeholders" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Team</a>
                 <a href="#events" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Events</a>
                 <a href="#about" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">About Us</a>
                 <a href="#contact" class="text-gray-700 hover:text-purple-700 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
@@ -77,19 +77,26 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-br from-purple-700 to-purple-900 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" class="relative text-white py-20 min-h-screen flex items-center">
+        <div class="video-background">
+            <video autoplay loop muted playsinline>
+                <source src="fortizovid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-overlay"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-poppins font-bold mb-6">
-                    Digital Solutions, Branding & Event Marketing—Built for Impact
+                    Digital Solutions, AI Development, Branding & Event Marketing—Built for Impact
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 text-purple-100 max-w-3xl mx-auto">
-                    Empowering businesses across Africa and the Middle East with innovative digital solutions, strategic branding, and impactful event marketing.
+                    We empower businesses, organizations, and industries across Sierra Leone with innovative digital solutions, AI agentic systems, strategic branding, and impactful event marketing—helping them thrive in a fast-evolving digital world.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button onclick="scrollToSection('contact')" class="bg-white text-purple-700 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
-                        Request a Quote
+                        Send
                     </button>
                     <button onclick="scrollToSection('services')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-700 transition-colors">
                         Our Services
@@ -100,31 +107,15 @@
     </section>
 
     <!-- Highlights Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-purple-50 p-8 rounded-xl shadow-lg">
-                    <div class="text-4xl font-poppins font-bold text-purple-700 mb-2">16+</div>
-                    <div class="text-gray-600 font-medium">Years Experience</div>
-                </div>
-                <div class="bg-purple-50 p-8 rounded-xl shadow-lg">
-                    <div class="text-4xl font-poppins font-bold text-purple-700 mb-2">10+</div>
-                    <div class="text-gray-600 font-medium">Countries</div>
-                </div>
-                <div class="bg-purple-50 p-8 rounded-xl shadow-lg">
-                    <div class="text-4xl font-poppins font-bold text-purple-700 mb-2">100+</div>
-                    <div class="text-gray-600 font-medium">Engagements</div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Services Section -->
     <section id="services" class="py-20 bg-purple-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">Our Services</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive solutions tailored to drive your business forward</p>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">We help businesses, organizations, and industries thrive by offering a range of services, including Managed IT, AI Development, Web Development, and Digital Marketing.
+                </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
@@ -188,10 +179,9 @@
                         <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
-                    </div>
-                    <h3 class="text-2xl font-poppins font-semibold mb-4">Experience</h3>
-                    <p class="text-gray-600">Over 16 years of proven expertise across diverse markets and industries.</p>
-                </div>
+                    
+                   
+                
                 <div class="text-center">
                     <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,7 +189,7 @@
                         </svg>
                     </div>
                     <h3 class="text-2xl font-poppins font-semibold mb-4">Network</h3>
-                    <p class="text-gray-600">Extensive connections across Africa and the Middle East to amplify your reach.</p>
+                    <p class="text-gray-600">Extensive connections across Sierra Leone to amplify your reach.</p>
                 </div>
             </div>
         </div>
@@ -210,21 +200,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">Key Markets</h2>
-                <p class="text-xl text-gray-600">Serving clients across strategic regions</p>
+                <p class="text-xl text-gray-600">Serving clients across strategic industries</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-poppins font-semibold text-purple-700 mb-2">Middle East</h3>
-                    <p class="text-gray-600">Strategic partnerships and solutions across the Gulf region</p>
+                    <h3 class="text-xl font-poppins font-semibold text-purple-700 mb-2">Freetown</h3>
+                    <p class="text-gray-600">Strategic partnerships and solutions across Freetown and beyound</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-poppins font-semibold text-purple-700 mb-2">Nigeria</h3>
-                    <p class="text-gray-600">Deep market expertise in West Africa's largest economy</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow">
-                    <h3 class="text-xl font-poppins font-semibold text-purple-700 mb-2">West Africa</h3>
-                    <p class="text-gray-600">Comprehensive coverage across the West African region</p>
-                </div>
+                
+                
+                    
+            
                 <div class="bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-shadow">
                     <h3 class="text-xl font-poppins font-semibold text-purple-700 mb-2">South Africa</h3>
                     <p class="text-gray-600">Established presence in Southern Africa's business hub</p>
@@ -241,7 +227,7 @@
     <section id="stakeholders" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">Stakeholders</h2>
+                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">Team</h2>
                 <p class="text-xl text-gray-600">Building meaningful relationships with key partners</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -279,14 +265,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    <section>
 
-    <!-- Events Section -->
+    <!-- Marketing Section -->
     <section id="events" class="py-20 bg-purple-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">Events</h2>
-                <p class="text-xl text-gray-600">Creating impactful experiences that drive engagement</p>
+                <p class="text-xl text-gray-600">Creating impactful experiences that drive marketing engagements</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
@@ -304,8 +290,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-poppins font-semibold mb-3">Conferences & Summits</h3>
-                    <p class="text-gray-600">Large-scale conferences that bring together industry leaders and drive meaningful dialogue.</p>
+                    
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
@@ -337,17 +322,17 @@
                         </li>
                         <li class="flex items-center">
                             <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                            Stakeholder communication strategies
+                            Marketing communication strategies
                         </li>
                         <li class="flex items-center">
                             <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                            Crisis communication planning
+                             communication and  planning
                         </li>
                     </ul>
                 </div>
                 <div class="bg-purple-50 p-8 rounded-xl">
                     <h3 class="text-2xl font-poppins font-semibold mb-4">Branding Solutions</h3>
-                    <p class="text-gray-600 mb-6">Comprehensive branding services that establish strong market presence and drive business growth across all touchpoints.</p>
+                    <p class="text-gray-600 mb-6">Comprehensive branding services that establish strong market presence and drive business growth across all industries.</p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
                             <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
@@ -391,7 +376,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-poppins font-semibold mb-3">Connector</h3>
-                    <p class="text-gray-600">Building lasting relationships that create value for all stakeholders.</p>
+                    <p class="text-gray-600">Building lasting relationships that create value for all partners.</p>
                 </div>
                 <div class="text-center">
                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
@@ -443,7 +428,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    <section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-purple-50">
@@ -487,7 +472,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-900">Phone</h4>
-                                <p class="text-gray-600">+232 XX XXX XXXX</p>
+                                <p class="text-gray-600">+232 88-83028/33-860396</p>
                             </div>
                         </div>
                     </div>
@@ -525,7 +510,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
                     <h3 class="text-2xl font-poppins font-bold mb-4">Fortizotechnologies_sl</h3>
-                    <p class="text-purple-200 mb-4">Empowering businesses across Africa and the Middle East with innovative digital solutions, strategic branding, and impactful event marketing.</p>
+                    <p class="text-purple-200 mb-4">Empowering businesses across Sierra Leone with innovative digital solutions, strategic branding, and impactful event marketing.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-purple-200 hover:text-white transition-colors">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -593,7 +578,7 @@
             const message = formData.get('message');
             
             // Show success message (in a real application, you would send this to a server)
-            alert(`Thank you ${name}! Your message has been received. We'll get back to you at ${email} soon.`);
+            alert(Thank you ${name}! Your message has been received. We'll get back to you at ${email} soon.);
             
             // Reset form
             this.reset();
