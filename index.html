@@ -1,405 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fortizo Technologies SL — Innovation, Branding & Events</title>
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              primary: '#6D28D9', // purple-700
-              primaryDark: '#5B21B6',
-              accent: '#C084FC',   // purple-300
-              ink: '#0F172A',
-              soft: '#F8F7FB'
-            }
-          },
-          boxShadow: {
-            card: '0 20px 50px -20px rgba(13, 10, 44, 0.25)'
-          },
-          fontFamily: {
-            inter: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial']
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <style>
-    html { scroll-behavior: smooth; }
-    /* Offset for fixed header when using in-page anchors */
-    section { scroll-margin-top: 96px; }
-  </style>
-</head>
-<body class="font-inter bg-brand-soft text-slate-800">
-  <!-- Nav -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur shadow-sm border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="h-16 flex items-center justify-between">
-        <a href="#home" class="flex items-center gap-3">
-          <span class="inline-flex h-9 w-9 rounded-xl bg-gradient-to-br from-brand.primary to-brand.accent items-center justify-center shadow">
-            <!-- F monogram -->
-            <svg viewBox="0 0 24 24" class="h-5 w-5 text-white"><path fill="currentColor" d="M5 4h14v4H9v4h8v4H9v4H5z"/></svg>
-          </span>
-          <div class="leading-tight">
-            <div class="text-lg font-extrabold tracking-tight text-brand-primary">Fortizo</div>
-            <div class="text-[11px] text-slate-500">Technologies SL</div>
-          </div>
-        </a>
-
-        <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-1">
-          <a href="#about" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-primary">About</a>
-          <a href="#services" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-primary">Services</a>
-          <a href="#values" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-primary">Values</a>
-          <a href="#clients" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-primary">Clients</a>
-          <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-brand-soft hover:text-brand-primary">Contact</a>
-          <a href="#contact" class="ml-2 inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-white bg-brand-primary hover:bg-brand-primaryDark transition-colors">Request a Quote</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fortizo Technologies SL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans scroll-smooth">
+    <!-- Navbar -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+      <div class="container mx-auto flex justify-between items-center p-4">
+        <h1 class="text-2xl font-bold text-purple-700">Fortizo Technologies SL</h1>
+        <nav class="hidden md:flex space-x-6">
+          <a href="#home" class="hover:text-purple-600 transition">Home</a>
+          <a href="#about" class="hover:text-purple-600 transition">About</a>
+          <a href="#values" class="hover:text-purple-600 transition">Values</a>
+          <a href="#services" class="hover:text-purple-600 transition">Services</a>
+          <a href="#contact" class="hover:text-purple-600 transition">Contact</a>
         </nav>
-
-        <!-- Mobile button -->
-        <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-slate-200" aria-label="Open menu">
-          <svg class="h-6 w-6 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white">
-      <div class="px-4 py-3 space-y-1">
-        <a href="#about" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-soft">About</a>
-        <a href="#services" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-soft">Services</a>
-        <a href="#values" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-soft">Values</a>
-        <a href="#clients" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-soft">Clients</a>
-        <a href="#contact" class="nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-soft">Contact</a>
-        <a href="#contact" class="block px-3 py-2 rounded-xl text-sm font-semibold text-white text-center bg-brand-primary hover:bg-brand-primaryDark">Request a Quote</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section id="home" class="relative overflow-hidden bg-gradient-to-br from-brand.primary to-brand.primaryDark text-white">
-    <!-- Decorative grid -->
-    <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
-      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-            <path d="M32 0H0v32" fill="none" stroke="white" stroke-opacity="0.15"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"/>
-      </svg>
-    </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24">
-      <div class="text-center" data-aos="fade-up">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Digital Innovation, Branding & Events — built for impact</h1>
-        <p class="mt-6 text-lg md:text-xl text-white/90 max-w-3xl mx-auto">Fortizo empowers organizations with modern digital products, strategic brand systems, and curated events that spark partnerships and growth.</p>
-        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 rounded-xl font-semibold bg-white text-brand-primary hover:bg-brand.accent/20 transition-colors">Talk to our team</a>
-          <a href="#services" class="inline-flex items-center justify-center px-8 py-3 rounded-xl font-semibold border border-white/60 text-white hover:bg-white hover:text-brand-primary transition-colors">Explore services</a>
+        <div class="md:hidden">
+          <button id="menu-btn">
+            <svg class="w-6 h-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden flex-col space-y-4 p-4 bg-white md:hidden">
+        <a href="#home" class="hover:text-purple-600">Home</a>
+        <a href="#about" class="hover:text-purple-600">About</a>
+        <a href="#values" class="hover:text-purple-600">Values</a>
+        <a href="#services" class="hover:text-purple-600">Services</a>
+        <a href="#contact" class="hover:text-purple-600">Contact</a>
+      </div>
+    </header>
 
-  <!-- About -->
-  <section id="about" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div data-aos="fade-right">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary">Who We Are</h2>
-          <p class="mt-4 text-slate-600">Fortizo Technologies SL is a Sierra Leonean company creating innovative digital platforms and brand experiences for clients across Africa and the Middle East. We blend product thinking, creative strategy, and flawless delivery.</p>
-          <ul class="mt-6 space-y-3 text-slate-700">
-            <li class="flex items-start"><span class="mt-1 mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand.accent/30 text-brand-primary"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span> 16+ years across tech, public and development sectors.</li>
-            <li class="flex items-start"><span class="mt-1 mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand.accent/30 text-brand-primary"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3v8h6v-8c0-1.657-1.343-3-3-3z"/></svg></span> Outcome-first facilitation and stakeholder engagement.</li>
-            <li class="flex items-start"><span class="mt-1 mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand.accent/30 text-brand-primary"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h14M3 17h10"/></svg></span> Full-stack digital delivery from discovery to launch.</li>
-          </ul>
-          <div class="mt-8 flex gap-3">
-            <a href="#services" class="px-5 py-3 rounded-lg bg-brand-primary text-white font-semibold hover:bg-brand-primaryDark">See what we do</a>
-            <a href="#contact" class="px-5 py-3 rounded-lg border border-slate-300 text-slate-800 font-semibold hover:border-brand-primary hover:text-brand-primary">Partner with Fortizo</a>
+    <!-- Hero -->
+    <section id="home" class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+      <video autoplay muted loop class="absolute w-full h-full object-cover">
+        <source src="https://cdn.pixabay.com/vimeo/373852987/Technology_Background_720p.mp4" type="video/mp4">
+      </video>
+      <div class="relative z-10 px-4">
+        <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Innovating the Future of Technology</h2>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in delay-200">We empower businesses with innovative digital solutions, bridging technology and impact in Sierra Leone and beyond.</p>
+        <a href="#services" class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-500 transition">Explore Services</a>
+      </div>
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <img src="https://via.placeholder.com/500x350" alt="About Fortizo" class="rounded-2xl shadow-lg">
+        <div>
+          <h3 class="text-3xl font-bold mb-4">Who We Are</h3>
+          <p class="text-lg mb-4">Fortizo Technologies SL is a Sierra Leonean tech company building innovative digital platforms, products, and services that create measurable impact for businesses, institutions, and communities.</p>
+          <a href="#contact" class="text-purple-700 font-semibold hover:underline">Get in Touch →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section id="values" class="py-20 bg-gray-100">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-12">Our Brand Values</h3>
+        <div class="grid md:grid-cols-3 gap-10">
+          <!-- Innovation -->
+          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <svg class="mx-auto mb-4 w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3h2m-1 1v3m4.22 1.22l2.12-2.12M21 11h-3M19.78 16.78l-2.12 2.12M13 21v-3m-4.22-1.22l-2.12 2.12M3 13h3m1.22-4.22l-2.12-2.12"/>
+            </svg>
+            <h4 class="font-bold text-xl mb-2">Innovation</h4>
+            <p>We embrace creativity and new ideas to deliver impactful solutions.</p>
+          </div>
+          <!-- Collaboration -->
+          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <svg class="mx-auto mb-4 w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11c1.657 0 3-1.343 3-3S17.657 5 16 5s-3 1.343-3 3 1.343 3 3 3zM8 11c1.657 0 3-1.343 3-3S9.657 5 8 5 5 6.343 5 8s1.343 3 3 3zM2 20v-2c0-2.21 3.58-4 8-4s8 1.79 8 4v2H2z"/>
+            </svg>
+            <h4 class="font-bold text-xl mb-2">Collaboration</h4>
+            <p>We work hand-in-hand with clients and partners to achieve shared success.</p>
+          </div>
+          <!-- Impact -->
+          <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+            <svg class="mx-auto mb-4 w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M3 18h18M3 6h18"/>
+            </svg>
+            <h4 class="font-bold text-xl mb-2">Impact</h4>
+            <p>We design solutions that create lasting change in communities and businesses.</p>
           </div>
         </div>
-        <div class="relative" data-aos="fade-left">
-          <div class="aspect-[4/3] rounded-2xl bg-brand.accent/20 shadow-card"></div>
-          <!-- Replace the div above with an <img> if you have an actual image -->
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 container mx-auto px-4">
+      <h3 class="text-3xl font-bold text-center mb-12">Our Services</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <!-- Software Development -->
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+          <svg class="mx-auto mb-4 w-12 h-12 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16h8M8 12h8M8 8h8M4 6h16v12H4z"/>
+          </svg>
+          <h4 class="font-bold text-xl mb-2">Software Development</h4>
+          <p>Custom software and web applications tailored to your needs.</p>
+        </div>
+        <!-- IT Infrastructure -->
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+          <svg class="mx-auto mb-4 w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+          <h4 class="font-bold text-xl mb-2">IT Infrastructure</h4>
+          <p>Robust networking, cloud, and IT systems for businesses and organizations.</p>
+        </div>
+        <!-- Digital Strategy -->
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
+          <svg class="mx-auto mb-4 w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h6v6h5v-8h-16v8h5z"/>
+          </svg>
+          <h4 class="font-bold text-xl mb-2">Digital Strategy</h4>
+          <p>Helping organizations embrace digital transformation with measurable impact.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services -->
-  <section id="services" class="py-20 bg-brand-soft">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-brand-primary">What we do</h2>
-        <p class="mt-3 text-lg text-slate-600">Comprehensive solutions tailored to your growth journey.</p>
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-6">Let’s Work Together</h3>
+        <p class="mb-8">Reach out to us for partnerships, collaborations, and services.</p>
+        <a href="mailto:info@fortizotechnologies.com" class="px-6 py-3 bg-purple-600 rounded-lg font-semibold shadow hover:bg-purple-500 transition">Contact Us</a>
       </div>
+    </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Service card -->
-        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h6M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold">Meeting Facilitation</h3>
-          <p class="mt-2 text-slate-600">Outcome-driven facilitation for boards, product sprints, and multi-stakeholder sessions.</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 12h3m0 0a9 9 0 1018 0 9 9 0 10-18 0zm9-9v3"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold">Market Research</h3>
-          <p class="mt-2 text-slate-600">Africa & MENA-focused insights, TAM sizing, and validation for product/market fit.</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 4v2m10-2v2M3 10h18M5 20h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold">Marketing & Branding</h3>
-          <p class="mt-2 text-slate-600">Brand identity systems, messaging, campaigns, and go-to-market playbooks.</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow" data-aos="fade-up" data-aos-delay="300">
-          <div class="w-12 h-12 rounded-xl bg-brand-soft flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M4 7h16M5 20h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v11a2 2 0 002 2z"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold">Digital Solutions & E‑Learning</h3>
-          <p class="mt-2 text-slate-600">Web apps, portals, and LMS deployments with modern UX and accessibility.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Values / Highlights -->
-  <section id="values" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Our Brand Values</h2>
-        <p class="mt-3 text-lg text-slate-600">Principles that guide everything we build.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="text-center p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="0">
-          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12l5 5L20 7"/></svg>
-          </div>
-          <h3 class="text-2xl font-semibold">Trusted</h3>
-          <p class="text-slate-600 mt-2">Integrity, transparency, and delivery you can measure.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <h3 class="text-2xl font-semibold">Experienced</h3>
-          <p class="text-slate-600 mt-2">16+ years across tech, public, and development sectors.</p>
-        </div>
-        <div class="text-center p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-          <div class="w-16 h-16 bg-brand-soft rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-8 h-8 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9A9 9 0 009 3m12 9H3m9 9V3"/></svg>
-          </div>
-          <h3 class="text-2xl font-semibold">Connected</h3>
-          <p class="text-slate-600 mt-2">A strong partner network across Africa & the Middle East.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clients / Partners -->
-  <section id="clients" class="py-20 bg-brand-soft">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Trusted by Partners</h2>
-        <p class="mt-3 text-lg text-slate-600">We collaborate with leading institutions and innovators.</p>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center opacity-80" data-aos="fade-up" data-aos-delay="100">
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 1</span></div>
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 2</span></div>
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 3</span></div>
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 4</span></div>
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 5</span></div>
-        <div class="bg-white h-16 rounded-xl flex items-center justify-center shadow-sm"><span class="text-slate-500 font-semibold">Partner 6</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Contact Fortizo</h2>
-        <p class="mt-3 text-lg text-slate-600">Ready to start your next project? Let’s build it together.</p>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <!-- Info -->
-        <div data-aos="fade-right">
-          <h3 class="text-2xl font-semibold">Get in touch</h3>
-          <div class="mt-6 space-y-6">
-            <div class="flex items-start">
-              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold">Address</h4>
-                <p class="text-slate-600">Freetown, Sierra Leone</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold">Email</h4>
-                <p class="text-slate-600">hello@fortizo.sl</p>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <div class="w-6 h-6 text-brand-primary mt-1 mr-4">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.26 1.13a11.04 11.04 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
-              </div>
-              <div>
-                <h4 class="font-semibold">Phone</h4>
-                <p class="text-slate-600">+232 00 000 000</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Form -->
-        <div class="bg-brand-soft p-8 rounded-2xl shadow" data-aos="fade-left">
-          <form id="contact-form" class="space-y-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-slate-700 mb-2">Name</label>
-              <input id="name" name="name" type="text" required class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent">
-            </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
-              <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent">
-            </div>
-            <div>
-              <label for="company" class="block text-sm font-medium text-slate-700 mb-2">Company</label>
-              <input id="company" name="company" type="text" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent">
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium text-slate-700 mb-2">Message</label>
-              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-primary focus:border-transparent"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-brand-primary text-white py-3 px-6 rounded-xl font-semibold hover:bg-brand-primaryDark transition-colors">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-brand-primary text-white pt-14 pb-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center space-x-3">
-            <span class="inline-flex h-9 w-9 rounded-xl bg-white/10 items-center justify-center">
-              <svg viewBox="0 0 24 24" class="h-5 w-5 text-white"><path fill="currentColor" d="M5 4h14v4H9v4h8v4H9v4H5z"/></svg>
-            </span>
-            <h3 class="text-2xl font-extrabold">Fortizo</h3>
-          </div>
-          <p class="text-white/80 mt-4 max-w-xl">Digital products, brand systems, and events that move markets across Africa and the Middle East.</p>
-          <div class="flex space-x-4 mt-4">
-            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="X/Twitter">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.691 3h3.63l4.35 6.39L17.8 3h3.51l-6.36 8.88L21.49 21h-3.63l-4.83-7.09L7.9 21H4.39l6.99-9.75L4.69 3z"/></svg>
-            </a>
-            <a href="#" class="text-white/80 hover:text-white transition-colors" aria-label="LinkedIn">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM7 20H4V9h3v11zM5.5 7.5C4.67 7.5 4 6.83 4 6s.67-1.5 1.5-1.5S7 5.17 7 6s-.67 1.5-1.5 1.5zM20 20h-3v-6.5c0-1.38-1.12-2.5-2.5-2.5S12 12.12 12 13.5V20H9V9h3v1.06C12.66 9.42 13.76 9 15 9c2.21 0 4 1.79 4 4V20z"/></svg>
-            </a>
-          </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+      <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div>
+          <h4 class="text-xl font-bold text-white mb-2">Fortizo Technologies SL</h4>
+          <p>Innovating the future of technology in Sierra Leone.</p>
         </div>
         <div>
-          <h4 class="text-lg font-semibold">Quick Links</h4>
-          <ul class="mt-4 space-y-2">
-            <li><a href="#about" class="text-white/80 hover:text-white">About</a></li>
-            <li><a href="#services" class="text-white/80 hover:text-white">Services</a></li>
-            <li><a href="#values" class="text-white/80 hover:text-white">Values</a></li>
-            <li><a href="#clients" class="text-white/80 hover:text-white">Clients</a></li>
-            <li><a href="#contact" class="text-white/80 hover:text-white">Contact</a></li>
+          <h4 class="text-xl font-bold text-white mb-2">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-white">Home</a></li>
+            <li><a href="#about" class="hover:text-white">About</a></li>
+            <li><a href="#services" class="hover:text-white">Services</a></li>
+            <li><a href="#contact" class="hover:text-white">Contact</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="text-lg font-semibold">Services</h4>
-          <ul class="mt-4 space-y-2">
-            <li><span class="text-white/80">Meeting Facilitation</span></li>
-            <li><span class="text-white/80">Market Research</span></li>
-            <li><span class="text-white/80">Marketing & Branding</span></li>
-            <li><span class="text-white/80">Digital Solutions & E‑Learning</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-white/20 mt-10 pt-6 text-center">
-        <p class="text-white/70">© <span id="year"></span> Fortizo Technologies SL. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    // Close mobile menu on link click & smooth scroll handled by CSS
-    document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-    // Elevate nav on scroll
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 8) header.classList.add('shadow-md');
-      else header.classList.remove('shadow-md');
-    });
-
-    // Active link highlight using IntersectionObserver
-    const links = document.querySelectorAll('.nav-link');
-    const sections = [...new Set([...links].map(l => document.querySelector(l.getAttribute('href'))))];
-    const linkMap = new Map([...links].map(l => [l.getAttribute('href'), l]));
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const id = '#' + entry.target.id;
-        const link = linkMap.get(id);
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('text-brand-primary', 'bg-brand-soft'));
-          link?.classList.add('text-brand-primary', 'bg-brand-soft');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-
-    sections.forEach(sec => sec && io.observe(sec));
-
-    // Init AOS
-    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
-
-    // Contact form demo
-    document.getElementById('contact-form')?.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = new FormData(this);
-      const name = data.get('name');
-      const email = data.get('email');
-      alert(`Thank you, ${name}! We'll reply to ${email}.`);
-      this.reset();
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+          <h4 class="text-xl font-bold text-white mb-2">Follow Us</h4>
+          <div class="flex space-x-4 justify-center md:justify-start">
+            <!-- Facebook -->
+            <a href="#" class="hover:text-white">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11 9.95v-7.05h-3v-2.9h3V9.5c0-3 1.79-4.65 4.53-4.65 1.31 0 2.68.24 2.68.24v2.95h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 2.9h-2.79V22A10 10 0 0 0 22 12z"/>
+              </svg>
+            </a>
+            <!-- Twitter -->
+            <a href="#" class="hover:text-white">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4.36a9 9 0 0 1-2.88 1.1A4.52 4.52 0 0 0 11.1 4.23 12.84 12.84 0 0 1 1.64 2.15 4.5 4.5 0 0 0 3 7.72a4.52 4.52 0 0 1-2-.55v.05a4.52 4.52 0 0 0 3.63 4.42 4.52 4.52 0 0 1-2 .08 4.52 4.52 0 0 0 4.21 3.13A9.05 9.05 0 0 1 1 19.54a12.75 12.75 0 0 0 6.92 2.03c8.3 0 12.84-6.88 12.84-12.84 0-.2-.01-.42-.02-.63A9.22 9.22 0 0 0 23 3z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="hover:text-white">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4 8h3.96v12H4V8zm7 0h3.78v1.71h.05c.53-1 1.82-2.05 3.74-2.05 3.99 0 4.73 2.63 4.73 6.05V20H15v-5.53c0-1.32-.03-3-1.83-3-1.84 0-2.12 1.44-2.12 2.92V20H11V8z"/>
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="hover:text-white">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.2c3.2 0 3.584.01 4.85.07 1.17.056 1.95.24 2.4.415a4.92 4.92 0 0 1 1.77 1.145 4.92 4.92 0 0 1 1.145 1.77c.176.45.36 1.23.415 2.4.06 1.266.07 1.65.07 4.85s-.01 3.584-.07 4.85c-.056 1.17-.24 1.95-.415 2.4a4.92 4.92 0 0 1-1.145 1.77 4.92 4.92 0 0 1-1.77 1.145c-.45.176-1.23.36-2.4.415-1.266.06-1.65.07-4.85.07s-3.584-.01-4.85-.07c-1.17-.056-1.95-.24-2.4-.415a4.92 4.92 0 0 1-1.77-1.145 4.92 4.92 0 0 1-1.145-1.77c-.176-.45-.36-1.23-.415-2.4C2.21 15.784 2.2 15.4 2.2 12s.01-3.584.07-4.85c.056-1.17.24-1.95.415-2.4a4.92 4.92 0 0 1 1.145-1.77 4.92 4.92 0 0 1 1.77-1.145c.45-.176 1.23-.36 2.4-.415C8.416 2.21 8.8 2.2 12 2.2zm0-2.2C8.735 0 8.332.012 7.052.072 5.77.133 4.862.313 4.052.615A7.09 7.09 0 0 0 1.615
