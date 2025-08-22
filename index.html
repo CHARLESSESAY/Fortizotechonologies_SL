@@ -3,181 +3,429 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fortizo Technologies SL</title>
+  <title>Fortizo SL — Tech Innovation in Sierra Leone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <script src="https://unpkg.com/scrollreveal"></script>
-</head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+  <style>
+    :root{
+      --tiu-purple:#5b21b6; /* deep */
+      --tiu-fuchsia:#a21caf; /* accent */
+      --tiu-ink:#111827;    /* text */
+    }
+    html{scroll-behavior:smooth}
+    body{font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+    .font-poppins{font-family:'Poppins', sans-serif}
 
-  <!-- Navbar -->
-  <header class="fixed w-full bg-white shadow-md z-50">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <h1 class="text-2xl font-bold text-purple-700">Fortizo Technologies SL</h1>
-      <nav class="hidden md:flex space-x-6">
-        <a href="#home" class="hover:text-purple-600 transition">Home</a>
-        <a href="#about" class="hover:text-purple-600 transition">About</a>
-        <a href="#values" class="hover:text-purple-600 transition">Values</a>
-        <a href="#services" class="hover:text-purple-600 transition">Services</a>
-        <a href="#contact" class="hover:text-purple-600 transition">Contact</a>
-      </nav>
-      <div class="md:hidden">
-        <button id="menu-btn"><i class="fas fa-bars text-2xl"></i></button>
+    /* ===== Animated gradient text (hero) ===== */
+    .gradient-text{
+      background: linear-gradient(90deg, #ffffff 0%, #e9d5ff 45%, #fff7ed 55%, #e9d5ff 65%, #ffffff 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      background-size:200% 100%;
+      animation: shimmer 6s ease-in-out infinite;
+    }
+    @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* ===== Reveal on scroll (Option 2) ===== */
+    .reveal-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease, transform .7s ease}
+    .reveal-down{opacity:0;transform:translateY(-32px);transition:opacity .7s ease, transform .7s ease}
+    .reveal-fade{opacity:0;transition:opacity .8s ease}
+    .is-visible{opacity:1;transform:none}
+
+    /* ===== SVG Icon System ===== */
+    .tiu-icon{width:28px;height:28px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .tiu-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:9999px;background:rgba(255,255,255,.1)}
+
+    /* ===== Section anchor offset for fixed nav ===== */
+    section{scroll-margin-top:96px}
+
+    /* ===== Glass card util ===== */
+    .card{background:rgba(255,255,255,0.9);backdrop-filter:saturate(120%) blur(6px)}
+
+    /* ===== Simple focus ring for a11y ===== */
+    a, button, input, textarea{outline-color: #a78bfa}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- ===== Navigation ===== -->
+  <header class="fixed top-0 inset-x-0 z-50 transition-colors">
+    <nav id="siteNav" class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 rounded-b-2xl">
+      <a href="#home" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-700 to-fuchsia-700 grid place-items-center text-white">
+          <!-- Simple F monogram -->
+          <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
+        </div>
+        <span class="font-poppins font-semibold text-lg text-white">Fortizo</span>
+      </a>
+      <button id="menuBtn" class="md:hidden text-white/90" aria-label="Open menu">
+        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <ul id="navLinks" class="hidden md:flex items-center gap-6 text-white/90 font-medium">
+        <li><a class="hover:text-white" href="#home">Home</a></li>
+        <li><a class="hover:text-white" href="#about">About</a></li>
+        <li><a class="hover:text-white" href="#services">What We Do</a></li>
+        <li><a class="hover:text-white" href="#market">Key Market</a></li>
+        <li><a class="hover:text-white" href="#team">Team</a></li>
+        <li><a class="hover:text-white" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobilePanel" class="md:hidden hidden bg-white/95 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3">
+        <a class="block text-gray-800" href="#home">Home</a>
+        <a class="block text-gray-800" href="#about">About</a>
+        <a class="block text-gray-800" href="#services">What We Do</a>
+        <a class="block text-gray-800" href="#market">Key Market</a>
+        <a class="block text-gray-800" href="#team">Team</a>
+        <a class="block text-gray-800" href="#contact">Contact</a>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden flex-col space-y-4 p-4 bg-white md:hidden">
-      <a href="#home" class="hover:text-purple-600">Home</a>
-      <a href="#about" class="hover:text-purple-600">About</a>
-      <a href="#values" class="hover:text-purple-600">Values</a>
-      <a href="#services" class="hover:text-purple-600">Services</a>
-      <a href="#contact" class="hover:text-purple-600">Contact</a>
-    </div>
+    <!-- Nav background gradient (like Tech Innovate vibe) -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-purple-900 via-purple-800 to-fuchsia-800/90"></div>
   </header>
 
-  <!-- Hero with Video Background -->
-  <section id="home" class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="https://www.videvo.net/videvo_files/converted/2016_10/preview/160809_A_001_HD.mp442204.mp4" type="video/mp4">
-    </video>
-    <div class="relative z-10 px-4">
-      <h2 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Innovating the Future of Technology</h2>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in delay-200">We empower businesses with innovative digital solutions, bridging technology and impact in Sierra Leone and beyond.</p>
-      <a href="#services" class="px-6 py-3 bg-purple-700 font-semibold rounded-lg shadow-md hover:bg-purple-600 transition animate-fade-in delay-400">Explore Services</a>
-    </div>
-  </section>
+  <main>
+    <!-- ===== Hero ===== -->
+    <section id="home" class="relative pt-36 pb-20 sm:pb-28 text-white overflow-hidden">
+      <!-- gradient background -->
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-purple-900 via-purple-800 to-fuchsia-800"></div>
+      <!-- subtle grid overlay -->
+      <div class="absolute inset-0 -z-10 opacity-20 [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-  <!-- About -->
-  <section id="about" class="py-20 container mx-auto px-4 fade-in">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <img src="https://via.placeholder.com/500x350" alt="About Fortizo" class="rounded-2xl shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="reveal-down">
+            <span class="tiu-badge text-white/90">
+              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/></svg>
+              Tech • Innovation • Impact
+            </span>
+            <h1 class="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 leading-tight gradient-text">
+              Digital Solutions & Event Marketing built for impact in Sierra Leone
+            </h1>
+            <p class="mt-5 text-lg text-purple-100 max-w-xl">
+              We help organizations in Freetown and across Sierra Leone launch brands, run standout events, and modernize with smart digital tools.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a href="#services" class="px-6 py-3 rounded-xl bg-white text-purple-900 font-semibold shadow hover:shadow-md">
+                Explore What We Do
+              </a>
+              <a href="#contact" class="px-6 py-3 rounded-xl border border-white/50 text-white font-semibold hover:bg-white/10">
+                Request a Quote
+              </a>
+            </div>
+          </div>
+          <!-- Hero illustration (inline SVG) -->
+          <div class="reveal-up">
+            <svg viewBox="0 0 600 400" class="w-full h-auto" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#a78bfa"/>
+                  <stop offset="100%" stop-color="#f0abfc"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="600" height="400" fill="none"/>
+              <g stroke="url(#g1)" fill="none" stroke-width="3">
+                <path d="M50 320 C150 180 300 180 400 320" opacity=".6"/>
+                <path d="M80 300 C180 160 320 160 420 300" opacity=".45"/>
+                <path d="M110 280 C210 140 340 140 450 280" opacity=".35"/>
+              </g>
+              <g>
+                <circle cx="140" cy="110" r="34" fill="url(#g1)" opacity=".9"/>
+                <rect x="250" y="80" width="180" height="110" rx="16" fill="none" stroke="url(#g1)" stroke-width="3"/>
+                <line x1="250" y1="130" x2="430" y2="130" stroke="url(#g1)" stroke-width="3"/>
+                <circle cx="300" cy="130" r="6" fill="#fff"/>
+                <circle cx="330" cy="130" r="6" fill="#fff"/>
+                <circle cx="360" cy="130" r="6" fill="#fff"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal-down">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple-900">About Fortizo</h2>
+          <p class="mt-4 text-gray-700 leading-relaxed">
+            Fortizo is a Sierra Leone–born team of strategists, facilitators, designers, and engineers. We bridge ideas, people, and opportunities—delivering
+            <span class="font-semibold">digital platforms</span>, <span class="font-semibold">brand systems</span>, and
+            <span class="font-semibold">event experiences</span> that actually move the needle.
+          </p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start gap-3"><svg class="tiu-icon text-purple-700" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span>Human-centered discovery and clear, measurable outcomes.</span></li>
+            <li class="flex items-start gap-3"><svg class="tiu-icon text-purple-700" viewBox="0 0 24 24"><path d="M12 20V4m8 8H4"/></svg><span>Modern, scalable solutions that grow with you.</span></li>
+            <li class="flex items-start gap-3"><svg class="tiu-icon text-purple-700" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg><span>Transparent process, collaborative delivery.</span></li>
+          </ul>
+        </div>
+        <div class="reveal-up">
+          <!-- Abstract SVG illustration for About -->
+          <svg viewBox="0 0 520 360" class="w-full h-auto" aria-hidden="true">
+            <defs>
+              <linearGradient id="aboutG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#c4b5fd"/>
+                <stop offset="100%" stop-color="#f5d0fe"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="20" width="480" height="320" rx="24" fill="none" stroke="url(#aboutG)" stroke-width="4"/>
+            <g stroke="url(#aboutG)" fill="none" stroke-width="3" opacity=".8">
+              <path d="M60 240 C150 160 220 160 310 240"/>
+              <path d="M90 220 C180 140 250 140 340 220" opacity=".7"/>
+            </g>
+            <g>
+              <circle cx="140" cy="120" r="28" fill="url(#aboutG)"/>
+              <rect x="200" y="100" width="220" height="50" rx="10" fill="url(#aboutG)" opacity=".3"/>
+              <rect x="200" y="160" width="260" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
+              <rect x="200" y="190" width="180" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal-down">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple-900">What We Do</h2>
+          <p class="mt-3 text-gray-700">End-to-end support across strategy, design, delivery, and scale.</p>
+        </div>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Card 1 -->
+          <div class="card p-6 rounded-2xl shadow reveal-up">
+            <div class="flex items-center gap-3 text-purple-800">
+              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg>
+              <h3 class="font-semibold text-lg">Meeting Facilitation</h3>
+            </div>
+            <p class="mt-3 text-gray-700">Productive, inclusive sessions that land decisions and momentum.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </div>
+          <!-- Card 2 -->
+          <div class="card p-6 rounded-2xl shadow reveal-up">
+            <div class="flex items-center gap-3 text-purple-800">
+              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 3v7h7M21 21v-7h-7M3 14a8 8 0 0014 3"/></svg>
+              <h3 class="font-semibold text-lg">Market Research</h3>
+            </div>
+            <p class="mt-3 text-gray-700">Local insight, sharp analysis, and clear recommendations.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </div>
+          <!-- Card 3 -->
+          <div class="card p-6 rounded-2xl shadow reveal-up">
+            <div class="flex items-center gap-3 text-purple-800">
+              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 6v12m6-6H6"/></svg>
+              <h3 class="font-semibold text-lg">Marketing & Branding</h3>
+            </div>
+            <p class="mt-3 text-gray-700">Positioning, identity, and campaigns that build trust and curiosity.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </div>
+          <!-- Card 4 -->
+          <div class="card p-6 rounded-2xl shadow reveal-up sm:col-span-2 lg:col-span-1">
+            <div class="flex items-center gap-3 text-purple-800">
+              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20"/></svg>
+              <h3 class="font-semibold text-lg">Digital Solutions & E‑Learning</h3>
+            </div>
+            <p class="mt-3 text-gray-700">From websites and portals to LMS rollouts and content.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Key Market (Freetown & Regions only) ===== -->
+    <section id="market" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal-down">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple-900">Key Market</h2>
+          <p class="mt-3 text-gray-700">Freetown, Sierra Leone — and surrounding regions.</p>
+        </div>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Freetown (HQ)</h3><p class="mt-2 text-gray-700">Western Area Urban</p></div>
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Western Area</h3><p class="mt-2 text-gray-700">Urban & Rural</p></div>
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Northern Region</h3><p class="mt-2 text-gray-700">Bombali • Port Loko • Tonkolili</p></div>
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Southern Region</h3><p class="mt-2 text-gray-700">Bo • Bonthe • Moyamba • Pujehun</p></div>
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Eastern Region</h3><p class="mt-2 text-gray-700">Kenema • Kono • Kailahun</p></div>
+          <div class="p-6 rounded-2xl border bg-white shadow-sm reveal-up"><h3 class="font-semibold text-purple-900">Custom Engagements</h3><p class="mt-2 text-gray-700">We travel to where impact is needed.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Team ===== -->
+    <section id="team" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal-down">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple-900">Meet the Team</h2>
+          <p class="mt-3 text-gray-700">Small, senior, and hands-on across strategy, design, and engineering.</p>
+        </div>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Member 1 -->
+          <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <h3 class="mt-4 font-semibold">Jane Doe</h3>
+            <p class="text-sm text-gray-600">CEO & Founder</p>
+          </div>
+          <!-- Member 2 -->
+          <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <h3 class="mt-4 font-semibold">John Smith</h3>
+            <p class="text-sm text-gray-600">CTO</p>
+          </div>
+          <!-- Member 3 -->
+          <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <h3 class="mt-4 font-semibold">Mary Johnson</h3>
+            <p class="text-sm text-gray-600">Innovation Lead</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        <div class="reveal-down">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple-900">Get in Touch</h2>
+          <p class="mt-3 text-gray-700">Ready to start your next project? Tell us about your goals and timelines.</p>
+          <div class="mt-6 space-y-4 text-gray-800">
+            <p class="flex items-center gap-3"><svg class="tiu-icon text-purple-800" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Freetown, Sierra Leone</p>
+            <p class="flex items-center gap-3"><svg class="tiu-icon text-purple-800" viewBox="0 0 24 24"><path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> info@fortizo.sl</p>
+            <p class="flex items-center gap-3"><svg class="tiu-icon text-purple-800" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11.05 11.05 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg> +232 XX XXX XXXX</p>
+          </div>
+        </div>
+        <form id="contactForm" class="card p-6 rounded-2xl shadow space-y-4 reveal-up">
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Name</label>
+            <input required type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Email</label>
+            <input required type="email" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Company</label>
+            <input type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800">Message</label>
+            <textarea rows="4" required class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent"></textarea>
+          </div>
+          <button class="w-full bg-purple-900 text-white py-3 rounded-xl font-semibold hover:bg-purple-800">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-purple-950 text-white/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid gap-10 md:grid-cols-3">
       <div>
-        <h3 class="text-3xl font-bold mb-4">Who We Are</h3>
-        <p class="text-lg mb-4">Fortizo Technologies SL is a Sierra Leonean tech company building innovative digital platforms, products, and services that create measurable impact for businesses, institutions, and communities.</p>
-        <a href="#contact" class="text-purple-700 font-semibold hover:underline">Get in Touch →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Values -->
-  <section id="values" class="py-20 bg-gray-100 fade-in">
-    <div class="container mx-auto px-4 text-center">
-      <h3 class="text-3xl font-bold mb-12">Our Brand Values</h3>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-lightbulb text-purple-600 text-4xl mb-4"></i>
-          <h4 class="font-bold text-xl mb-2">Innovation</h4>
-          <p>We embrace creativity and new ideas to deliver impactful solutions.</p>
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-700 to-fuchsia-700 grid place-items-center text-white">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
+          </div>
+          <span class="font-poppins font-semibold text-lg">Fortizo</span>
         </div>
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-handshake text-green-600 text-4xl mb-4"></i>
-          <h4 class="font-bold text-xl mb-2">Collaboration</h4>
-          <p>We work hand-in-hand with clients and partners to achieve shared success.</p>
-        </div>
-        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
-          <i class="fas fa-globe text-indigo-600 text-4xl mb-4"></i>
-          <h4 class="font-bold text-xl mb-2">Impact</h4>
-          <p>We design solutions that create lasting change in communities and businesses.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="py-20 container mx-auto px-4 fade-in">
-    <h3 class="text-3xl font-bold text-center mb-12">Our Services</h3>
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-        <i class="fas fa-code text-purple-700 text-4xl mb-4"></i>
-        <h4 class="font-bold text-xl mb-2">Software Development</h4>
-        <p>Custom software and web applications tailored to your needs.</p>
-      </div>
-      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-        <i class="fas fa-network-wired text-indigo-600 text-4xl mb-4"></i>
-        <h4 class="font-bold text-xl mb-2">IT Infrastructure</h4>
-        <p>Robust networking, cloud, and IT systems for businesses and organizations.</p>
-      </div>
-      <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition text-center">
-        <i class="fas fa-chart-line text-green-600 text-4xl mb-4"></i>
-        <h4 class="font-bold text-xl mb-2">Digital Strategy</h4>
-        <p>Helping organizations embrace digital transformation with measurable impact.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form -->
-  <section id="contact" class="py-20 bg-gray-900 text-white fade-in">
-    <div class="container mx-auto px-4 max-w-2xl">
-      <h3 class="text-3xl font-bold mb-6 text-center">Let’s Work Together</h3>
-      <p class="mb-8 text-center">Reach out to us for partnerships, collaborations, and services.</p>
-
-      <form action="https://formspree.io/f/yourformid" method="POST" class="space-y-6 bg-gray-800 p-8 rounded-xl shadow-lg">
-        <div>
-          <label for="name" class="block mb-2 font-semibold">Name</label>
-          <input type="text" name="name" id="name" required
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600">
-        </div>
-        <div>
-          <label for="email" class="block mb-2 font-semibold">Email</label>
-          <input type="email" name="email" id="email" required
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600">
-        </div>
-        <div>
-          <label for="message" class="block mb-2 font-semibold">Message</label>
-          <textarea name="message" id="message" rows="5" required
-            class="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
-        </div>
-        <button type="submit" class="w-full px-6 py-3 bg-purple-600 font-semibold rounded-lg shadow hover:bg-purple-500 transition">
-          Send Message
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-300 py-8 fade-in">
-    <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
-      <div>
-        <h4 class="text-xl font-bold text-white mb-2">Fortizo Technologies SL</h4>
-        <p>Innovating the future of technology in Sierra Leone.</p>
+        <p class="mt-4 text-purple-200 max-w-sm">Digital solutions, branding, and event marketing for organizations in Sierra Leone.</p>
       </div>
       <div>
-        <h4 class="text-xl font-bold text-white mb-2">Quick Links</h4>
+        <h4 class="font-semibold text-white mb-3">Quick Links</h4>
         <ul class="space-y-2">
-          <li><a href="#home" class="hover:text-white">Home</a></li>
-          <li><a href="#about" class="hover:text-white">About</a></li>
-          <li><a href="#services" class="hover:text-white">Services</a></li>
-          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+          <li><a class="hover:underline" href="#about">About</a></li>
+          <li><a class="hover:underline" href="#services">What We Do</a></li>
+          <li><a class="hover:underline" href="#market">Key Market</a></li>
+          <li><a class="hover:underline" href="#team">Team</a></li>
+          <li><a class="hover:underline" href="#contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="text-xl font-bold text-white mb-2">Follow Us</h4>
-        <div class="flex space-x-4">
-          <a href="#" class="hover:text-white"><i class="fab fa-facebook text-2xl"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-twitter text-2xl"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-linkedin text-2xl"></i></a>
-          <a href="#" class="hover:text-white"><i class="fab fa-instagram text-2xl"></i></a>
-        </div>
+        <h4 class="font-semibold text-white mb-3">Contact</h4>
+        <ul class="space-y-2 text-purple-200">
+          <li>Freetown, Sierra Leone</li>
+          <li>info@fortizo.sl</li>
+          <li>+232 XX XXX XXXX</li>
+        </ul>
       </div>
     </div>
-    <div class="text-center mt-8 text-sm">© 2025 Fortizo Technologies SL. All rights reserved.</div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-purple-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p>© <span id="yr"></span> Fortizo. All rights reserved.</p>
+        <p>Built with care in Sierra Leone.</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- ===== Scripts ===== -->
   <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
+    // Year in footer
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+    menuBtn?.addEventListener('click', () => mobilePanel.classList.toggle('hidden'));
+    mobilePanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobilePanel.classList.add('hidden')));
+
+    // Change nav style on scroll (adds subtle elevation like TIU)
+    const siteNav = document.getElementById('siteNav');
+    const onScrollNav = () => {
+      const scrolled = window.scrollY > 10;
+      siteNav.classList.toggle('backdrop-blur', scrolled);
+      siteNav.classList.toggle('bg-white/5', scrolled);
+      siteNav.classList.toggle('shadow-lg', scrolled);
+    };
+    document.addEventListener('scroll', onScrollNav, { passive: true });
+    onScrollNav();
+
+    // Intersection Observer for reveal animations (Option 2)
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          // Once visible, unobserve to avoid retrigger
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.18});
+
+    document.querySelectorAll('.reveal-up, .reveal-down, .reveal-fade').forEach(el=>observer.observe(el));
+
+    // Highlight active nav link while scrolling
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('header a[href^="#"]'));
+
+    const activeObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(l=>{
+            const isActive = l.getAttribute('href') === `#${id}`;
+            l.classList.toggle('text-white', isActive);
+            l.classList.toggle('opacity-70', !isActive);
+          });
+        }
+      });
+    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
+
+    sections.forEach(sec=>activeObserver.observe(sec));
+
+    // Smooth scroll + small entrance nudge on click
+    navLinks.forEach(link=>{
+      link.addEventListener('click', (e)=>{
+        const href = link.getAttribute('href');
+        if(!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if(!target) return;
+        // tiny nudge effect
+        target.classList.add('is-visible'); // ensure visible if not yet
+        target.animate([{transform:'translateY(6px)'},{transform:'translateY(0)'}],{duration:250, easing:'ease-out'});
+      });
     });
 
-    // Scroll reveal animations
-    ScrollReveal().reveal(".fade-in", {
-      delay: 200,
-      duration: 800,
-      origin: "bottom",
-      distance: "30px",
-      easing: "ease-in-out",
-      interval: 200,
+    // Contact form (demo)
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Thanks! Your message has been received. We\'ll get back to you shortly.');
+      contactForm.reset();
     });
   </script>
 </body>
