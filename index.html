@@ -1,166 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fortizo_SL</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fortizo_SL</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Animations */
+  @keyframes slideUp { from {opacity:0; transform:translateY(50px);} to {opacity:1; transform:translateY(0);} }
+  @keyframes slideDown { from {opacity:0; transform:translateY(-50px);} to {opacity:1; transform:translateY(0);} }
+  .slide-up { animation: slideUp 0.7s ease-out forwards; }
+  .slide-down { animation: slideDown 0.7s ease-out forwards; }
 
-  <!-- Animation styles -->
-  <style>
-    @keyframes slideUp { 
-      from { opacity: 0; transform: translateY(50px);} 
-      to { opacity: 1; transform: translateY(0);} 
-    }
-    @keyframes slideDown { 
-      from { opacity: 0; transform: translateY(-50px);} 
-      to { opacity: 1; transform: translateY(0);} 
-    }
-    .slide-up { animation: slideUp 0.7s ease-out forwards; }
-    .slide-down { animation: slideDown 0.7s ease-out forwards; }
-  </style>
+  /* Sticky navbar highlight */
+  nav a.active { color: #FF6A3D; font-weight: bold; }
+
+  /* Hero button hover */
+  .btn-orange { background-color: #FF6A3D; color: #fff; }
+  .btn-orange:hover { background-color: #e65b2f; }
+</style>
 </head>
-<body class="font-sans text-gray-800">
+<body class="bg-gray-50 font-inter scroll-smooth">
 
-  <!-- Header / Navbar -->
-  <header class="fixed w-full bg-white shadow z-50">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-bold text-blue-600">Fortizo_SL</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="#hero" class="hover:text-blue-600">Home</a></li>
-          <li><a href="#about" class="hover:text-blue-600">About</a></li>
-          <li><a href="#services" class="hover:text-blue-600">What We Do</a></li>
-          <li><a href="#market" class="hover:text-blue-600">Key Market</a></li>
-          <li><a href="#team" class="hover:text-blue-600">Team</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<!-- Navbar -->
+<nav id="navbar" class="bg-purple-900 text-white px-8 py-4 fixed w-full top-0 z-50 flex justify-between items-center shadow-lg">
+  <h1 class="text-2xl font-bold">Fortizo</h1>
+  <ul class="flex gap-6">
+    <li><a href="#home" class="hover:text-orange-500">Home</a></li>
+    <li><a href="#about" class="hover:text-orange-500">About</a></li>
+    <li><a href="#services" class="hover:text-orange-500">What We Do</a></li>
+    <li><a href="#market" class="hover:text-orange-500">Key Market</a></li>
+    <li><a href="#team" class="hover:text-orange-500">Team</a></li>
+    <li><a href="#contact" class="hover:text-orange-500">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="pt-24">
 
   <!-- Hero Section -->
-  <section id="hero" class="section min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-center px-6 pt-20">
-    <div>
-      <h2 class="text-4xl md:text-6xl font-bold mb-6 animate-bounce">Innovating for Sierra Leone</h2>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto">At Fortizo_SL, we drive technology innovation to empower communities and businesses across Freetown and beyond.</p>
-    </div>
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center bg-blue-800 text-white relative slide-up">
+    <h1 class="text-5xl font-bold mb-4">Driving Tech Innovation in Sierra Leone</h1>
+    <p class="text-xl mb-6 max-w-2xl">Fortizo empowers communities through digital solutions, fostering innovation and growth.</p>
+    <a href="#contact" class="btn-orange px-6 py-3 rounded text-lg font-semibold">Get in Touch</a>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="section py-20 bg-gray-50">
-    <div class="container mx-auto text-center px-6">
-      <h2 class="text-3xl font-bold mb-6">About Us</h2>
-      <p class="max-w-3xl mx-auto">Fortizo_SL is a technology-driven company committed to bringing sustainable and innovative solutions to Sierra Leone. We focus on bridging the gap between people and technology through reliable services, training, and impactful projects.</p>
-    </div>
+  <section id="about" class="px-8 py-20 bg-gray-50 slide-down">
+    <h2 class="text-3xl font-bold mb-6 text-purple-900">About Fortizo</h2>
+    <p class="max-w-3xl mx-auto">We focus on fostering innovation, entrepreneurship, and technology adoption in Sierra Leone. Fortizo bridges local skills with global opportunities, creating lasting impact.</p>
   </section>
 
-  <!-- What We Do Section -->
-  <section id="services" class="section py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-12">What We Do</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
-          <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
-          <h3 class="text-xl font-semibold mb-2">Tech Solutions</h3>
-          <p class="mb-4">We deliver cutting-edge IT solutions that transform businesses and communities.</p>
-          <a href="#contact" class="text-blue-600 hover:underline">Contact Us</a>
-        </div>
-        <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
-          <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-          <h3 class="text-xl font-semibold mb-2">Training</h3>
-          <p class="mb-4">We equip individuals with the skills to thrive in a digital-first world.</p>
-          <a href="#contact" class="text-blue-600 hover:underline">Contact Us</a>
-        </div>
-        <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
-          <svg class="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-          <h3 class="text-xl font-semibold mb-2">Consulting</h3>
-          <p class="mb-4">Our experts provide guidance to align technology with real community needs.</p>
-          <a href="#contact" class="text-blue-600 hover:underline">Contact Us</a>
-        </div>
+  <!-- Services Section -->
+  <section id="services" class="px-8 py-20 bg-gray-100">
+    <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">What We Do</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow slide-up">
+        <!-- SVG icon -->
+        <svg class="w-12 h-12 mb-4 mx-auto text-purple-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L15.09 8H24L17.45 12.97L20.54 21L12 16.03L3.46 21L6.55 12.97L0 8H8.91L12 0Z"/></svg>
+        <h3 class="text-xl font-semibold mb-2">Digital Transformation</h3>
+        <p>We guide organizations into the digital era with tailored solutions.</p>
+        <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow slide-up">
+        <svg class="w-12 h-12 mb-4 mx-auto text-purple-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15 8H21L16.5 12.5L18.5 19L12 15L5.5 19L7.5 12.5L3 8H9L12 2Z"/></svg>
+        <h3 class="text-xl font-semibold mb-2">Innovation Hubs</h3>
+        <p>We create collaborative spaces for tech startups and innovators.</p>
+        <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow slide-up">
+        <svg class="w-12 h-12 mb-4 mx-auto text-purple-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L14 7H21L15.5 11.5L17.5 19L12 14.5L6.5 19L8.5 11.5L3 7H10L12 0Z"/></svg>
+        <h3 class="text-xl font-semibold mb-2">Training & Capacity Building</h3>
+        <p>We equip individuals with essential digital skills for the future.</p>
+        <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
       </div>
     </div>
   </section>
 
-  <!-- Key Market Section -->
-  <section id="market" class="section py-20 bg-gray-50">
-    <div class="container mx-auto text-center px-6">
-      <h2 class="text-3xl font-bold mb-6">Key Market</h2>
-      <p class="max-w-2xl mx-auto">Our primary focus is Freetown, Sierra Leone, and its surrounding regions — driving innovation where it matters most.</p>
-    </div>
+  <!-- Key Market -->
+  <section id="market" class="px-8 py-20 bg-gray-50 slide-down">
+    <h2 class="text-3xl font-bold mb-6 text-purple-900">Key Market</h2>
+    <p>Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
   </section>
 
   <!-- Team Section -->
-  <section id="team" class="section py-20 bg-white">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-12">Meet Our Team</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="p-6 border rounded-xl shadow">
-          <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
-          <h3 class="text-xl font-semibold">John Doe</h3>
-          <p class="text-gray-600">CEO & Founder</p>
-        </div>
-        <div class="p-6 border rounded-xl shadow">
-          <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
-          <h3 class="text-xl font-semibold">Jane Smith</h3>
-          <p class="text-gray-600">Head of Technology</p>
-        </div>
-        <div class="p-6 border rounded-xl shadow">
-          <img src="https://via.placeholder.com/150" alt="Team Member" class="w-32 h-32 mx-auto rounded-full mb-4">
-          <h3 class="text-xl font-semibold">Michael Johnson</h3>
-          <p class="text-gray-600">Community Manager</p>
-        </div>
+  <section id="team" class="px-8 py-20 bg-gray-100">
+    <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">Meet Our Team</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
+        <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+        <h3 class="font-semibold text-lg">Jane Doe</h3>
+        <p class="text-sm text-gray-600">CEO & Founder</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
+        <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+        <h3 class="font-semibold text-lg">John Smith</h3>
+        <p class="text-sm text-gray-600">CTO</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
+        <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+        <h3 class="font-semibold text-lg">Mary Johnson</h3>
+        <p class="text-sm text-gray-600">Innovation Lead</p>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section py-20 bg-gray-50">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-      <p class="mb-6">We’d love to hear from you. Reach out today.</p>
-      <form class="max-w-xl mx-auto grid gap-4">
-        <input type="text" placeholder="Your Name" class="p-3 border rounded">
-        <input type="email" placeholder="Your Email" class="p-3 border rounded">
-        <textarea placeholder="Your Message" class="p-3 border rounded"></textarea>
-        <button class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">Send</button>
-      </form>
-    </div>
+  <section id="contact" class="px-8 py-20 bg-gray-50 slide-down">
+    <h2 class="text-3xl font-bold mb-6 text-purple-900">Get in Touch</h2>
+    <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4">
+      <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
+      <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
+      <textarea placeholder="Message" class="w-full p-3 border rounded"></textarea>
+      <button class="btn-orange px-6 py-3 rounded font-semibold">Send Message</button>
+    </form>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-blue-600 text-white py-6 text-center">
-    <p>&copy; 2025 Fortizo_SL. All rights reserved.</p>
-  </footer>
+</main>
 
-  <!-- Animation Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const links = document.querySelectorAll("nav a");
-      const sections = document.querySelectorAll(".section");
+<!-- Footer -->
+<footer class="bg-purple-900 text-white text-center py-6 mt-10">
+  <p>&copy; 2025 Fortizo. Innovating Sierra Leone. All rights reserved.</p>
+</footer>
 
-      // Show hero at start
-      sections.forEach((sec, i) => sec.style.display = i === 0 ? "block" : "none");
-
-      links.forEach(link => {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href").substring(1);
-          const targetSection = document.getElementById(targetId);
-
-          // Hide all sections
-          sections.forEach(sec => sec.style.display = "none");
-
-          // Show target section
-          targetSection.style.display = "block";
-
-          // Reset and apply animation
-          targetSection.classList.remove("slide-up", "slide-down");
-          void targetSection.offsetWidth; // restart animation
-          targetSection.classList.add(Math.random() > 0.5 ? "slide-up" : "slide-down");
-        });
-      });
+<!-- Scripts -->
+<script>
+  // Intersection Observer for slide animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('slide-up');
+      } else {
+        entry.target.classList.remove('slide-up');
+      }
     });
-  </script>
+  }, {threshold: 0.2});
+  document.querySelectorAll('.slide-up, .slide-down').forEach(el => observer.observe(el));
+
+  // Active navbar highlight
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if(scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => link.classList.remove('active'));
+    if(current) document.querySelector(`nav a[href="#${current}"]`).classList.add('active');
+  });
+</script>
 </body>
 </html>
