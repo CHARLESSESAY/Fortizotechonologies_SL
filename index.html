@@ -1,132 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fortizo_SL</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @keyframes slideUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-50px);} to { opacity: 1; transform: translateY(0);} }
-    .slide-up { animation: slideUp 0.7s ease-out forwards; }
-    .slide-down { animation: slideDown 0.7s ease-out forwards; }
-    .fade-in { opacity: 0; transition: opacity 0.7s ease-out; }
-    .fade-in.visible { opacity: 1; }
-  </style>
-</head>
-<body class="bg-gray-50 text-gray-900 font-inter">
-
-  <!-- Navbar -->
-  <nav class="flex justify-between items-center px-8 py-4 bg-purple-900 text-white fixed w-full top-0 z-50">
-    <h1 class="text-2xl font-bold">Fortizo</h1>
-    <ul class="flex gap-6">
-      <li><a href="#home" class="hover:text-magenta-500">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">What We Do</a></li>
-      <li><a href="#market">Key Market</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main class="pt-24">
-    <!-- Hero Section -->
-    <section id="home" class="section px-8 py-20">
-      <div class="text-center fade-in slide-up">
-        <h2 class="text-4xl font-bold mb-4 text-purple-900">Driving Tech Innovation in Sierra Leone</h2>
-        <p class="text-lg max-w-2xl mx-auto">Fortizo is a hub for technology, innovation, and growth in Sierra Leone. We empower communities through digital solutions.</p>
+<!-- Services -->
+<section id="services" class="py-20 px-6 bg-gray-100 fade-up">
+  <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-purple-900">What We Do</h2>
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Digital Transformation -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+        <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
       </div>
-    </section>
+      <h3 class="text-xl font-semibold mb-2 text-center">Digital Transformation</h3>
+      <p class="text-gray-700 mb-4 text-center">We guide organizations into the digital era with tailored solutions.</p>
+      <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="section px-8 py-20 bg-gray-100">
-      <div class="slide-down fade-in">
-        <h2 class="text-3xl font-bold mb-6 text-purple-900">About Fortizo</h2>
-        <p class="max-w-3xl">We focus on fostering innovation, entrepreneurship, and technology adoption in Sierra Leone. Fortizo is dedicated to bridging gaps between local skills and global opportunities.</p>
+    <!-- Innovation Hubs -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+        <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 7-9 7-9-7 9-7z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 22V9" />
+        </svg>
       </div>
-    </section>
+      <h3 class="text-xl font-semibold mb-2 text-center">Innovation Hubs</h3>
+      <p class="text-gray-700 mb-4 text-center">We create collaborative spaces for tech startups and innovators.</p>
+      <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+    </div>
 
-    <!-- Services Section -->
-    <section id="services" class="section px-8 py-20">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">What We Do</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Digital Transformation</h3>
-          <p>We guide organizations into the digital era with tailored solutions.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Innovation Hubs</h3>
-          <p>We create collaborative spaces for tech startups and innovators.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Training & Capacity Building</h3>
-          <p>We equip individuals with essential digital skills for the future.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
-        </div>
+    <!-- Training & Capacity Building -->
+    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+      <div class="flex justify-center mb-4">
+        <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+        </svg>
       </div>
-    </section>
-
-    <!-- Key Market Section -->
-    <section id="market" class="section px-8 py-20 bg-gray-100">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Key Market</h2>
-      <p class="slide-down fade-in">Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="section px-8 py-20">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">Meet Our Team</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">Jane Doe</h3>
-          <p class="text-sm text-gray-600">CEO & Founder</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">John Smith</h3>
-          <p class="text-sm text-gray-600">CTO</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
-          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
-          <h3 class="font-semibold text-lg">Mary Johnson</h3>
-          <p class="text-sm text-gray-600">Innovation Lead</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section px-8 py-20 bg-gray-100">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Get in Touch</h2>
-      <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4 fade-in slide-down">
-        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
-        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
-        <textarea placeholder="Message" class="w-full p-3 border rounded"></textarea>
-        <button class="bg-purple-900 text-white px-6 py-3 rounded hover:bg-purple-700">Send Message</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-purple-900 text-white text-center py-6 mt-10 fade-in">
-    <p>&copy; 2025 Fortizo. Innovating Sierra Leone. All rights reserved.</p>
-  </footer>
-
-  <!-- Animation Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const options = { threshold: 0.2 };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, options);
-
-      fadeElements.forEach(el => observer.observe(el));
-    });
-  </script>
-</body>
-</html>
+      <h3 class="text-xl font-semibold mb-2 text-center">Training & Capacity Building</h3>
+      <p class="text-gray-700 mb-4 text-center">We equip individuals with essential digital skills for the future.</p>
+      <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
+    </div>
+  </div>
+</section>
