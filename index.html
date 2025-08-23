@@ -8,10 +8,8 @@
   <style>
     @keyframes slideUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
     @keyframes slideDown { from { opacity: 0; transform: translateY(-50px);} to { opacity: 1; transform: translateY(0);} }
-    .slide-up { animation: slideUp 0.7s ease-out forwards; }
-    .slide-down { animation: slideDown 0.7s ease-out forwards; }
-    .fade-in { opacity: 0; transition: opacity 0.7s ease-out; }
-    .fade-in.visible { opacity: 1; }
+    .slide-up { animation: slideUp 0.7s ease-out; }
+    .slide-down { animation: slideDown 0.7s ease-out; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-inter">
@@ -29,77 +27,115 @@
     </ul>
   </nav>
 
+  <!-- Sections -->
   <main class="pt-24">
-    <!-- Hero Section -->
-    <section id="home" class="section px-8 py-20">
-      <div class="text-center fade-in slide-up">
+    <!-- Home -->
+    <section id="home" class="section px-8 py-20 hidden">
+      <div class="text-center slide-up">
         <h2 class="text-4xl font-bold mb-4 text-purple-900">Driving Tech Innovation in Sierra Leone</h2>
         <p class="text-lg max-w-2xl mx-auto">Fortizo is a hub for technology, innovation, and growth in Sierra Leone. We empower communities through digital solutions.</p>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section px-8 py-20 bg-gray-100">
-      <div class="slide-down fade-in">
+    <!-- About -->
+    <section id="about" class="section px-8 py-20 hidden">
+      <div class="slide-down">
         <h2 class="text-3xl font-bold mb-6 text-purple-900">About Fortizo</h2>
         <p class="max-w-3xl">We focus on fostering innovation, entrepreneurship, and technology adoption in Sierra Leone. Fortizo is dedicated to bridging gaps between local skills and global opportunities.</p>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section px-8 py-20">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">What We Do</h2>
+    <!-- Services -->
+    <section id="services" class="section px-8 py-20 hidden bg-gray-100">
+      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">What We Do</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Digital Transformation</h3>
-          <p>We guide organizations into the digital era with tailored solutions.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
+        <!-- Digital Transformation -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
+          <div class="flex justify-center mb-4">
+            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Digital Transformation</h3>
+          <p class="text-gray-700 mb-4 text-center">We guide organizations into the digital era with tailored solutions.</p>
+          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Innovation Hubs</h3>
-          <p>We create collaborative spaces for tech startups and innovators.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
+
+        <!-- Innovation Hubs -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
+          <div class="flex justify-center mb-4">
+            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 7-9 7-9-7 9-7z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 22V9" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Innovation Hubs</h3>
+          <p class="text-gray-700 mb-4 text-center">We create collaborative spaces for tech startups and innovators.</p>
+          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
-          <h3 class="text-xl font-semibold mb-2">Training & Capacity Building</h3>
-          <p>We equip individuals with essential digital skills for the future.</p>
-          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
+
+        <!-- Training & Capacity Building -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 slide-up">
+          <div class="flex justify-center mb-4">
+            <svg class="w-12 h-12 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0112 21.5a12.083 12.083 0 01-6.16-10.922L12 14z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Training & Capacity Building</h3>
+          <p class="text-gray-700 mb-4 text-center">We equip individuals with essential digital skills for the future.</p>
+          <a href="#contact" class="block text-center text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
       </div>
     </section>
 
-    <!-- Key Market Section -->
-    <section id="market" class="section px-8 py-20 bg-gray-100">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Key Market</h2>
-      <p class="slide-down fade-in">Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
+    <!-- Key Market -->
+    <section id="market" class="section px-8 py-20 hidden">
+      <h2 class="text-3xl font-bold mb-6 text-purple-900">Key Market</h2>
+      <p class="slide-down">Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section px-8 py-20">
-      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">Meet Our Team</h2>
+    <!-- Team -->
+    <section id="team" class="section px-8 py-20 hidden bg-gray-100">
+      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900">Meet Our Team</h2>
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
           <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
           <h3 class="font-semibold text-lg">Jane Doe</h3>
-          <p class="text-sm text-gray-600">CEO & Founder</p>
+          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
+            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+            </svg>
+            CEO & Founder
+          </p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
           <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
           <h3 class="font-semibold text-lg">John Smith</h3>
-          <p class="text-sm text-gray-600">CTO</p>
+          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
+            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 7-9 7-9-7 9-7z" />
+            </svg>
+            CTO
+          </p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+        <div class="bg-white p-6 rounded-xl shadow text-center slide-up">
           <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
           <h3 class="font-semibold text-lg">Mary Johnson</h3>
-          <p class="text-sm text-gray-600">Innovation Lead</p>
+          <p class="text-sm text-gray-600 flex justify-center items-center gap-2">
+            <svg class="w-4 h-4 text-purple-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+            </svg>
+            Innovation Lead
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section px-8 py-20 bg-gray-100">
-      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Get in Touch</h2>
-      <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4 fade-in slide-down">
+    <!-- Contact -->
+    <section id="contact" class="section px-8 py-20 hidden">
+      <h2 class="text-3xl font-bold mb-6 text-purple-900">Get in Touch</h2>
+      <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4 slide-down">
         <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
         <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
         <textarea placeholder="Message" class="w-full p-3 border rounded"></textarea>
@@ -109,23 +145,41 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-purple-900 text-white text-center py-6 mt-10 fade-in">
+  <footer class="bg-purple-900 text-white text-center py-10 mt-10">
+    <div class="flex justify-center gap-6 mb-4">
+      <a href="#" class="hover:text-magenta-500">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 11-20 0 10 10 0 0120 0z"/></svg>
+      </a>
+      <a href="#" class="hover:text-magenta-500">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.995 4.388 10.95 10.125 11.854v-8.385H7.078V12h3.047V9.356c0-3.007 1.793-4.668 4.533-4.668 1.312 0 2.686.235 2.686.235v2.953h-1.513c-1.492 0-1.956.927-1.956 1.877V12h3.328l-.532 3.469h-2.796v8.385C19.612 22.95 24 17.995 24 12c0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </div>
     <p>&copy; 2025 Fortizo. Innovating Sierra Leone. All rights reserved.</p>
   </footer>
 
-  <!-- Animation Script -->
+  <!-- Script for Section Animations -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const fadeElements = document.querySelectorAll('.fade-in');
-      const options = { threshold: 0.2 };
+      const links = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll(".section");
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) entry.target.classList.add('visible');
+      // Show home at start
+      sections.forEach((sec, i) => sec.style.display = i === 0 ? "block" : "none");
+
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          sections.forEach(sec => sec.style.display = "none");
+
+          targetSection.style.display = "block";
+          targetSection.classList.remove("slide-up", "slide-down");
+          void targetSection.offsetWidth; // restart animation
+          targetSection.classList.add(Math.random() > 0.5 ? "slide-up" : "slide-down");
         });
-      }, options);
-
-      fadeElements.forEach(el => observer.observe(el));
+      });
     });
   </script>
 </body>
