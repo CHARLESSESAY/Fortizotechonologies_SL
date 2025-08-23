@@ -1,84 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Innovate UK Styled - Fortizotechnologies_sl</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortizo_SL</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-50px);} to { opacity: 1; transform: translateY(0);} }
+    .slide-up { animation: slideUp 0.7s ease-out forwards; }
+    .slide-down { animation: slideDown 0.7s ease-out forwards; }
+    .fade-in { opacity: 0; transition: opacity 0.7s ease-out; }
+    .fade-in.visible { opacity: 1; }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-gray-50 text-gray-900 font-inter">
 
   <!-- Navbar -->
-  <nav class="bg-[#330072] text-white shadow-md">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-extrabold">Fortizotechnologies_sl</h1>
-      <ul class="flex space-x-6 font-semibold">
-        <li><a href="#home" class="hover:text-[#9E1F63]">Home</a></li>
-        <li><a href="#about" class="hover:text-[#9E1F63]">About</a></li>
-        <li><a href="#services" class="hover:text-[#9E1F63]">Services</a></li>
-        <li><a href="#contact" class="hover:text-[#9E1F63]">Contact</a></li>
-      </ul>
-    </div>
+  <nav class="flex justify-between items-center px-8 py-4 bg-purple-900 text-white fixed w-full top-0 z-50">
+    <h1 class="text-2xl font-bold">Fortizo</h1>
+    <ul class="flex gap-6">
+      <li><a href="#home" class="hover:text-magenta-500">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">What We Do</a></li>
+      <li><a href="#market">Key Market</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="home" class="bg-[#330072] text-white py-20">
-    <div class="container mx-auto text-center px-6">
-      <h2 class="text-5xl font-extrabold mb-6">Driving Innovation for Growth</h2>
-      <p class="text-lg mb-8 max-w-2xl mx-auto">We empower businesses with technology solutions inspired by the innovation culture of Innovate UK — bold, transformative, and impactful.</p>
-      <a href="#services" class="bg-[#9E1F63] hover:bg-[#00AEEF] transition-colors px-6 py-3 rounded-lg font-semibold">Explore Our Services</a>
-    </div>
-  </section>
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section id="home" class="section px-8 py-20">
+      <div class="text-center fade-in slide-up">
+        <h2 class="text-4xl font-bold mb-4 text-purple-900">Driving Tech Innovation in Sierra Leone</h2>
+        <p class="text-lg max-w-2xl mx-auto">Fortizo is a hub for technology, innovation, and growth in Sierra Leone. We empower communities through digital solutions.</p>
+      </div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="bg-[#F5F5F5] py-16">
-    <div class="container mx-auto text-center px-6">
-      <h3 class="text-3xl font-bold text-[#330072] mb-6">About Us</h3>
-      <p class="max-w-3xl mx-auto text-lg text-gray-700">Fortizotechnologies_sl is a hub of technological advancement. Inspired by Innovate UK, we collaborate with organizations to deliver world-class digital solutions, fostering innovation and growth in every project we undertake.</p>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="section px-8 py-20 bg-gray-100">
+      <div class="slide-down fade-in">
+        <h2 class="text-3xl font-bold mb-6 text-purple-900">About Fortizo</h2>
+        <p class="max-w-3xl">We focus on fostering innovation, entrepreneurship, and technology adoption in Sierra Leone. Fortizo is dedicated to bridging gaps between local skills and global opportunities.</p>
+      </div>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services" class="py-16 bg-white">
-    <div class="container mx-auto px-6">
-      <h3 class="text-3xl font-bold text-center text-[#330072] mb-12">Our Services</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-[#F5F5F5] rounded-xl p-6 shadow-md hover:shadow-lg transition">
-          <h4 class="text-xl font-bold text-[#9E1F63] mb-4">Digital Transformation</h4>
-          <p class="text-gray-700">Helping businesses adopt cutting-edge technologies to improve efficiency and competitiveness.</p>
+    <!-- Services Section -->
+    <section id="services" class="section px-8 py-20">
+      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">What We Do</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
+          <h3 class="text-xl font-semibold mb-2">Digital Transformation</h3>
+          <p>We guide organizations into the digital era with tailored solutions.</p>
+          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
-        <!-- Card 2 -->
-        <div class="bg-[#F5F5F5] rounded-xl p-6 shadow-md hover:shadow-lg transition">
-          <h4 class="text-xl font-bold text-[#00AEEF] mb-4">Research & Innovation</h4>
-          <p class="text-gray-700">Collaborating on projects that push the boundaries of what’s possible, delivering impactful outcomes.</p>
+        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
+          <h3 class="text-xl font-semibold mb-2">Innovation Hubs</h3>
+          <p>We create collaborative spaces for tech startups and innovators.</p>
+          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
-        <!-- Card 3 -->
-        <div class="bg-[#F5F5F5] rounded-xl p-6 shadow-md hover:shadow-lg transition">
-          <h4 class="text-xl font-bold text-[#9E1F63] mb-4">Advisory Services</h4>
-          <p class="text-gray-700">Providing expert guidance to support your digital journey and unlock opportunities for growth.</p>
+        <div class="bg-white p-6 rounded-xl shadow fade-in slide-up">
+          <h3 class="text-xl font-semibold mb-2">Training & Capacity Building</h3>
+          <p>We equip individuals with essential digital skills for the future.</p>
+          <a href="#contact" class="block mt-4 text-purple-900 font-bold hover:underline">Contact Us →</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-[#F5F5F5] py-16">
-    <div class="container mx-auto text-center px-6">
-      <h3 class="text-3xl font-bold text-[#330072] mb-6">Get in Touch</h3>
-      <p class="mb-8 text-gray-700">We’d love to hear from you. Reach out today to discuss how we can work together to innovate for growth.</p>
-      <a href="mailto:info@fortizotechnologies.com" class="bg-[#330072] hover:bg-[#9E1F63] text-white px-6 py-3 rounded-lg font-semibold transition">Contact Us</a>
-    </div>
-  </section>
+    <!-- Key Market Section -->
+    <section id="market" class="section px-8 py-20 bg-gray-100">
+      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Key Market</h2>
+      <p class="slide-down fade-in">Our focus is on <strong>Freetown, Sierra Leone and its regions</strong>, building strong local tech ecosystems.</p>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section px-8 py-20">
+      <h2 class="text-3xl font-bold mb-10 text-center text-purple-900 fade-in">Meet Our Team</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="font-semibold text-lg">Jane Doe</h3>
+          <p class="text-sm text-gray-600">CEO & Founder</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="font-semibold text-lg">John Smith</h3>
+          <p class="text-sm text-gray-600">CTO</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow text-center fade-in slide-up">
+          <img src="https://via.placeholder.com/150" class="w-24 h-24 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="font-semibold text-lg">Mary Johnson</h3>
+          <p class="text-sm text-gray-600">Innovation Lead</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section px-8 py-20 bg-gray-100">
+      <h2 class="text-3xl font-bold mb-6 text-purple-900 fade-in">Get in Touch</h2>
+      <form class="max-w-xl bg-white p-6 rounded-xl shadow space-y-4 fade-in slide-down">
+        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded">
+        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded">
+        <textarea placeholder="Message" class="w-full p-3 border rounded"></textarea>
+        <button class="bg-purple-900 text-white px-6 py-3 rounded hover:bg-purple-700">Send Message</button>
+      </form>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="bg-[#330072] text-white text-center py-6">
-    <p>&copy; 2025 Fortizotechnologies_sl. Inspired by Innovate UK. All Rights Reserved.</p>
+  <footer class="bg-purple-900 text-white text-center py-6 mt-10 fade-in">
+    <p>&copy; 2025 Fortizo. Innovating Sierra Leone. All rights reserved.</p>
   </footer>
 
+  <!-- Animation Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const options = { threshold: 0.2 };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, options);
+
+      fadeElements.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
