@@ -7,6 +7,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    
+  /* Slide animations */
+  @keyframes slideUp { 
+    from { opacity: 0; transform: translateY(50px);} 
+    to { opacity: 1; transform: translateY(0);} 
+  }
+  @keyframes slideDown { 
+    from { opacity: 0; transform: translateY(-50px);} 
+    to { opacity: 1; transform: translateY(0);} 
+  }
+
+  .slide-up { 
+    animation: slideUp 0.7s ease-out forwards; 
+  }
+  .slide-down { 
+    animation: slideDown 0.7s ease-out forwards; 
+  }
+
     :root{
       --tiu-purple:#5b21b6; /* deep */
       --tiu-fuchsia:#a21caf; /* accent */
@@ -54,7 +72,7 @@
           <!-- Simple F monogram -->
           <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
         </div>
-        <span class="font-poppins font-semibold text-lg text-white">Fortizo</span>
+        <span class="font-poppins font-semibold text-lg text-white">Fortizo_SL</span>
       </a>
       <button id="menuBtn" class="md:hidden text-white/90" aria-label="Open menu">
         <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -260,14 +278,14 @@
           <!-- Member 1 -->
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
             <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
-            <h3 class="mt-4 font-semibold">Jane Doe</h3>
+            <h3 class="mt-4 font-semibold">Alex David Pratt</h3>
             <p class="text-sm text-gray-600">CEO & Founder</p>
           </div>
           <!-- Member 2 -->
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
             <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
-            <h3 class="mt-4 font-semibold">John Smith</h3>
-            <p class="text-sm text-gray-600">CTO</p>
+            <h3 class="mt-4 font-semibold">Jennifer E.K Kargbo</h3>
+            <p class="text-sm text-gray-600">CEO</p>
           </div>
           <!-- Member 3 -->
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
@@ -355,6 +373,34 @@
 
   <!-- ===== Scripts ===== -->
   <script>
+    
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll(".section");
+
+    // Show home at start
+    sections.forEach((sec, i) => sec.style.display = i === 0 ? "block" : "none");
+
+    links.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        // Hide all sections
+        sections.forEach(sec => sec.style.display = "none");
+
+        // Show target section
+        targetSection.style.display = "block";
+
+        // Reset and apply animation
+        targetSection.classList.remove("slide-up", "slide-down");
+        void targetSection.offsetWidth; // restart animation
+        targetSection.classList.add(Math.random() > 0.5 ? "slide-up" : "slide-down");
+      });
+    });
+  });
+
     // Year in footer
     document.getElementById('yr').textContent = new Date().getFullYear();
 
