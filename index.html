@@ -44,15 +44,26 @@
     @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
     /* ===== Reveal on scroll (Option 2) ===== */
-    .reveal-up, .reveal-down, .reveal-fade {
+    .reveal-up {
         opacity: 0;
         transform: translateY(32px);
         transition: opacity .7s ease, transform .7s ease;
+        will-change: opacity, transform;
     }
 
     .reveal-down {
+        opacity: 0;
         transform: translateY(-32px);
+        transition: opacity .7s ease, transform .7s ease;
+        will-change: opacity, transform;
     }
+
+    .reveal-fade {
+        opacity: 0;
+        transition: opacity .8s ease;
+        will-change: opacity;
+    }
+
     .is-visible{
         opacity: 1;
         transform: none;
@@ -358,7 +369,7 @@
     </div>
   </footer>
 
-  <script>
+  <script defer>
   // Year in footer
   document.getElementById('yr').textContent = new Date().getFullYear();
 
