@@ -44,10 +44,19 @@
     @keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
     /* ===== Reveal on scroll (Option 2) ===== */
-    .reveal-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease, transform .7s ease}
-    .reveal-down{opacity:0;transform:translateY(-32px);transition:opacity .7s ease, transform .7s ease}
-    .reveal-fade{opacity:0;transition:opacity .8s ease}
-    .is-visible{opacity:1;transform:none}
+    .reveal-up, .reveal-down, .reveal-fade {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal-down {
+        transform: translateY(-32px);
+    }
+    .is-visible{
+        opacity: 1;
+        transform: none;
+    }
 
     /* ===== SVG Icon System ===== */
     .tiu-icon{width:28px;height:28px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
