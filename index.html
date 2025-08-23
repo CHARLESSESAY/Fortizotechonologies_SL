@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    
   /* Slide animations */
   @keyframes slideUp { 
     from { opacity: 0; transform: translateY(50px);} 
@@ -390,7 +389,6 @@
       if(entry.isIntersecting){
         const id = entry.target.getAttribute('id');
         navLinks.forEach(l=>{
-          // FIX: Corrected the string concatenation here
           const isActive = l.getAttribute('href') === `#${id}`;
           l.classList.toggle('text-white', isActive);
           l.classList.toggle('opacity-70', !isActive);
