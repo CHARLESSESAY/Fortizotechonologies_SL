@@ -373,74 +373,74 @@
 
   <!-- ===== Scripts ===== -->
   <script>
-    // Year in footer
-    document.getElementById('yr').textContent = new Date().getFullYear();
+  // Year in footer
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobilePanel = document.getElementById('mobilePanel');
-    menuBtn?.addEventListener('click', () => mobilePanel.classList.toggle('hidden'));
-    mobilePanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobilePanel.classList.add('hidden')));
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuBtn?.addEventListener('click', () => mobilePanel.classList.toggle('hidden'));
+  mobilePanel?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobilePanel.classList.add('hidden')));
 
-    // Change nav style on scroll
-    const siteNav = document.getElementById('siteNav');
-    const onScrollNav = () => {
-      const scrolled = window.scrollY > 10;
-      siteNav.classList.toggle('backdrop-blur', scrolled);
-      siteNav.classList.toggle('bg-white/5', scrolled);
-      siteNav.classList.toggle('shadow-lg', scrolled);
-    };
-    document.addEventListener('scroll', onScrollNav, { passive: true });
-    onScrollNav();
+  // Change nav style on scroll
+  const siteNav = document.getElementById('siteNav');
+  const onScrollNav = () => {
+    const scrolled = window.scrollY > 10;
+    siteNav.classList.toggle('backdrop-blur', scrolled);
+    siteNav.classList.toggle('bg-white/5', scrolled);
+    siteNav.classList.toggle('shadow-lg', scrolled);
+  };
+  document.addEventListener('scroll', onScrollNav, { passive: true });
+  onScrollNav();
 
-    // Intersection Observer for reveal animations
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {threshold: 0.18});
-    document.querySelectorAll('.reveal-up, .reveal-down, .reveal-fade').forEach(el=>observer.observe(el));
-
-    // Highlight active nav link while scrolling
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const navLinks = Array.from(document.querySelectorAll('header a[href^="#"]'));
-    const activeObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(l=>{
-            const isActive = l.getAttribute('href') === `#${id}`;
-            l.classList.toggle('text-white', isActive);
-            l.classList.toggle('opacity-70', !isActive);
-          });
-        }
-      });
-    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
-    sections.forEach(sec=>activeObserver.observe(sec));
-
-    // Smooth scroll + small entrance nudge on click
-    navLinks.forEach(link=>{
-      link.addEventListener('click', (e)=>{
-        const href = link.getAttribute('href');
-        if(!href || !href.startsWith('#')) return;
-        const target = document.querySelector(href);
-        if(!target) return;
-        // tiny nudge effect
-        target.classList.add('is-visible'); // ensure visible if not yet
-        target.animate([{transform:'translateY(6px)'},{transform:'translateY(0)'}],{duration:250, easing:'ease-out'});
-      });
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, {threshold: 0.18});
+  document.querySelectorAll('.reveal-up, .reveal-down, .reveal-fade').forEach(el=>observer.observe(el));
 
-    // Contact form (demo)
-    const contactForm = document.getElementById('contactForm');
-    contactForm?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      alert('Thanks! Your message has been received. We\\'ll get back to you shortly.');
-      contactForm.reset();
+  // Highlight active nav link while scrolling
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  const navLinks = Array.from(document.querySelectorAll('header a[href^="#"]'));
+  const activeObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(l=>{
+          const isActive = l.getAttribute('href') === `#${id}`;
+          l.classList.toggle('text-white', isActive);
+          l.classList.toggle('opacity-70', !isActive);
+        });
+      }
     });
-  </script>
+  }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
+  sections.forEach(sec=>activeObserver.observe(sec));
+
+  // Smooth scroll + small entrance nudge on click
+  navLinks.forEach(link=>{
+    link.addEventListener('click', (e)=>{
+      const href = link.getAttribute('href');
+      if(!href || !href.startsWith('#')) return;
+      const target = document.querySelector(href);
+      if(!target) return;
+      // tiny nudge effect
+      target.classList.add('is-visible'); // ensure visible if not yet
+      target.animate([{transform:'translateY(6px)'},{transform:'translateY(0)'}],{duration:250, easing:'ease-out'});
+    });
+  });
+
+  // Contact form (demo)
+  const contactForm = document.getElementById('contactForm');
+  contactForm?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    alert('Thanks! Your message has been received. We\\'ll get back to you shortly.');
+    contactForm.reset();
+  });
+</script>
 </body>
 </html>
