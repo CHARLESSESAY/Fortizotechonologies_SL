@@ -7,7 +7,187 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @keyframes fadeUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
-    .fade-up { animation: fadeUp 0.8s ease-out forwards; }
+    .fade-up { animation: fadeUp 0.8s ease-out forwards; }<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortizo_SL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation styles -->
+  <style>
+    @keyframes slideUp { 
+      from { opacity: 0; transform: translateY(50px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+    @keyframes slideDown { 
+      from { opacity: 0; transform: translateY(-50px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+    .slide-up { animation: slideUp 0.7s ease-out forwards; }
+    .slide-down { animation: slideDown 0.7s ease-out forwards; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">Fortizo_SL</h1>
+      <div class="space-x-6">
+        <a href="#home" class="hover:text-blue-700">Home</a>
+        <a href="#about" class="hover:text-blue-700">About</a>
+        <a href="#whatwedo" class="hover:text-blue-700">What We Do</a>
+        <a href="#keymarket" class="hover:text-blue-700">Key Market</a>
+        <a href="#team" class="hover:text-blue-700">Team</a>
+        <a href="#contact" class="hover:text-blue-700">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="section min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center px-6">
+    <div>
+      <h2 class="text-4xl md:text-6xl font-bold mb-6">Innovating Sierra Leone’s Tech Future</h2>
+      <p class="text-lg md:text-xl mb-8">We build transformative digital solutions for businesses and communities.</p>
+      <a href="#contact" class="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section min-h-screen flex items-center justify-center px-6 py-16 bg-gray-100">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-blue-700 mb-6">About Us</h2>
+        <p class="text-lg text-gray-700 leading-relaxed mb-4">
+          Fortizo_SL is a Sierra Leone-based technology company focused on delivering cutting-edge solutions that empower businesses and transform communities. Our mission is to bridge the gap between technology and local needs through innovation, creativity, and expertise.
+        </p>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          With a team of forward-thinkers and innovators, we are building the digital future of Sierra Leone and beyond.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <!-- Example SVG icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-40 h-40 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do -->
+  <section id="whatwedo" class="section min-h-screen px-6 py-16">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-700 mb-12">What We Do</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-4">Web Development</h3>
+          <p class="text-gray-600 mb-4">Building modern, responsive websites tailored to local and global businesses.</p>
+          <a href="#contact" class="text-blue-600 font-medium">Contact Us →</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-4">Cloud Solutions</h3>
+          <p class="text-gray-600 mb-4">Delivering scalable and secure cloud services for enterprises and startups.</p>
+          <a href="#contact" class="text-blue-600 font-medium">Contact Us →</a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h3 class="text-xl font-semibold mb-4">AI & Automation</h3>
+          <p class="text-gray-600 mb-4">Helping industries embrace AI for efficiency, growth, and innovation.</p>
+          <a href="#contact" class="text-blue-600 font-medium">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Market -->
+  <section id="keymarket" class="section min-h-screen px-6 py-16 bg-gray-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-700 mb-6">Key Market</h2>
+      <p class="text-lg text-gray-700">
+        We proudly serve <span class="font-semibold">Freetown, Sierra Leone</span> and its regions — delivering technology solutions that meet local and international standards.
+      </p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="section min-h-screen px-6 py-16">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-700 mb-12">Meet Our Team</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <img src="https://via.placeholder.com/150" class="w-32 h-32 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="text-xl font-semibold">John Doe</h3>
+          <p class="text-gray-600">CEO & Founder</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <img src="https://via.placeholder.com/150" class="w-32 h-32 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="text-xl font-semibold">Jane Smith</h3>
+          <p class="text-gray-600">CTO</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <img src="https://via.placeholder.com/150" class="w-32 h-32 rounded-full mx-auto mb-4" alt="Team Member">
+          <h3 class="text-xl font-semibold">Michael Johnson</h3>
+          <p class="text-gray-600">Lead Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section min-h-screen px-6 py-16 bg-gray-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-700 mb-6">Contact Us</h2>
+      <p class="text-gray-700 mb-8">We’d love to hear from you! Reach out today to start your digital journey.</p>
+      <form class="grid gap-4">
+        <input type="text" placeholder="Your Name" class="p-3 rounded-lg border border-gray-300">
+        <input type="email" placeholder="Your Email" class="p-3 rounded-lg border border-gray-300">
+        <textarea placeholder="Your Message" class="p-3 rounded-lg border border-gray-300"></textarea>
+        <button type="submit" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-700 text-white py-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <p>&copy; 2025 Fortizo_SL. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Animation script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("nav a");
+      const sections = document.querySelectorAll(".section");
+
+      // Show home at start
+      sections.forEach((sec, i) => sec.style.display = i === 0 ? "block" : "none");
+
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          // Hide all sections
+          sections.forEach(sec => sec.style.display = "none");
+
+          // Show target section
+          targetSection.style.display = "block";
+
+          // Reset and apply animation
+          targetSection.classList.remove("slide-up", "slide-down");
+          void targetSection.offsetWidth; // restart animation
+          targetSection.classList.add(Math.random() > 0.5 ? "slide-up" : "slide-down");
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+
     html { scroll-behavior: smooth; }
   </style>
 </head>
