@@ -96,12 +96,52 @@
       backdrop-filter: saturate(120%) blur(6px);
       /* Fallback */
       background: rgba(255,255,255,0.95);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
     #siteNav.backdrop-blur {
       backdrop-filter: blur(8px);
       background: rgba(255,255,255,0.05);
       /* Fallback */
       background: rgba(255,255,255,0.1);
+    }
+
+    /* Additional cloned-style animations (fade-in and scale on hover, common for tech sites) */
+    .team-img {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .team-img:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    /* Hero SVG path animation (line draw effect, if applicable) */
+    .hero-svg path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: line-draw 2s ease-in-out forwards;
+    }
+    @keyframes line-draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Services card fade-in with delay for staggered effect */
+    .service-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+    .service-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .service-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+    .service-card:nth-child(4) {
+      animation-delay: 0.4s;
     }
   </style>
 </head>
@@ -167,7 +207,7 @@
             </div>
           </div>
           <div class="reveal-up">
-            <svg viewBox="0 0 600 400" class="w-full h-auto" aria-hidden="true">
+            <svg viewBox="0 0 600 400" class="w-full h-auto hero-svg" aria-hidden="true">
               <defs>
                 <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
                   <stop offset="0%" stop-color="#a78bfa"/>
@@ -240,7 +280,7 @@
           <p class="mt-3 text-gray-700">End-to-end support across strategy, design, delivery, and scale.</p>
         </div>
         <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card p-6 rounded-2xl shadow reveal-up">
+          <div class="card p-6 rounded-2xl shadow reveal-up service-card">
             <div class="flex items-center gap-3 text-purple-800">
               <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg>
               <h3 class="font-semibold text-lg">Meeting Facilitation</h3>
@@ -248,7 +288,7 @@
             <p class="mt-3 text-gray-700">Productive, inclusive sessions that land decisions and momentum.</p>
             <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <div class="card p-6 rounded-2xl shadow reveal-up">
+          <div class="card p-6 rounded-2xl shadow reveal-up service-card">
             <div class="flex items-center gap-3 text-purple-800">
               <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 3v7h7M21 21v-7h-7M3 14a8 8 0 0014 3"/></svg>
               <h3 class="font-semibold text-lg">Market Research</h3>
@@ -256,7 +296,7 @@
             <p class="mt-3 text-gray-700">Local insight, sharp analysis, and clear recommendations.</p>
             <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <div class="card p-6 rounded-2xl shadow reveal-up">
+          <div class="card p-6 rounded-2xl shadow reveal-up service-card">
             <div class="flex items-center gap-3 text-purple-800">
               <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 6v12m6-6H6"/></svg>
               <h3 class="font-semibold text-lg">Marketing & Branding</h3>
@@ -264,7 +304,7 @@
             <p class="mt-3 text-gray-700">Positioning, identity, and campaigns that build trust and curiosity.</p>
             <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-purple-900 hover:underline">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
-          <div class="card p-6 rounded-2xl shadow reveal-up sm:col-span-2 lg:col-span-1">
+          <div class="card p-6 rounded-2xl shadow reveal-up service-card sm:col-span-2 lg:col-span-1">
             <div class="flex items-center gap-3 text-purple-800">
               <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20"/></svg>
               <h3 class="font-semibold text-lg">Digital Solutions & E‑Learning</h3>
@@ -301,17 +341,17 @@
         </div>
         <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
-            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto team-img"/>
             <h3 class="mt-4 font-semibold">Alex David Pratt</h3>
             <p class="text-sm text-gray-600">CEO & Founder</p>
           </div>
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
-            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto team-img"/>
             <h3 class="mt-4 font-semibold">Jennifer E.K Kargbo</h3>
             <p class="text-sm text-gray-600">CEO</p>
           </div>
           <div class="p-6 rounded-2xl shadow bg-white reveal-up text-center">
-            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto"/>
+            <img src="https://via.placeholder.com/160" alt="Team Member" class="w-24 h-24 rounded-full mx-auto team-img"/>
             <h3 class="mt-4 font-semibold">Mary Johnson</h3>
             <p class="text-sm text-gray-600">Innovation Lead</p>
           </div>
