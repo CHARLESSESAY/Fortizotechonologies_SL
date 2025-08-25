@@ -14,100 +14,190 @@
       --tiu-fuchsia: #a21caf;
       --tiu-white: #ffffff;
       --tiu-ink: #111827;
-      --tiu-gray: #f3f4f6;
+      --tiu-gray: rgba(243, 244, 246, 0.08);
       --tiu-vivid-purple: #c084fc;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background: var(--tiu-gray); color: var(--tiu-ink); }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: transparent;
+      color: var(--tiu-white);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
     .font-poppins { font-family: 'Poppins', sans-serif; }
 
-    @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleUp {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    .slide-up { animation: slideUp 0.7s ease-out forwards; }
-    .slide-down { animation: slideDown 0.7s ease-out forwards; }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+    .scale-up { animation: scaleUp 0.8s ease-out forwards; }
+    .float { animation: float 3s ease-in-out infinite; }
+    .gradient-shift { animation: gradientShift 10s ease infinite; }
 
-    .reveal-up, .reveal-down, .reveal-fade {
+    .reveal-up, .reveal-down {
       opacity: 0;
-      transition: opacity .7s ease, transform .7s ease;
+      transition: opacity 0.7s ease, transform 0.7s ease;
       will-change: opacity, transform;
     }
-    .reveal-up { transform: translateY(32px); }
-    .reveal-down { transform: translateY(-32px); }
+    .reveal-up { transform: translateY(40px); }
+    .reveal-down { transform: translateY(-40px); }
     .is-visible { opacity: 1; transform: none; }
 
-    noscript .reveal-up, noscript .reveal-down, noscript .reveal-fade {
-      opacity: 1 !important;
-      transform: none !important;
-    }
+    noscript .reveal-up, noscript .reveal-down { opacity: 1 !important; transform: none !important; }
 
     .tiu-icon { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .tiu-badge { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border-radius: 9999px; background: var(--tiu-purple); color: var(--tiu-white); }
 
-    section { scroll-margin-top: 96px; }
+    section {
+      scroll-margin-top: 100px;
+      background: linear-gradient(135deg, rgba(91, 33, 182, 0.1), rgba(107, 33, 168, 0.1));
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      margin: 25px auto;
+      max-width: 1400px;
+      padding: 60px 40px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    }
 
     .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      border: 1px solid transparent;
+      transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.5s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      overflow: hidden;
     }
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(91, 33, 182, 0.2);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(91, 33, 182, 0.4);
     }
-    .about-card { background: var(--tiu-purple); color: var(--tiu-white); border-color: var(--tiu-dark-purple); }
-    .services-card { background: var(--tiu-dark-purple); color: var(--tiu-white); border-color: var(--tiu-purple); }
-    .market-card { background: linear-gradient(45deg, var(--tiu-purple), var(--tiu-light-purple)); color: var(--tiu-white); }
-    .team-card { background: var(--tiu-white); color: var(--tiu-purple); border-color: var(--tiu-purple); }
-    .contact-card { background: var(--tiu-purple); color: var(--tiu-white); border-color: var(--tiu-dark-purple); }
-    .card:hover { border-color: var(--tiu-fuchsia); }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.2) 0%, transparent 70%);
+      animation: gradientShift 15s ease infinite;
+      z-index: 0;
+    }
+    .card-content { position: relative; z-index: 1; }
+    .about-card { background: linear-gradient(45deg, var(--tiu-purple), var(--tiu-dark-purple)); }
+    .services-card { background: linear-gradient(90deg, var(--tiu-purple), var(--tiu-vivid-purple)); }
+    .market-card { background: linear-gradient(45deg, var(--tiu-light-purple), var(--tiu-vivid-purple)); }
+    .team-card { background: rgba(255, 255, 255, 0.1); }
+    .contact-card { background: linear-gradient(135deg, var(--tiu-dark-purple), var(--tiu-purple)); }
 
-    #siteNav.backdrop-blur {
-      backdrop-filter: blur(8px);
-      background: rgba(91, 33, 182, 0.8);
+    #siteNav {
+      backdrop-filter: blur(25px);
+      background: rgba(91, 33, 182, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
     }
+    #siteNav.scrolled { background: rgba(91, 33, 182, 0.9); backdrop-filter: blur(30px); }
 
     .team-img {
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      width: 120px; height: 120px;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      width: 140px; height: 140px;
+      border: 4px solid var(--tiu-fuchsia);
+      border-radius: 50%;
+      object-fit: cover;
+      filter: drop-shadow(0 0 10px rgba(162, 28, 175, 0.7));
     }
     .team-img:hover {
-      transform: scale(1.1);
-      opacity: 0.9;
+      transform: scale(1.15) rotate(5deg);
+      filter: drop-shadow(0 0 15px rgba(162, 28, 175, 0.9));
     }
 
-    .hero-svg path {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: line-draw 2s ease-in-out forwards;
+    .moving-cards {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding: 20px 0;
+      background: rgba(91, 33, 182, 0.15);
+      backdrop-filter: blur(10px);
     }
-    @keyframes line-draw { to { stroke-dashoffset: 0; } }
+    .card-container {
+      display: flex;
+      animation: scroll 20s linear infinite;
+      transition: transform 0.3s ease;
+    }
+    .card-container:hover { animation-play-state: paused; }
+    .card-clone { display: flex; }
 
-    .services-card:nth-child(1) { animation-delay: 0.1s; }
-    .services-card:nth-child(2) { animation-delay: 0.2s; }
-    .services-card:nth-child(3) { animation-delay: 0.3s; }
-    .services-card:nth-child(4) { animation-delay: 0.4s; }
-
-    .team-card:hover { transform: translateY(-5px); box-shadow: 0 6px 24px rgba(91, 33, 182, 0.15); }
-    .team-card img { object-fit: cover; border: 2px solid var(--tiu-fuchsia); }
+    .services-card, .team-card {
+      flex: 0 0 auto;
+      width: 320px;
+      margin: 0 25px;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .services-card h3, .team-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; }
+    .services-card p, .team-card p { font-size: 0.95rem; }
+    .services-card a, .team-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--tiu-light-purple);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .services-card a:hover, .team-card a:hover {
+      color: var(--tiu-fuchsia);
+      transform: translateX(5px);
+    }
 
     .video-background {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
       z-index: -1;
-      background: var(--tiu-purple);
     }
     .video-background::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(91, 33, 182, 0.4);
+      background: linear-gradient(135deg, rgba(91, 33, 182, 0.6), rgba(107, 33, 168, 0.6));
+      mix-blend-mode: overlay;
     }
     .video-background video {
       min-width: 100%;
@@ -118,419 +208,708 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      filter: brightness(0.7);
+      filter: brightness(0.7) contrast(1.2);
+      object-fit: cover;
     }
 
-    .hero-text { color: var(--tiu-white); text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }
-
-    .hero-button { background: var(--tiu-purple); border-color: var(--tiu-purple); }
-    .hero-button:hover { background: var(--tiu-fuchsia); border-color: var(--tiu-fuchsia); }
+    .hero-text { text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8); }
 
     #chatbot {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 320px;
-      background: var(--tiu-white);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(91, 33, 182, 0.2);
+      bottom: 40px;
+      right: 40px;
+      width: 380px;
+      background: linear-gradient(135deg, rgba(91, 33, 182, 0.2), rgba(107, 33, 168, 0.2));
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(91, 33, 182, 0.4);
       overflow: hidden;
       display: none;
       z-index: 1000;
+      backdrop-filter: blur(20px);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
+    #chatbot.active { display: block; opacity: 1; transform: translateY(0); }
+    #chatbot.inactive { opacity: 0; transform: translateY(20px); }
     #chatbot-header {
-      background: var(--tiu-fuchsia);
+      background: linear-gradient(90deg, var(--tiu-purple), var(--tiu-dark-purple));
       color: var(--tiu-white);
-      padding: 12px;
-      font-weight: bold;
+      padding: 18px;
+      font-weight: 600;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
+    #chatbot-header button {
+      background: none;
+      border: none;
+      color: var(--tiu-white);
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+    }
+    #chatbot-header button:hover { color: var(--tiu-fuchsia); }
     #chatbot-body {
-      height: 300px;
+      height: 400px;
       overflow-y: auto;
-      padding: 12px;
-      background: var(--tiu-gray);
+      padding: 20px;
+      background: rgba(243, 244, 246, 0.05);
+      scrollbar-width: thin;
+      scrollbar-color: var(--tiu-light-purple) transparent;
+    }
+    #chatbot-body::-webkit-scrollbar {
+      width: 10px;
+    }
+    #chatbot-body::-webkit-scrollbar-thumb {
+      background: var(--tiu-light-purple);
+      border-radius: 5px;
     }
     #chatbot-input {
       display: flex;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     #chatbot-input input {
       flex: 1;
-      padding: 12px;
+      padding: 15px 20px;
       border: none;
       outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--tiu-white);
+      font-size: 1rem;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    #chatbot-input input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
     }
     #chatbot-input button {
       background: var(--tiu-light-purple);
       color: var(--tiu-white);
       border: none;
-      padding: 12px 16px;
+      padding: 15px 22px;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    #chatbot-input button:hover {
+      background: var(--tiu-fuchsia);
+      transform: translateY(-2px);
     }
     #chatbot-toggle {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--tiu-fuchsia);
+      bottom: 40px;
+      right: 40px;
+      background: var(--tiu-purple);
       color: var(--tiu-white);
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 70px;
+      height: 70px;
       display: grid;
       place-items: center;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      z-index: 1001;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    #chatbot-popup {
-      position: absolute;
-      bottom: 60px;
-      right: 0;
-      background: rgba(192, 132, 252, 0.8);
-      color: var(--tiu-white);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      text-transform: lowercase;
-      opacity: 0;
-      transform: translateY(10px);
-      z-index: 1002;
-      pointer-events: none;
-    }
-    #chatbot-popup.show {
-      animation: fadeIn 0.3s ease forwards;
-    }
-    #chatbot-popup.hide {
-      animation: fadeOut 0.3s ease forwards;
+    #chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     }
     .message {
-      margin-bottom: 8px;
-      padding: 8px 12px;
-      border-radius: 8px;
+      margin: 12px 0;
+      padding: 12px 18px;
+      border-radius: 12px;
+      max-width: 85%;
+      transition: transform 0.3s ease;
     }
     .user-message {
-      background: #d8b4fe;
-      color: var(--tiu-ink);
-      text-align: right;
+      background: var(--tiu-light-purple);
+      color: var(--tiu-white);
+      align-self: flex-end;
+      animation: fadeInUp 0.5s ease-out;
     }
     .bot-message {
-      background: #e5e7eb;
-      color: var(--tiu-ink);
+      background: rgba(229, 231, 235, 0.1);
+      color: var(--tiu-white);
+      align-self: flex-start;
+      animation: fadeInDown 0.5s ease-out;
     }
+    .message:hover { transform: scale(1.02); }
 
-    footer { font-weight: 600; }
-    footer p, footer a, footer li, footer h4 { color: var(--tiu-vivid-purple); }
-    footer a:hover { color: #a855f7; }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      right: 40px;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, var(--tiu-purple), var(--tiu-dark-purple));
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      color: var(--tiu-white);
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+      animation: scaleUp 0.5s ease-out;
+    }
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      backdrop-filter: blur(8px);
+    }
+    .popup h2 { font-size: 1.3rem; margin-bottom: 12px; }
+    .popup p { font-size: 0.95rem; margin-bottom: 18px; }
+    .popup button {
+      background: var(--tiu-fuchsia);
+      color: var(--tiu-white);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .popup button:hover {
+      background: var(--tiu-light-purple);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
-  <header class="fixed top-0 inset-x-0 z-50 transition-colors">
-    <nav id="siteNav" class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 rounded-b-2xl backdrop-blur bg-purple-900/80">
-      <a href="#home" class="flex items-center gap-2 group">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-700 to-light-purple grid place-items-center text-white">
-          <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
+  <div class="popup-overlay" id="popupOverlay" onclick="hidePopup()"></div>
+  <div class="popup" id="projectPopup">
+    <h2>Got a Project? Speak to Our Experts</h2>
+    <p>Let’s bring your vision to life with tailored digital solutions.</p>
+    <button onclick="window.location.href='#contact'; hidePopup()">Contact Us</button>
+  </div>
+
+  <div class="video-background">
+    <video autoplay loop muted playsinline>
+      <source src="https://drive.google.com/uc?export=download&id=1NYzt70MyUp_m0Gn3vtiKLqlrM7Z99_yt" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <header class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav id="siteNav" class="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 py-5 rounded-b-2xl">
+      <a href="#home" class="flex items-center gap-4 group">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-700 to-fuchsia-700 grid place-items-center text-white float">
+          <svg viewBox="0 0 24 24" class="w-7 h-7" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
         </div>
-        <span class="font-poppins font-semibold text-lg text-white">Fortizo_SL</span>
+        <span class="font-poppins font-semibold text-2xl text-white transition-colors group-hover:text-light-blue">Fortizo_SL</span>
       </a>
-      <button id="menuBtn" class="md:hidden text-white" aria-label="Open menu">
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <button id="menuBtn" class="md:hidden text-white/90 hover:text-light-blue transition-colors" aria-label="Open menu">
+        <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
-      <ul id="navLinks" class="hidden md:flex items-center gap-6 text-white font-medium">
-        <li><a class="hover:text-light-purple" href="#home">Home</a></li>
-        <li><a class="hover:text-light-purple" href="#about">About</a></li>
-        <li><a class="hover:text-light-purple" href="#services">What We Do</a></li>
-        <li><a class="hover:text-light-purple" href="#market">Key Market</a></li>
-        <li><a class="hover:text-light-purple" href="#team">Team</a></li>
-        <li><a class="hover:text-light-purple" href="#contact">Contact</a></li>
+      <ul id="navLinks" class="hidden md:flex items-center gap-8 text-white/90 font-medium">
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#home">Home</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#about">About</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#services">What We Do</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#market">Key Market</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#team">Team</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#contact">Contact</a></li>
+        <li><a class="hover:text-light-blue transition-colors duration-300" href="#quote">Get a Quote</a></li>
       </ul>
     </nav>
-    <div id="mobilePanel" class="md:hidden hidden bg-white/95 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3">
-        <a class="block text-gray-800" href="#home">Home</a>
-        <a class="block text-gray-800" href="#about">About</a>
-        <a class="block text-gray-800" href="#services">What We Do</a>
-        <a class="block text-gray-800" href="#market">Key Market</a>
-        <a class="block text-gray-800" href="#team">Team</a>
-        <a class="block text-gray-800" href="#contact">Contact</a>
+    <div id="mobilePanel" class="md:hidden hidden bg-white/10 backdrop-blur-md shadow-lg rounded-lg">
+      <div class="max-w-7xl mx-auto px-6 py-5 space-y-5">
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#home">Home</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#about">About</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#services">What We Do</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#market">Key Market</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#team">Team</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#contact">Contact</a>
+        <a class="block text-white hover:text-light-blue transition-colors duration-300" href="#quote">Get a Quote</a>
       </div>
     </div>
-    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-purple-700 to-light-purple"></div>
   </header>
 
   <main>
-    <section id="home" class="relative pt-36 pb-20 sm:pb-28 overflow-hidden">
-      <div class="video-background">
-        <video autoplay loop muted playsinline>
-          <source src="https://videos.pexels.com/video-files/855610/855610-hd_1920_1080_30fps.mp4" type="video/mp4">
-          Your browser does not support the video tag. Please ensure your browser is updated.
-        </video>
-      </div>
-      <div class="absolute inset-0 -z-10 opacity-20 [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <section id="home" class="relative pt-48 pb-32 sm:pb-40 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-white relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
           <div class="reveal-down is-visible">
-            <span class="tiu-badge">
+            <span class="tiu-badge text-white animate-pulse scale-up">
               <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/></svg>
-              Tech • Innovation • Impact
+              <span class="text-glow">Tech • Innovation • Impact</span>
             </span>
-            <h1 class="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 leading-tight hero-text">
+            <h1 class="font-poppins text-4xl sm:text-5xl lg:text-6xl font-bold mt-8 leading-tight hero-text fade-in-up">
               Digital Solutions & Event Marketing built for impact in Sierra Leone
             </h1>
-            <p class="mt-5 text-lg hero-text max-w-xl">
+            <p class="mt-6 text-lg text-white hero-text max-w-xl fade-in-up" style="animation-delay: 0.2s">
               We help organizations in Freetown and across Sierra Leone launch brands, run standout events, and modernize with smart digital tools.
             </p>
-            <div class="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="#services" class="px-6 py-3 rounded-xl hero-button text-white font-semibold shadow hover:shadow-md">
+            <div class="mt-10 flex flex-col sm:flex-row gap-5 fade-in-up" style="animation-delay: 0.4s">
+              <a href="#services" class="px-8 py-4 rounded-xl bg-light-blue text-white font-semibold shadow-lg hover:bg-dark-blue hover:shadow-xl transition-all duration-300">
                 Explore What We Do
               </a>
-              <a href="#contact" class="px-6 py-3 rounded-xl border hero-button text-white font-semibold">
-                Request a Quote
+              <a href="#contact" class="px-8 py-4 rounded-xl border border-white/50 text-white font-semibold hover:bg-white/10 hover:border-light-blue transition-all duration-300" onclick="showPopup()">
+                Get in Touch
               </a>
             </div>
           </div>
           <div class="reveal-up is-visible">
-            <svg viewBox="0 0 600 400" class="w-full h-auto hero-svg" aria-hidden="true">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#5b21b6"/>
-                  <stop offset="100%" stop-color="#a78bfa"/>
-                </linearGradient>
-              </defs>
-              <rect x="0" y="0" width="600" height="400" fill="none"/>
-              <g stroke="url(#g1)" fill="none" stroke-width="3">
-                <path d="M50 320 C150 180 300 180 400 320" opacity=".6"/>
-                <path d="M80 300 C180 160 320 160 420 300" opacity=".45"/>
-                <path d="M110 280 C210 140 340 140 450 280" opacity=".35"/>
-              </g>
-              <g>
-                <circle cx="140" cy="110" r="34" fill="url(#g1)" opacity=".9"/>
-                <rect x="250" y="80" width="180" height="110" rx="16" fill="none" stroke="url(#g1)" stroke-width="3"/>
-                <line x1="250" y1="130" x2="430" y2="130" stroke="url(#g1)" stroke-width="3"/>
-                <circle cx="300" cy="130" r="6" fill="#fff"/>
-                <circle cx="330" cy="130" r="6" fill="#fff"/>
-                <circle cx="360" cy="130" r="6" fill="#fff"/>
-              </g>
-            </svg>
+            <div class="relative overflow-hidden">
+              <svg viewBox="0 0 600 400" class="w-full h-auto fade-in-up">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#a78bfa"/>
+                    <stop offset="100%" stop-color="#f0abfc"/>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="600" height="400" fill="none"/>
+                <g stroke="url(#g1)" fill="none" stroke-width="3">
+                  <path d="M50 320 C150 180 300 180 400 320" opacity=".6"/>
+                  <path d="M80 300 C180 160 320 160 420 300" opacity=".45"/>
+                  <path d="M110 280 C210 140 340 140 450 280" opacity=".35"/>
+                </g>
+                <g>
+                  <circle cx="140" cy="110" r="34" fill="url(#g1)" opacity=".9"/>
+                  <rect x="250" y="80" width="180" height="110" rx="16" fill="none" stroke="url(#g1)" stroke-width="3"/>
+                  <line x1="250" y1="130" x2="430" y2="130" stroke="url(#g1)" stroke-width="3"/>
+                  <circle cx="300" cy="130" r="6" fill="#fff"/>
+                  <circle cx="330" cy="130" r="6" fill="#fff"/>
+                  <circle cx="360" cy="130" r="6" fill="#fff"/>
+                </g>
+              </svg>
+              <video autoplay loop muted playsinline class="absolute top-1/2 left-1/2 w-4/5 h-auto transform -translate-x-1/2 -translate-y-1/2 opacity-30" style="filter: blur(3px);">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-purple-and-blue-galaxy-31769-small.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+    <section id="about" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-20 items-center">
         <div class="reveal-down is-visible">
-          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple">About Fortizo</h2>
-          <p class="mt-4 text-white leading-relaxed about-card p-6 rounded-2xl">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white about-card p-8 rounded-2xl fade-in-up">About Fortizo</h2>
+          <p class="mt-5 text-white leading-relaxed about-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">
             Fortizo is a Sierra Leone–born team of strategists, facilitators, designers, and engineers. We bridge ideas, people, and opportunities—delivering
-            <span class="font-semibold">digital platforms</span>, <span class="font-semibold">brand systems</span>, and
-            <span class="font-semibold">event experiences</span> that actually move the needle.
+            <span class="font-semibold text-light-purple">digital platforms</span>, <span class="font-semibold text-light-purple">brand systems</span>, and
+            <span class="font-semibold text-light-purple">event experiences</span> that actually move the needle.
           </p>
-          <ul class="mt-6 space-y-3 about-card p-6 rounded-2xl">
-            <li class="flex items-start gap-3"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span>Human-centered discovery and clear, measurable outcomes.</span></li>
-            <li class="flex items-start gap-3"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M12 20V4m8 8H4"/></svg><span>Modern, scalable solutions that grow with you.</span></li>
-            <li class="flex items-start gap-3"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg><span>Transparent process, collaborative delivery.</span></li>
+          <ul class="mt-6 space-y-5 about-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.4s">
+            <li class="flex items-start gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span>Human-centered discovery and clear, measurable outcomes.</span></li>
+            <li class="flex items-start gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M12 20V4m8 8H4"/></svg><span>Modern, scalable solutions that grow with you.</span></li>
+            <li class="flex items-start gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg><span>Transparent process, collaborative delivery.</span></li>
           </ul>
         </div>
         <div class="reveal-up is-visible">
-          <svg viewBox="0 0 520 360" class="w-full h-auto" aria-hidden="true">
-            <defs>
-              <linearGradient id="aboutG" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#5b21b6"/>
-                <stop offset="100%" stop-color="#a78bfa"/>
-              </linearGradient>
-            </defs>
-            <rect x="20" y="20" width="480" height="320" rx="24" fill="none" stroke="url(#aboutG)" stroke-width="4"/>
-            <g stroke="url(#aboutG)" fill="none" stroke-width="3" opacity=".8">
-              <path d="M60 240 C150 160 220 160 310 240"/>
-              <path d="M90 220 C180 140 250 140 340 220" opacity=".7"/>
-            </g>
-            <g>
-              <circle cx="140" cy="120" r="28" fill="url(#aboutG)"/>
-              <rect x="200" y="100" width="220" height="50" rx="10" fill="url(#aboutG)" opacity=".3"/>
-              <rect x="200" y="160" width="260" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
-              <rect x="200" y="190" width="180" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
-            </g>
-          </svg>
+          <div class="relative overflow-hidden">
+            <svg viewBox="0 0 520 360" class="w-full h-auto fade-in-up">
+              <defs>
+                <linearGradient id="aboutG" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#c4b5fd"/>
+                  <stop offset="100%" stop-color="#f5d0fe"/>
+                </linearGradient>
+              </defs>
+              <rect x="20" y="20" width="480" height="320" rx="24" fill="none" stroke="url(#aboutG)" stroke-width="4"/>
+              <g stroke="url(#aboutG)" fill="none" stroke-width="3" opacity=".8">
+                <path d="M60 240 C150 160 220 160 310 240"/>
+                <path d="M90 220 C180 140 250 140 340 220" opacity=".7"/>
+              </g>
+              <g>
+                <circle cx="140" cy="120" r="28" fill="url(#aboutG)"/>
+                <rect x="200" y="100" width="220" height="50" rx="10" fill="url(#aboutG)" opacity=".3"/>
+                <rect x="200" y="160" width="260" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
+                <rect x="200" y="190" width="180" height="20" rx="6" fill="url(#aboutG)" opacity=".4"/>
+              </g>
+            </svg>
+            <video autoplay loop muted playsinline class="absolute top-1/2 left-1/2 w-3/4 h-auto transform -translate-x-1/2 -translate-y-1/2 opacity-20" style="filter: blur(4px);">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-blurred-multicolored-lights-1231-small.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto reveal-down is-visible">
-          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white services-card p-4 rounded-2xl">What We Do</h2>
-          <p class="mt-3 text-white services-card p-4 rounded-2xl">End-to-end support across strategy, design, delivery, and scale.</p>
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white services-card p-8 rounded-2xl fade-in-up">What We Do</h2>
+          <p class="mt-4 text-white services-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">End-to-end support across strategy, design, delivery, and scale.</p>
         </div>
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card services-card p-6 rounded-2xl shadow reveal-up is-visible">
-            <div class="flex items-center gap-3 text-white">
-              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg>
-              <h3 class="font-semibold text-lg">Meeting Facilitation</h3>
+        <div class="mt-14">
+          <div class="moving-cards">
+            <div class="card-container">
+              <div class="services-card scale-up">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg>
+                  <h3>Meeting Facilitation</h3>
+                </div>
+                <p class="mt-5">Productive, inclusive sessions that land decisions and momentum.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 3v7h7M21 21v-7h-7M3 14a8 8 0 0014 3"/></svg>
+                  <h3>Market Research</h3>
+                </div>
+                <p class="mt-5">Local insight, sharp analysis, and clear recommendations.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.4s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 6v12m6-6H6"/></svg>
+                  <h3>Marketing & Branding</h3>
+                </div>
+                <p class="mt-5">Positioning, identity, and campaigns that build trust and curiosity.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.6s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20"/></svg>
+                  <h3>Digital Solutions & E-Learning</h3>
+                </div>
+                <p class="mt-5">From websites and portals to LMS rollouts and content.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
             </div>
-            <p class="mt-3 text-white">Productive, inclusive sessions that land decisions and momentum.</p>
-            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-white hover:text-light-purple">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-          <div class="card services-card p-6 rounded-2xl shadow reveal-up is-visible">
-            <div class="flex items-center gap-3 text-white">
-              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 3v7h7M21 21v-7h-7M3 14a8 8 0 0014 3"/></svg>
-              <h3 class="font-semibold text-lg">Market Research</h3>
+            <div class="card-clone">
+              <div class="services-card scale-up">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h8"/></svg>
+                  <h3>Meeting Facilitation</h3>
+                </div>
+                <p class="mt-5">Productive, inclusive sessions that land decisions and momentum.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M3 3v7h7M21 21v-7h-7M3 14a8 8 0 0014 3"/></svg>
+                  <h3>Market Research</h3>
+                </div>
+                <p class="mt-5">Local insight, sharp analysis, and clear recommendations.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.4s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 6v12m6-6H6"/></svg>
+                  <h3>Marketing & Branding</h3>
+                </div>
+                <p class="mt-5">Positioning, identity, and campaigns that build trust and curiosity.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <div class="services-card scale-up" style="animation-delay: 0.6s">
+                <div class="flex items-center justify-center gap-5">
+                  <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20"/></svg>
+                  <h3>Digital Solutions & E-Learning</h3>
+                </div>
+                <p class="mt-5">From websites and portals to LMS rollouts and content.</p>
+                <a href="#contact" class="mt-5 inline-block">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
             </div>
-            <p class="mt-3 text-white">Local insight, sharp analysis, and clear recommendations.</p>
-            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-white hover:text-light-purple">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-          <div class="card services-card p-6 rounded-2xl shadow reveal-up is-visible">
-            <div class="flex items-center gap-3 text-white">
-              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M12 6v12m6-6H6"/></svg>
-              <h3 class="font-semibold text-lg">Marketing & Branding</h3>
-            </div>
-            <p class="mt-3 text-white">Positioning, identity, and campaigns that build trust and curiosity.</p>
-            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-white hover:text-light-purple">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-          <div class="card services-card p-6 rounded-2xl shadow reveal-up is-visible sm:col-span-2 lg:col-span-1">
-            <div class="flex items-center gap-3 text-white">
-              <svg class="tiu-icon" viewBox="0 0 24 24"><path d="M4 4h16v12H4zM2 20h20"/></svg>
-              <h3 class="font-semibold text-lg">Digital Solutions & E-Learning</h3>
-            </div>
-            <p class="mt-3 text-white">From websites and portals to LMS rollouts and content.</p>
-            <a href="#contact" class="inline-flex items-center gap-2 mt-5 font-semibold text-white hover:text-light-purple">Contact Us <svg class="tiu-icon w-5 h-5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="market" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="market" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto reveal-down is-visible">
-          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple">Key Market</h2>
-          <p class="mt-3 text-gray-700">Freetown, Sierra Leone — and surrounding regions.</p>
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white market-card p-8 rounded-2xl fade-in-up">Key Market</h2>
+          <p class="mt-4 text-white market-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Freetown, Sierra Leone — and surrounding regions.</p>
         </div>
-        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Freetown (HQ)</h3><p class="mt-2 text-white">Western Area Urban</p></div>
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Western Area</h3><p class="mt-2 text-white">Urban & Rural</p></div>
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Northern Region</h3><p class="mt-2 text-white">Bombali • Port Loko • Tonkolili</p></div>
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Southern Region</h3><p class="mt-2 text-white">Bo • Bonthe • Moyamba • Pujehun</p></div>
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Eastern Region</h3><p class="mt-2 text-white">Kenema • Kono • Kailahun</p></div>
-          <div class="card market-card p-6 rounded-2xl shadow-sm reveal-up is-visible"><h3 class="font-semibold text-white">Custom Engagements</h3><p class="mt-2 text-white">We travel to where impact is needed most.</p></div>
+        <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up">
+            <h3 class="font-semibold">Freetown (HQ)</h3>
+            <p class="mt-2">Western Area Urban</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.2s">
+            <h3 class="font-semibold">Western Area</h3>
+            <p class="mt-2">Urban & Rural</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.4s">
+            <h3 class="font-semibold">Northern Region</h3>
+            <p class="mt-2">Bombali • Port Loko • Tonkolili</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.6s">
+            <h3 class="font-semibold">Southern Region</h3>
+            <p class="mt-2">Bo • Bonthe • Moyamba • Pujehun</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.8s">
+            <h3 class="font-semibold">Eastern Region</h3>
+            <p class="mt-2">Kenema • Kono • Kailahun</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 1s">
+            <h3 class="font-semibold">Custom Engagements</h3>
+            <p class="mt-2">We travel to where impact is needed most.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="team" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="team" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto reveal-down is-visible">
-          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple">Meet the Team</h2>
-          <p class="mt-3 text-gray-700">Small, senior, and hands-on across strategy, design, and engineering.</p>
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white team-card p-8 rounded-2xl fade-in-up">Meet the Team</h2>
+          <p class="mt-4 text-white team-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
         </div>
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Mr Alex Pratt</h3>
-            <p class="text-sm text-gray-600">Founder, Fortizo Technologies</p>
-            <p class="mt-2 text-sm text-purple">Our Founder inspires innovative software solutions and interactive experiences.</p>
-          </div>
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Jenifer E.K Kargbo</h3>
-            <p class="text-sm text-gray-600">C.E.O Fortizo Sierra Leone</p>
-            <p class="mt-2 text-sm text-purple">Leads with a vision for scalable digital solutions that transform businesses.</p>
-          </div>
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Seth Culker</h3>
-            <p class="text-sm text-gray-600">Company Secretary</p>
-            <p class="mt-2 text-sm text-purple">Ensures compliance while driving innovation and strategic insights.</p>
-          </div>
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Mr Kamara</h3>
-            <p class="text-sm text-gray-600">Software Engineer</p>
-            <p class="mt-2 text-sm text-purple">Builds digital solutions that foster community and innovation.</p>
-          </div>
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Mr Charles</h3>
-            <p class="text-sm text-gray-600">Software Engineer</p>
-            <p class="mt-2 text-sm text-purple">Develops solutions that unite communities and promote innovation.</p>
-          </div>
-          <div class="card team-card p-6 rounded-2xl shadow reveal-up is-visible text-center">
-            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Team Member" class="w-32 h-32 rounded-lg mx-auto team-img" loading="lazy"/>
-            <h3 class="mt-4 font-semibold text-purple">Mr Mohamed Ali</h3>
-            <p class="text-sm text-gray-600">Volunteer</p>
-            <p class="mt-2 text-sm text-purple">Develops innovative software solutions and interactive experiences.</p>
+        <div class="mt-14">
+          <div class="moving-cards">
+            <div class="card-container">
+              <div class="team-card scale-up">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Mr Alex Pratt" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                <p class="text-sm">Founder, Fortizo Technologies</p>
+                <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.2s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Jenifer E.K Kargbo" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.4s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Seth Culker" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Seth Culker</h3>
+                <p class="text-sm">Company Secretary</p>
+                <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.6s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Mr Kamara" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Kamara</h3>
+                <p class="text-sm">Software Engineer</p>
+                <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
+              </div>
+            </div>
+            <div class="card-clone">
+              <div class="team-card scale-up">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Mr Charles" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Charles</h3>
+                <p class="text-sm">Software Engineer</p>
+                <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.2s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Mr Mohamed Ali" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
+                <p class="text-sm">Volunteer</p>
+                <p class="mt-2 text-sm">Develops innovative software solutions.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.4s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Mr Alex Pratt" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                <p class="text-sm">Founder, Fortizo Technologies</p>
+                <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.6s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Jenifer E.K Kargbo" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-start">
-        <div class="reveal-down is-visible">
-          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-purple">Get in Touch</h2>
-          <p class="mt-3 text-gray-700">Ready to start your next project? Tell us about your goals and timelines.</p>
-          <div class="mt-6 space-y-4 text-gray-800">
-            <p class="flex items-center gap-3"><svg class="tiu-icon text-light-purple" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Freetown, Sierra Leone</p>
-            <p class="flex items-center gap-3"><svg class="tiu-icon text-light-purple" viewBox="0 0 24 24"><path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>info@fortizo.sl</p>
-            <p class="flex items-center gap-3"><svg class="tiu-icon text-light-purple" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11.05 11.05 0 005.516 5.516l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>+232 XX XXX XXXX</p>
+    <section id="market" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal-down is-visible">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white market-card p-8 rounded-2xl fade-in-up">Key Market</h2>
+          <p class="mt-4 text-white market-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Freetown, Sierra Leone — and surrounding regions.</p>
+        </div>
+        <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up">
+            <h3 class="font-semibold">Freetown (HQ)</h3>
+            <p class="mt-2">Western Area Urban</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.2s">
+            <h3 class="font-semibold">Western Area</h3>
+            <p class="mt-2">Urban & Rural</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.4s">
+            <h3 class="font-semibold">Northern Region</h3>
+            <p class="mt-2">Bombali • Port Loko • Tonkolili</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.6s">
+            <h3 class="font-semibold">Southern Region</h3>
+            <p class="mt-2">Bo • Bonthe • Moyamba • Pujehun</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 0.8s">
+            <h3 class="font-semibold">Eastern Region</h3>
+            <p class="mt-2">Kenema • Kono • Kailahun</p>
+          </div>
+          <div class="card market-card p-8 rounded-2xl shadow-sm reveal-up is-visible fade-in-up" style="animation-delay: 1s">
+            <h3 class="font-semibold">Custom Engagements</h3>
+            <p class="mt-2">We travel to where impact is needed most.</p>
           </div>
         </div>
-        <form id="contactForm" class="card contact-card p-6 rounded-2xl shadow space-y-4 reveal-up is-visible">
+      </div>
+    </section>
+
+    <section id="team" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal-down is-visible">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white team-card p-8 rounded-2xl fade-in-up">Meet the Team</h2>
+          <p class="mt-4 text-white team-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
+        </div>
+        <div class="mt-14">
+          <div class="moving-cards">
+            <div class="card-container">
+              <div class="team-card scale-up">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Mr Alex Pratt" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                <p class="text-sm">Founder, Fortizo Technologies</p>
+                <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.2s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Jenifer E.K Kargbo" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.4s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Seth Culker" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Seth Culker</h3>
+                <p class="text-sm">Company Secretary</p>
+                <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.6s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Mr Kamara" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Kamara</h3>
+                <p class="text-sm">Software Engineer</p>
+                <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
+              </div>
+            </div>
+            <div class="card-clone">
+              <div class="team-card scale-up">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Mr Charles" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Charles</h3>
+                <p class="text-sm">Software Engineer</p>
+                <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.2s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Mr Mohamed Ali" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
+                <p class="text-sm">Volunteer</p>
+                <p class="mt-2 text-sm">Develops innovative software solutions.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.4s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Mr Alex Pratt" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                <p class="text-sm">Founder, Fortizo Technologies</p>
+                <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+              </div>
+              <div class="team-card scale-up" style="animation-delay: 0.6s">
+                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Jenifer E.K Kargbo" class="team-img" loading="lazy"/>
+                <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-20 items-start">
+        <div class="reveal-down is-visible">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white contact-card p-8 rounded-2xl fade-in-up">Get in Touch</h2>
+          <p class="mt-4 text-white contact-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Ready to start your next project? Tell us about your goals and timelines.</p>
+          <div class="mt-6 space-y-6 text-white">
+            <p class="flex items-center gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Freetown, Sierra Leone</p>
+            <p class="flex items-center gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>info@fortizo.sl</p>
+            <p class="flex items-center gap-4"><svg class="tiu-icon text-white" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.2l-2.26 1.13a11.05 11.05 0 005.516 5.516l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>+232 XX XXX XXXX</p>
+          </div>
+        </div>
+        <form id="contactForm" class="card contact-card p-8 rounded-2xl shadow space-y-6 reveal-up is-visible">
           <div>
-            <label class="block text-sm font-medium text-white">Name</label>
-            <input required type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-purple focus:border-transparent bg-white text-dark-purple"/>
+            <label class="block text-sm font-medium">Name</label>
+            <input required type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
           </div>
           <div>
-            <label class="block text-sm font-medium text-white">Email</label>
-            <input required type="email" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-purple focus:border-transparent bg-white text-dark-purple"/>
+            <label class="block text-sm font-medium">Email</label>
+            <input required type="email" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
           </div>
           <div>
-            <label class="block text-sm font-medium text-white">Company</label>
-            <input type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-purple focus:border-transparent bg-white text-dark-purple"/>
+            <label class="block text-sm font-medium">Company</label>
+            <input type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
           </div>
           <div>
-            <label class="block text-sm font-medium text-white">Message</label>
-            <textarea rows="4" required class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-purple focus:border-transparent bg-white text-dark-purple"></textarea>
+            <label class="block text-sm font-medium">Message</label>
+            <textarea rows="4" required class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"></textarea>
           </div>
-          <button class="w-full bg-dark-purple text-white py-3 rounded-xl font-semibold hover:bg-light-purple">Send Message</button>
+          <button class="w-full bg-fuchsia-700 text-white py-4 rounded-xl font-semibold hover:bg-light-blue transition-all duration-300">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="quote" class="py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-20 items-start">
+        <div class="reveal-down is-visible">
+          <h2 class="font-poppins text-3xl sm:text-4xl font-bold text-white contact-card p-8 rounded-2xl fade-in-up">Get a Quote</h2>
+          <p class="mt-4 text-white contact-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Ready to transform your business with Fortizo? Request a personalized quote today.</p>
+        </div>
+        <form id="quoteForm" class="card contact-card p-8 rounded-2xl shadow space-y-6 reveal-up is-visible">
+          <div>
+            <label class="block text-sm font-medium text-white">Full Name *</label>
+            <input required type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white">Email Address *</label>
+            <input required type="email" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white">Phone Number</label>
+            <input type="tel" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white">Company Name</label>
+            <input type="text" class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white">Project Details *</label>
+            <textarea rows="5" required class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-light-blue focus:border-transparent bg-[rgba(255,255,255,0.1)] text-white"></textarea>
+          </div>
+          <button class="w-full bg-fuchsia-700 text-white py-4 rounded-xl font-semibold hover:bg-light-blue transition-all duration-300">Submit Request</button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="bg-dark-purple">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid gap-10 md:grid-cols-3">
+  <footer class="bg-dark-purple text-white/90 py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid gap-12 md:grid-cols-3">
       <div>
-        <div class="flex items-center gap-2">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-700 to-light-purple grid place-items-center text-white">
-            <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-700 to-fuchsia-700 grid place-items-center text-white">
+            <svg viewBox="0 0 24 24" class="w-7 h-7" aria-hidden="true"><path fill="currentColor" d="M7 4h10v2H9v5h6v2H9v7H7z"/></svg>
           </div>
-          <span class="font-poppins font-semibold text-lg text-vivid-purple">Fortizo</span>
+          <span class="font-poppins font-semibold text-2xl">Fortizo</span>
         </div>
-        <p class="mt-4 text-vivid-purple max-w-sm">Digital solutions, branding, and event marketing for organizations in Sierra Leone.</p>
+        <p class="mt-4 text-light-blue max-w-sm">Digital solutions, branding, and event marketing for organizations in Sierra Leone.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-vivid-purple mb-3">Quick Links</h4>
-        <ul class="space-y-2">
-          <li><a class="text-vivid-purple hover:text-[#a855f7]" href="#about">About</a></li>
-          <li><a class="text-vivid-purple hover:text-[#a855f7]" href="#services">What We Do</a></li>
-          <li><a class="text-vivid-purple hover:text-[#a855f7]" href="#market">Key Market</a></li>
-          <li><a class="text-vivid-purple hover:text-[#a855f7]" href="#team">Team</a></li>
-          <li><a class="text-vivid-purple hover:text-[#a855f7]" href="#contact">Contact</a></li>
+        <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a class="text-light-blue hover:text-fuchsia-700 transition-colors duration-300" href="#about">About</a></li>
+          <li><a class="text-light-blue hover:text-fuchsia-700 transition-colors duration-300" href="#services">What We Do</a></li>
+          <li><a class="text-light-blue hover:text-fuchsia-700 transition-colors duration-300" href="#market">Key Market</a></li>
+          <li><a class="text-light-blue hover:text-fuchsia-700 transition-colors duration-300" href="#team">Team</a></li>
+          <li><a class="text-light-blue hover:text-fuchsia-700 transition-colors duration-300" href="#contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-vivid-purple mb-3">Contact</h4>
-        <ul class="space-y-2 text-vivid-purple">
+        <h4 class="font-semibold text-white mb-4">Contact</h4>
+        <ul class="space-y-3 text-light-blue">
           <li>Freetown, Sierra Leone</li>
           <li>info@fortizo.sl</li>
           <li>+232 XX XXX XXXX</li>
         </ul>
       </div>
     </div>
-    <div class="border-t border-[rgba(192,132,252,0.3)]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-vivid-purple flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="border-t border-white/10 mt-12">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-8 text-sm text-light-blue flex flex-col sm:flex-row items-center justify-between gap-4">
         <p>© <span id="yr"></span> Fortizo. All rights reserved.</p>
         <p>Built with care in Sierra Leone.</p>
       </div>
@@ -538,21 +917,20 @@
   </footer>
 
   <div id="chatbot-toggle">
-    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
       <path d="M12 1a3 3 0 0 0-3 3v2a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
       <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
       <line x1="12" y1="15" x2="12" y2="23"/>
       <line x1="9" y1="23" x2="15" y2="23"/>
     </svg>
-    <div id="chatbot-popup"></div>
   </div>
   <div id="chatbot">
     <div id="chatbot-header">
       <span>Fortizo AI Assistant</span>
-      <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer;">×</button>
+      <button id="chatbot-close">×</button>
     </div>
     <div id="chatbot-body">
-      <div class="bot-message">Hello! I’m delighted you’re here—feel free to ask me anything about Fortizo or Sierra Leone’s tech world!</div>
+      <div class="message bot-message">Hello! Ask me anything about Fortizo SL.</div>
     </div>
     <div id="chatbot-input">
       <input type="text" id="chat-input" placeholder="Type your question...">
@@ -563,12 +941,6 @@
   <script defer>
     document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('yr').textContent = new Date().getFullYear();
-
-      const video = document.querySelector('.video-background video');
-      if (video) {
-        video.addEventListener('error', (e) => console.error('Video failed to load:', e));
-        video.addEventListener('loadeddata', () => console.log('Video loaded successfully'));
-      }
 
       const menuBtn = document.getElementById('menuBtn');
       const mobilePanel = document.getElementById('mobilePanel');
@@ -581,51 +953,70 @@
       const onScrollNav = () => {
         if (siteNav) {
           const scrolled = window.scrollY > 10;
-          siteNav.classList.toggle('backdrop-blur', scrolled);
-          siteNav.classList.toggle('bg-white/5', scrolled);
-          siteNav.classList.toggle('shadow-lg', scrolled);
+          siteNav.classList.toggle('scrolled', scrolled);
         }
       };
       document.addEventListener('scroll', onScrollNav, { passive: true });
       onScrollNav();
 
-      const revealElements = document.querySelectorAll('.reveal-up, .reveal-down, .reveal-fade');
+      const revealElements = document.querySelectorAll('.reveal-up, .reveal-down, .reveal-fade, .word-animation');
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver(
-          (entries) => entries.forEach(entry => entry.isIntersecting && (entry.target.classList.add('is-visible'), observer.unobserve(entry.target))),
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                if (entry.target.classList.contains('word-animation')) {
+                  entry.target.classList.add('visible');
+                }
+                observer.unobserve(entry.target);
+              }
+            });
+          },
           { threshold: 0.1 }
         );
         revealElements.forEach(el => observer.observe(el));
       } else {
-        revealElements.forEach(el => el.classList.add('is-visible'));
+        revealElements.forEach(el => {
+          el.classList.add('is-visible');
+          if (el.classList.contains('word-animation')) el.classList.add('visible');
+        });
       }
 
       const sections = Array.from(document.querySelectorAll('section[id]'));
       const navLinks = Array.from(document.querySelectorAll('header a[href^="#"]'));
       if ('IntersectionObserver' in window) {
         const activeObserver = new IntersectionObserver(
-          (entries) => entries.forEach(entry => entry.isIntersecting && navLinks.forEach(l => {
-            const id = entry.target.getAttribute('id');
-            const isActive = l.getAttribute('href') === `#${id}`;
-            l.classList.toggle('text-white', isActive);
-            l.classList.toggle('opacity-70', !isActive);
-          })),
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(l => {
+                  const isActive = l.getAttribute('href') === `#${id}`;
+                  l.classList.toggle('text-white', isActive);
+                  l.classList.toggle('opacity-70', !isActive);
+                });
+              }
+            });
+          },
           { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
         );
         sections.forEach(sec => activeObserver.observe(sec));
       }
 
-      navLinks.forEach(link => link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            window.scrollTo({ top: target.offsetTop - 96, behavior: 'smooth' });
-            target.classList.add('is-visible');
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              window.scrollTo({ top: target.offsetTop - 96, behavior: 'smooth' });
+              target.classList.add('is-visible');
+            }
           }
-        }
-      }));
+        });
+      });
 
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
@@ -636,82 +1027,47 @@
         });
       }
 
+      // Popup functions
+      function showPopup() {
+        document.getElementById('projectPopup').style.display = 'block';
+        document.getElementById('popupOverlay').style.display = 'block';
+      }
+      function hidePopup() {
+        document.getElementById('projectPopup').style.display = 'none';
+        document.getElementById('popupOverlay').style.display = 'none';
+      }
+
+      // Chatbot
       const chatbotToggle = document.getElementById('chatbot-toggle');
       const chatbot = document.getElementById('chatbot');
       const chatbotClose = document.getElementById('chatbot-close');
       const chatInput = document.getElementById('chat-input');
       const chatSend = document.getElementById('chat-send');
       const chatBody = document.getElementById('chatbot-body');
-      const chatPopup = document.getElementById('chatbot-popup');
 
       const qaDatabase = {
-        'hi': 'Hello! I’m so glad you’re here—welcome to Fortizo’s world! I’m your friendly AI assistant, ready to guide you with a warm smile. What’s on your mind today about tech or Sierra Leone?',
-        'fortizo': 'Fortizo is a vibrant Sierra Leone-born crew, weaving together strategists, designers, and engineers to craft digital platforms, brand magic, and unforgettable events. We’re all about human-centered solutions that spark real impact—fancy learning more?',
-        'team': 'Our team is a lively blend of passionate minds! Picture innovative engineers building bridges with technology, visionary leaders steering the ship, and dedicated supporters bringing fresh ideas to life. It’s a collaborative spirit that drives Fortizo’s success—want to dive deeper?',
-        'mr alex pratt': 'Meet Mr. Alex Pratt, our inspiring Founder! He’s the heartbeat behind Fortizo, igniting creativity with software solutions and interactive experiences that transform the digital landscape.',
-        'jenifer e.k kargbo': 'Say hello to Jenifer E.K Kargbo, our visionary CEO! She leads with a bold vision, crafting scalable digital solutions that empower businesses across Sierra Leone.',
-        'seth culker': 'Seth Culker, our insightful Company Secretary, ensures we stay on track while infusing innovation into every decision—truly a guiding light for Fortizo!',
-        'mr kamara': 'Mr. Kamara, one of our brilliant Software Engineers, crafts digital solutions that connect communities and spark innovation with every line of code.',
-        'mr charles': 'Meet Mr. Charles, another talented Software Engineer, whose work unites people through innovative solutions that leave a lasting digital footprint.',
-        'mr mohamed ali': 'Mr. Mohamed Ali, our dedicated Volunteer, brings a burst of energy, creating software and experiences that make a meaningful difference.',
-        'services': 'At Fortizo, we offer a delightful mix—think vibrant meeting facilitation, insightful market research, captivating marketing & branding, and cutting-edge digital solutions & e-learning. Each service is a step toward your success—curious to explore?',
-        'meeting facilitation': 'Our meeting facilitation is like a warm gathering—productive, inclusive, and designed to spark decisions with momentum. Ready for more? Contact us at info@fortizo.sl!',
-        'market research': 'We dive into market research with a fresh eye, blending local wisdom with sharp analysis to uncover hidden opportunities. Interested? Reach out to info@fortizo.sl for details!',
-        'marketing & branding': 'Our marketing & branding weave stories that build trust and curiosity, turning your vision into a standout identity. Let’s chat more—contact info@fortizo.sl!',
-        'digital solutions & e-learning': 'From sleek websites to engaging e-learning platforms, our digital solutions open new doors. Excited? Get in touch at info@fortizo.sl!',
-        'market research on digital transformation': 'For digital transformation research, our team brings a unique flair—starting with a deep dive into your goals, we blend local insights with global trends, delivering a roadmap that’s both practical and inspiring. Ready to start? Please contact us at info@fortizo.sl!',
-        'tech companies in sierra leone': 'Sierra Leone’s tech scene is buzzing with talent! Some notable companies include Kangari Technology, Umtech Solution, TechMinds SL, and Fortizo, alongside others like e-Learning Khub and Proweb Solutions LTD. There are 43 software companies as of May 2025, mostly in Western Area—want more details?',
-        'startup tech companies in sierra leone': 'The startup vibe in Sierra Leone is exciting! Check out Sierra Rutile, Easy Solar, Mosabi, EntoTech Innovations, Salone Agro Market, and Tholoma Empire. These innovators are shaping the tech landscape—curious about their work?',
-        'tech in business': 'Tech is transforming business in Sierra Leone! Companies like Fortizo and Kangari Technology offer digital solutions, while startups like Salone Agro Market connect farmers to markets. It boosts efficiency and growth—want to explore how?',
-        'tech in politics': 'Tech in Sierra Leone’s politics is emerging! Enhanced connectivity supports governance, with startups and firms aiding data management. It’s a growing space—any specific aspect you’d like to know more about?',
-        'tech in law': 'Tech is making waves in Sierra Leone’s legal field! Digital tools aid case management and access to justice, though adoption is gradual. Companies could play a role here—interested in more?',
-        'tech in education': 'Education in Sierra Leone is getting a tech boost! E-learning platforms from Fortizo and initiatives like e-Learning Khub are key, alongside Mosabi’s fintech-edtech blend. It’s opening new learning doors—want details?',
-        'robotics in sierra leone': 'Robotics is a budding field in Sierra Leone! While not widespread, innovation hubs and tech firms are exploring its potential in education and industry. It’s an exciting frontier—any specific interest?',
-        'fintech in sierra leone': 'Fintech is thriving in Sierra Leone! Mosabi blends fintech and edtech for financial management, while Easy Solar offers pay-as-you-go solar. It’s empowering communities—want to dive deeper?',
-        'sierra leone tech ecosystem': 'Sierra Leone’s tech ecosystem is vibrant! With 43 software companies, startups like EntoTech and Easy Solar, and firms like Kangari Technology, it’s growing. Funding is around $73.6M, with Western Area leading—fancy exploring more?',
-        'ai': 'AI is a thrilling tool we use to enhance our chatbot and solutions! In Sierra Leone, it’s emerging in firms like Fortizo and startups exploring innovation—want to know more? Drop us a line at info@fortizo.sl!',
-        'blockchain': 'Blockchain is a fascinating decentralized technology, perfect for secure digital solutions. In Sierra Leone, it’s gaining traction for potential in fintech—contact info@fortizo.sl to explore!',
-        'cloud computing': 'Cloud computing offers scalable possibilities! Companies like Kangari Technology leverage it for business growth in Sierra Leone—let’s discuss at info@fortizo.sl!',
-        'default': 'Oh, I love a good challenge! I’m here to help with Fortizo first, but I can also share insights on Sierra Leone’s tech world—tech in business, fintech, robotics, you name it! What’s on your mind?'
+        'what is fortizo?': 'Fortizo is a Sierra Leone-based team specializing in digital solutions, branding, and event marketing.',
+        'where is fortizo located?': 'Fortizo is headquartered in Freetown, Sierra Leone, with operations across the region.',
+        'what services does fortizo offer?': 'We offer meeting facilitation, market research, marketing & branding, and digital solutions & e-learning.',
+        'who is the founder?': 'The founder is Mr Alex Pratt.',
+        'how to contact fortizo?': 'You can contact us at info@fortizo.sl or +232 XX XXX XXXX.',
+        'default': 'Sorry, I didn\'t understand that. Ask about our services, team, or location!'
       };
 
-      let autoMessageInterval;
-
-      function startAutoMessages() {
-        autoMessageInterval = setInterval(() => {
-          showPopup();
-        }, 20000);
-      }
-
-      function stopAutoMessages() {
-        if (autoMessageInterval) clearInterval(autoMessageInterval);
-      }
-
-      function showPopup() {
-        chatPopup.textContent = 'let me assist you with a smile';
-        chatPopup.classList.remove('hide');
-        chatPopup.classList.add('show');
-        setTimeout(() => {
-          chatPopup.classList.remove('show');
-          chatPopup.classList.add('hide');
-          setTimeout(() => chatPopup.textContent = '', 300);
-        }, 5000);
-      }
-
       chatbotToggle.addEventListener('click', () => {
-        chatbot.style.display = 'block';
-        chatbotToggle.style.display = 'none';
-        stopAutoMessages();
+        chatbot.classList.add('active');
+        chatbot.classList.remove('inactive');
       });
 
       chatbotClose.addEventListener('click', () => {
-        chatbot.style.display = 'none';
-        chatbotToggle.style.display = 'grid';
-        startAutoMessages();
+        chatbot.classList.add('inactive');
+        setTimeout(() => chatbot.classList.remove('active'), 300);
       });
 
       chatSend.addEventListener('click', sendMessage);
-      chatInput.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+      });
 
       function sendMessage() {
         const question = chatInput.value.trim().toLowerCase();
@@ -738,25 +1094,8 @@
         chatBody.scrollTop = chatBody.scrollHeight;
       }
 
-      startAutoMessages();
-
-      function updateChatbotPosition() {
-        const toggle = document.getElementById('chatbot-toggle');
-        const chatbot = document.getElementById('chatbot');
-        if (toggle) {
-          toggle.style.position = 'fixed';
-          toggle.style.bottom = '20px';
-          toggle.style.right = '20px';
-        }
-        if (chatbot) {
-          chatbot.style.position = 'fixed';
-          chatbot.style.bottom = '20px';
-          chatbot.style.right = '20px';
-        }
-      }
-
-      window.addEventListener('load', updateChatbotPosition);
-      window.addEventListener('resize', updateChatbotPosition);
+      // Show popup after 5 seconds
+      setTimeout(showPopup, 5000);
     });
   </script>
 </body>
