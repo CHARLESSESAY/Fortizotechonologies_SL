@@ -15,23 +15,80 @@
     <style>
         :root {
             --primary: #0a0a23; /* deep blue */
-            --accent: #00ffff; /* cyan */
-            --secondary: #8b00ff; /* purple */
+            --accent: #00d4d4; /* vibrant cyan */
+            --secondary: #7200d6; /* vibrant purple */
             --text-light: #ffffff;
             --text-dark: #000000;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
         }
 
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: var(--text-light);
+            position: relative;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            scroll-behavior: smooth;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.7s ease;
+        }
+
+        #preloader .spinner {
+            border: 4px solid var(--accent);
+            border-top: 4px solid var(--secondary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-top: 1rem;
+        }
+
+        #preloader::before {
+            content: 'Fortizo';
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        section, nav, footer, .modal, .chatbot, .chatbot-window {
+            position: relative;
+            z-index: 1;
         }
 
         section {
@@ -40,6 +97,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .content {
@@ -58,8 +123,8 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.5rem; }
+        h1 { font-size: 3.2rem; }
+        h2 { font-size: 2.7rem; }
         h3 { font-size: 1.8rem; }
 
         .navbar {
@@ -68,6 +133,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
 
@@ -80,7 +146,7 @@
         }
 
         .navbar li {
-            margin: 0 1rem;
+            margin: 0 1.2rem;
         }
 
         .navbar a {
@@ -88,6 +154,11 @@
             text-decoration: none;
             font-weight: bold;
             position: relative;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover, .navbar a:focus {
+            color: var(--accent);
         }
 
         .navbar a::after {
@@ -101,7 +172,7 @@
             transition: width 0.3s;
         }
 
-        .navbar a:hover::after, .navbar a.active::after {
+        .navbar a:hover::after, .navbar a.active::after, .navbar a:focus::after {
             width: 100%;
         }
 
@@ -114,19 +185,20 @@
             margin: 1rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 300px;
+            width: 280px;
             text-align: center;
         }
 
         .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
         }
 
         .cards {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 1rem;
         }
 
         .team-img {
@@ -157,6 +229,12 @@
             width: 80%;
             max-width: 500px;
             color: var(--text-light);
+            animation: slide-in 0.3s ease;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .close {
@@ -166,7 +244,7 @@
             cursor: pointer;
         }
 
-        .close:hover {
+        .close:hover, .close:focus {
             color: var(--accent);
         }
 
@@ -174,7 +252,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--accent);
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
             border-radius: 50%;
             width: 60px;
@@ -183,8 +261,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px var(--secondary);
+            box-shadow: 0 4px 20px var(--secondary), 0 0 10px var(--accent);
             font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .chatbot:hover, .chatbot:focus {
+            transform: scale(1.1);
         }
 
         .chatbot-window {
@@ -203,11 +286,14 @@
             color: var(--text-light);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            animation: slide-in 0.3s ease;
         }
 
         #chatMessages {
             flex: 1;
             overflow-y: auto;
+            padding: 10px;
         }
 
         .chatbot-window input {
@@ -222,17 +308,19 @@
         }
 
         button {
-            background: var(--accent);
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--accent);
         }
 
-        button:hover {
-            background: var(--secondary);
+        button:hover, button:focus {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--secondary);
         }
 
         input, textarea {
@@ -243,6 +331,49 @@
             border-radius: 5px;
             margin-bottom: 10px;
             width: 100%;
+        }
+
+        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            color: var(--text-light);
+            border-top: 1px solid var(--glass-border);
+            display: grid;
+            gap: 1rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        footer a:hover::after, footer a:focus::after {
+            width: 100%;
+        }
+
+        footer a:hover, footer a:focus {
+            color: var(--secondary);
         }
 
         @media (max-width: 768px) {
@@ -259,6 +390,14 @@
                 width: 90%;
                 right: 5%;
             }
+
+            .card {
+                width: 90%;
+                max-width: 300px;
+            }
+
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
         }
 
         .py-28 { padding-top: 7rem; padding-bottom: 7rem; }
@@ -288,7 +427,7 @@
             margin: 1rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 300px;
+            width: 280px;
             text-align: center;
         }
         .moving-cards {
@@ -301,7 +440,11 @@
             flex-shrink: 0;
             animation: moveCards 30s linear infinite;
             animation-play-state: running;
-            width: calc(300px * 6 + 1rem * 12); /* 6 cards * 300px width + 1rem margin * 12 (2 margins per card) */
+            width: calc(280px * 6 + 1rem * 12);
+        }
+        .moving-cards:hover .card-container,
+        .moving-cards:hover .card-clone {
+            animation-play-state: paused;
         }
         @keyframes moveCards {
             0% { transform: translateX(-50%); }
@@ -327,6 +470,10 @@
     </style>
 </head>
 <body>
+    <div id="preloader" aria-hidden="true">
+        <div class="spinner"></div>
+    </div>
+
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <ul>
             <li><a href="#hero" aria-current="page">Home</a></li>
@@ -395,36 +542,32 @@
             <p>Explore images representing our expertise in various tech domains.</p>
             <div class="cards">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89ca52a72399?auto=format&fit=crop&q=80&w=500" alt="Artificial Intelligence technology concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89ca52a72399?auto=format&fit=crop&q=80&w=500" alt="Artificial Intelligence technology concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
                     <h3>Artificial Intelligence</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1557838923-2985c2009b8d?auto=format&fit=crop&q=80&w=500" alt="Digital marketing strategy on laptop" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1557838923-2985c2009b8d?auto=format&fit=crop&q=80&w=500" alt="Digital marketing strategy on laptop" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
                     <h3>Digital Marketing</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1461749289074-182d292773ee?auto=format&fit=crop&q=80&w=500" alt="Web development coding on computer" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1461749289074-182d292773ee?auto=format&fit=crop&q=80&w=500" alt="Web development coding on computer" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
                     <h3>Web Development</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=500" alt="Web design creative workspace" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=500" alt="Web design creative workspace" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
                     <h3>Web Design</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=500" alt="Cybersecurity lock on digital screen" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Cybersecurity</h3>
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=500" alt="Large Language Models concept with AI text processing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <h3>Large Language Models</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1639762681057-89aacaeda2f2?auto=format&fit=crop&q=80&w=500" alt="Blockchain network concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Blockchain</h3>
+                    <img src="https://images.unsplash.com/photo-1597733336794-12d05021d4ee?auto=format&fit=crop&q=80&w=500" alt="Agentic AI systems concept with autonomous decision-making" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <h3>Agentic</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1551651056-17c1e7a2d675?auto=format&fit=crop&q=80&w=500" alt="Mobile app development on smartphone" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Mobile App Development</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=500" alt="Cloud computing data network" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;">
-                    <h3>Cloud Computing</h3>
+                    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&q=80&w=500" alt="Robotics technology with robotic arm" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <h3>Robotics</h3>
                 </div>
             </div>
         </div>
@@ -501,37 +644,37 @@
                 <div class="moving-cards">
                     <div class="card-container">
                         <div class="team-card scale-up">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
                             <p class="text-sm">Founder, Fortizo Technologies</p>
                             <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.2s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
                             <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
                             <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.4s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Seth Culker</h3>
                             <p class="text-sm">Company Secretary</p>
                             <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.6s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Kamara</h3>
                             <p class="text-sm">Software Engineer</p>
                             <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.8s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Charles</h3>
                             <p class="text-sm">Software Engineer</p>
                             <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 1s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
                             <p class="text-sm">Volunteer</p>
                             <p class="mt-2 text-sm">Develops innovative software solutions.</p>
@@ -539,37 +682,37 @@
                     </div>
                     <div class="card-clone">
                         <div class="team-card scale-up">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
                             <p class="text-sm">Founder, Fortizo Technologies</p>
                             <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.2s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
                             <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
                             <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.4s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Seth Culker</h3>
                             <p class="text-sm">Company Secretary</p>
                             <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.6s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Kamara</h3>
                             <p class="text-sm">Software Engineer</p>
                             <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 0.8s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Charles</h3>
                             <p class="text-sm">Software Engineer</p>
                             <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
                         </div>
                         <div class="team-card scale-up" style="animation-delay: 1s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy"/>
+                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
                             <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
                             <p class="text-sm">Volunteer</p>
                             <p class="mt-2 text-sm">Develops innovative software solutions.</p>
@@ -590,6 +733,14 @@
         </div>
     </section>
 
+    <footer role="contentinfo">
+        <p>&copy; 2025 Fortizo Technologies Sierra Leone. All rights reserved.</p>
+        <div>
+            <a href="https://x.com/fortizotech" target="_blank" rel="noopener" aria-label="Follow Fortizo on X">X</a>
+            <a href="https://linkedin.com/company/fortizotechnologies" target="_blank" rel="noopener" aria-label="Follow Fortizo on LinkedIn">LinkedIn</a>
+        </div>
+    </footer>
+
     <div id="modal" class="modal" role="dialog" aria-labelledby="modal-heading" aria-modal="true">
         <div class="modal-content">
             <span class="close" aria-label="Close modal">&times;</span>
@@ -602,13 +753,31 @@
         </div>
     </div>
 
-    <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot">Chat</div>
+    <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot" tabindex="0">Chat</div>
     <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Chatbot window">
         <div id="chatMessages" aria-live="polite"></div>
         <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Chatbot input" onkeypress="if(event.key === 'Enter') sendMessage()">
     </div>
 
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.style.display = 'none', 700);
+        });
+
+        // Section reveal animations
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
         // Site knowledge base
         const siteKnowledge = {
             about: "Fortizo is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
@@ -622,7 +791,6 @@
         const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or customized solutions, contact Fortizo at info@fortizo.sl.";
 
         // Navbar highlight on scroll
-        const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.navbar a');
         window.addEventListener('scroll', () => {
             let current = '';
@@ -642,7 +810,7 @@
 
         // Optimize animations for team and market sections
         const animatedSections = document.querySelectorAll('#team, #market');
-        const observer = new IntersectionObserver((entries) => {
+        const animObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const container = entry.target.querySelector('.card-container');
                 const clone = entry.target.querySelector('.card-clone');
@@ -657,7 +825,7 @@
                 }
             });
         }, { threshold: 0.1 });
-        animatedSections.forEach(section => observer.observe(section));
+        animatedSections.forEach(section => animObserver.observe(section));
 
         // Modal functionality
         const modal = document.getElementById('modal');
@@ -686,8 +854,10 @@
         // Chatbot functionality
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
+            const chatMessages = document.getElementById('chatMessages');
             chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
             if (chatWindow.style.display === 'block') {
+                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome! Ask about Fortizo, our services, team, or the Sierra Leone tech ecosystem.</p>`;
                 document.getElementById('chatInput').focus();
             }
         }
@@ -697,7 +867,7 @@
             const messages = document.getElementById('chatMessages');
             const msg = input.value.trim().toLowerCase();
             if (msg) {
-                messages.innerHTML += `<p style="margin: 5px;">You: ${input.value}</p>`;
+                messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
                 input.value = '';
 
                 let response = 'Sorry, I didn\'t understand that. Please contact info@fortizo.sl for more help.';
@@ -713,7 +883,7 @@
                     response = siteKnowledge.contact;
                 } else if (msg.includes('sierra leone tech') || msg.includes('sl tech ecosystem')) {
                     response = slTechSummary;
-                } else if (msg.includes('tech') || msg.includes('technology') || msg.includes('innovation')) {
+                } else if (msg.includes('tech') || msg.includes('technology') || msg.includes('innovation') || msg.includes('llm') || msg.includes('agentic') || msg.includes('robotics')) {
                     try {
                         const searchResponse = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(msg)}&format=json&pretty=1`);
                         if (!searchResponse.ok) throw new Error('API request failed');
@@ -725,7 +895,7 @@
                     }
                 }
 
-                messages.innerHTML += `<p style="margin: 5px;">Bot: ${response}</p>`;
+                messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
                 messages.scrollTop = messages.scrollHeight;
             }
         }
@@ -752,6 +922,16 @@
             } catch (error) {
                 alert('Network error. Please try again later.');
             }
+        });
+
+        // Keyboard navigation for accessibility
+        document.querySelectorAll('.navbar a, .chatbot, .close, button').forEach(element => {
+            element.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    element.click();
+                }
+            });
         });
     </script>
 </body>
