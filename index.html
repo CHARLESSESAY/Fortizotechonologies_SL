@@ -30,7 +30,7 @@
             position: relative;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         body::before {
@@ -76,7 +76,7 @@
         #preloader::before {
             content: 'Fortizo';
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
@@ -92,8 +92,8 @@
         }
 
         section {
-            padding: 60px 20px;
-            min-height: 100vh;
+            padding: 3rem 1rem;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -108,13 +108,13 @@
         }
 
         .content {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 40px;
+            padding: 1.5rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
 
@@ -123,9 +123,9 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        h1 { font-size: 3.2rem; }
-        h2 { font-size: 2.7rem; }
-        h3 { font-size: 1.8rem; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.8rem; }
+        h3 { font-size: 1.5rem; }
 
         .navbar {
             position: sticky;
@@ -146,7 +146,7 @@
         }
 
         .navbar li {
-            margin: 0 1.2rem;
+            margin: 0 0.8rem;
         }
 
         .navbar a {
@@ -155,6 +155,7 @@
             font-weight: bold;
             position: relative;
             transition: color 0.3s;
+            padding: 0.5rem;
         }
 
         .navbar a:hover, .navbar a:focus {
@@ -176,16 +177,26 @@
             width: 100%;
         }
 
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         .card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 20px;
-            margin: 1rem;
+            padding: 1rem;
+            margin: 0.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: 280px;
+            width: min(90%, 300px);
             text-align: center;
         }
 
@@ -198,15 +209,15 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .team-img {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .modal {
@@ -223,10 +234,10 @@
         .modal-content {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            margin: 15% auto;
-            padding: 20px;
+            margin: 10% auto;
+            padding: 1rem;
             border-radius: 15px;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
             color: var(--text-light);
             animation: slide-in 0.3s ease;
@@ -240,7 +251,7 @@
         .close {
             color: var(--text-light);
             float: right;
-            font-size: 28px;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
@@ -250,13 +261,13 @@
 
         .chatbot {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 10px;
+            right: 10px;
             background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -273,45 +284,48 @@
         .chatbot-window {
             display: none;
             position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
+            bottom: 70px;
+            right: 10px;
+            width: 90vw;
+            max-width: 300px;
+            height: 80vh;
+            max-height: 400px;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 10px;
+            padding: 0.5rem;
             overflow-y: auto;
             color: var(--text-light);
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             animation: slide-in 0.3s ease;
+            font-size: 0.9rem;
         }
 
         #chatMessages {
             flex: 1;
             overflow-y: auto;
-            padding: 10px;
+            padding: 0.5rem;
         }
 
         .chatbot-window input {
             width: 100%;
-            padding: 10px;
+            padding: 0.5rem;
             box-sizing: border-box;
             background: transparent;
             border: 1px solid var(--accent);
             color: var(--text-light);
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: 0.5rem;
         }
 
         button {
             background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
             border: none;
-            padding: 10px 20px;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -327,13 +341,13 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-light);
-            padding: 10px;
+            padding: 0.5rem;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             width: 100%;
         }
 
-        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus {
+        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
@@ -341,18 +355,18 @@
         footer {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
             color: var(--text-light);
             border-top: 1px solid var(--glass-border);
             display: grid;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         footer a {
             color: var(--accent);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 0.5rem;
             position: relative;
             transition: color 0.3s;
         }
@@ -376,19 +390,82 @@
             color: var(--secondary);
         }
 
-        @media (max-width: 768px) {
+        .moving-cards {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .card-container, .card-clone {
+            display: flex;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            animation: moveCards 30s linear infinite;
+            animation-play-state: running;
+            width: 100%;
+            gap: 0.5rem;
+        }
+
+        .moving-cards:hover .card-container,
+        .moving-cards:hover .card-clone {
+            animation-play-state: paused;
+        }
+
+        @keyframes moveCards {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+
+        .scale-up {
+            animation: scale-up 0.4s ease;
+        }
+
+        .reveal-down.is-visible {
+            animation: fade-in-up 0.8s ease-out;
+        }
+
+        /* Media Queries */
+        @media (max-width: 640px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--glass-bg);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+
             .cards {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .chatbot-window {
-                width: 90%;
-                right: 5%;
             }
 
             .card {
@@ -396,76 +473,78 @@
                 max-width: 300px;
             }
 
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
+            .content {
+                padding: 1rem;
+            }
+
+            .chatbot {
+                width: 40px;
+                height: 40px;
+                font-size: 0.8rem;
+            }
+
+            .chatbot-window {
+                width: 90vw;
+                right: 5%;
+                font-size: 0.8rem;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.2rem; }
+
+            .team-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .card-container, .card-clone {
+                animation-play-state: paused;
+            }
         }
 
-        .py-28 { padding-top: 7rem; padding-bottom: 7rem; }
-        .max-w-7xl { max-width: 80rem; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-        .lg\:px-8 { }
-        @media (min-width: 1024px) { .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; } }
-        .text-center { text-align: center; }
-        .max-w-2xl { max-width: 42rem; }
-        .font-poppins { font-family: 'Poppins', sans-serif; }
-        .text-3xl { font-size: 1.875rem; }
-        .sm\:text-4xl { }
-        @media (min-width: 640px) { .sm\:text-4xl { font-size: 2.25rem; } }
-        .font-bold { font-weight: 700; }
-        .text-white { color: #ffffff; }
-        .p-8 { padding: 2rem; }
-        .rounded-2xl { border-radius: 1rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-14 { margin-top: 3.5rem; }
-        .team-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 280px;
-            text-align: center;
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
         }
-        .moving-cards {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-        }
-        .card-container, .card-clone {
-            display: flex;
-            flex-shrink: 0;
-            animation: moveCards 30s linear infinite;
-            animation-play-state: running;
-            width: calc(280px * 6 + 1rem * 12);
-        }
-        .moving-cards:hover .card-container,
-        .moving-cards:hover .card-clone {
-            animation-play-state: paused;
-        }
-        @keyframes moveCards {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-up {
-            animation: fade-in-up 1s ease-out forwards;
-        }
-        @keyframes scale-up {
-            from { transform: scale(0.9); }
-            to { transform: scale(1); }
-        }
-        .scale-up {
-            animation: scale-up 0.5s ease;
-        }
-        .reveal-down.is-visible {
-            animation: fade-in-up 1s ease-out;
+
+        @media (min-width: 1025px) {
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .content {
+                padding: 3rem;
+            }
+
+            h1 { font-size: 3.2rem; }
+            h2 { font-size: 2.7rem; }
+            h3 { font-size: 1.8rem; }
+
+            .card-container, .card-clone {
+                width: calc(300px * 6 + 0.5rem * 12);
+            }
         }
     </style>
 </head>
@@ -475,6 +554,7 @@
     </div>
 
     <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
         <ul>
             <li><a href="#hero" aria-current="page">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -542,31 +622,31 @@
             <p>Explore images representing our expertise in various tech domains.</p>
             <div class="cards">
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89ca52a72399?auto=format&fit=crop&q=80&w=500" alt="Artificial Intelligence technology concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89ca52a72399?auto=format&fit=crop&q=80&w=500" alt="Artificial Intelligence technology concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Artificial Intelligence</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1557838923-2985c2009b8d?auto=format&fit=crop&q=80&w=500" alt="Digital marketing strategy on laptop" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1557838923-2985c2009b8d?auto=format&fit=crop&q=80&w=500" alt="Digital marketing strategy on laptop" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Digital Marketing</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1461749289074-182d292773ee?auto=format&fit=crop&q=80&w=500" alt="Web development coding on computer" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1461749289074-182d292773ee?auto=format&fit=crop&q=80&w=500" alt="Web development coding on computer" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Web Development</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=500" alt="Web design creative workspace" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=500" alt="Web design creative workspace" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Web Design</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=500" alt="Large Language Models concept with AI text processing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=500" alt="Large Language Models concept with AI text processing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Large Language Models</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1597733336794-12d05021d4ee?auto=format&fit=crop&q=80&w=500" alt="Agentic AI systems concept with autonomous decision-making" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1597733336794-12d05021d4ee?auto=format&fit=crop&q=80&w=500" alt="Agentic AI systems concept with autonomous decision-making" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Agentic</h3>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&q=80&w=500" alt="Robotics technology with robotic arm" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 1rem;" decoding="async">
+                    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&q=80&w=500" alt="Robotics technology with robotic arm" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
                     <h3>Robotics</h3>
                 </div>
             </div>
@@ -635,9 +715,9 @@
     </section>
 
     <section id="team" class="py-28" aria-labelledby="team-heading">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto reveal-down is-visible">
-                <h2 id="team-heading" class="font-poppins text-3xl sm:text-4xl font-bold text-white team-card p-8 rounded-2xl fade-in-up">Meet the Team</h2>
+        <div class="content">
+            <div class="text-center reveal-down is-visible">
+                <h2 id="team-heading" class="font-poppins font-bold text-white team-card p-8 rounded-2xl fade-in-up">Meet the Team</h2>
                 <p class="mt-4 text-white team-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
             </div>
             <div class="mt-14">
@@ -743,7 +823,7 @@
 
     <div id="modal" class="modal" role="dialog" aria-labelledby="modal-heading" aria-modal="true">
         <div class="modal-content">
-            <span class="close" aria-label="Close modal">&times;</span>
+            <span class="close" aria-label="Close modal" tabindex="0">&times;</span>
             <h2 id="modal-heading">Subscribe to Our Newsletter</h2>
             <p>Stay updated with the latest tech innovations and events in Sierra Leone!</p>
             <form id="newsletter-form">
@@ -765,6 +845,26 @@
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 700);
+        });
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('.navbar ul');
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                navUl.classList.toggle('active');
+            }
+        });
+
+        // Close hamburger menu when a link is clicked
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+            });
         });
 
         // Section reveal animations
@@ -827,6 +927,25 @@
         }, { threshold: 0.1 });
         animatedSections.forEach(section => animObserver.observe(section));
 
+        // Touch support for moving cards
+        let touchStartX = 0;
+        let touchEndX = 0;
+        document.querySelectorAll('.moving-cards').forEach(container => {
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    container.querySelector('.card-container').style.animationPlayState = 'paused';
+                    container.querySelector('.card-clone').style.animationPlayState = 'paused';
+                } else if (touchEndX - touchStartX > 50) {
+                    container.querySelector('.card-container').style.animationPlayState = 'running';
+                    container.querySelector('.card-clone').style.animationPlayState = 'running';
+                }
+            });
+        });
+
         // Modal functionality
         const modal = document.getElementById('modal');
         const closeBtn = document.querySelector('.close');
@@ -837,6 +956,13 @@
 
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
+        });
+
+        closeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                modal.style.display = 'none';
+            }
         });
 
         window.addEventListener('click', (event) => {
@@ -925,7 +1051,7 @@
         });
 
         // Keyboard navigation for accessibility
-        document.querySelectorAll('.navbar a, .chatbot, .close, button').forEach(element => {
+        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
