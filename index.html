@@ -15,12 +15,13 @@
     <style>
         :root {
             --primary: #0a0a23; /* deep blue */
-            --accent: #00d4d4; /* vibrant cyan */
+            --accent: #a100ff; /* vibrant purple */
             --secondary: #7200d6; /* vibrant purple */
             --text-light: #ffffff;
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
+            --frame-border: 2px solid var(--accent); /* Frame for photos */
         }
 
         body {
@@ -30,7 +31,9 @@
             position: relative;
             scroll-behavior: smooth;
             overflow-x: hidden;
-            line-height: 1.5;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
+            line-height: 1.6;
         }
 
         body::before {
@@ -76,7 +79,8 @@
         #preloader::before {
             content: 'Fortizo';
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.6rem, 4vw, 1.8rem);
+            font-weight: 700;
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
@@ -114,18 +118,26 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 1.5rem;
+            padding: 1.8rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
 
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 10px var(--accent);
+            font-weight: 700;
+            line-height: 1.4;
         }
 
-        h1 { font-size: clamp(1.8rem, 5vw, 2rem); }
-        h2 { font-size: clamp(1.5rem, 4vw, 1.8rem); }
-        h3 { font-size: clamp(0.8rem, 1.8vw, 0.9rem); } /* Reduced globally for both sections */
+        h1 { font-size: clamp(2rem, 6vw, 2.4rem); }
+        h2 { font-size: clamp(1.6rem, 5vw, 2rem); }
+        h3 { font-size: clamp(1.2rem, 3vw, 1.4rem); }
+
+        p, .text-sm {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
+            line-height: 1.6;
+        }
 
         .navbar {
             position: sticky;
@@ -152,7 +164,8 @@
         .navbar a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: bold;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
             position: relative;
             transition: color 0.3s;
             padding: 0.5rem;
@@ -192,17 +205,17 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 0.5rem; /* Reduced padding */
+            padding: 0.5rem;
             margin: 0.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: clamp(180px, 80%, 220px); /* Smaller card width */
+            width: clamp(200px, 85%, 240px);
             text-align: center;
             opacity: 1;
             visibility: visible;
             box-sizing: border-box;
-            min-height: 120px; /* Smaller for Key Market */
-            overflow: hidden; /* Prevent content spillover */
+            min-height: 160px;
+            overflow: hidden;
         }
 
         .card:hover {
@@ -211,7 +224,8 @@
         }
 
         .card h3 {
-            font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Smaller for Key Market */
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-weight: 700;
             margin: 0.3rem 0;
             overflow-wrap: break-word;
             max-width: 95%;
@@ -220,7 +234,8 @@
         }
 
         .card p {
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem); /* Smaller for Key Market */
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
             margin: 0.2rem 0;
             overflow-wrap: break-word;
             max-width: 95%;
@@ -235,18 +250,22 @@
             gap: 0.5rem;
         }
 
-        .team-img-container {
-            width: 80px;
-            height: 80px; /* Fixed square size */
-            border-radius: 50%;
-            overflow: hidden; /* Clip oversized images */
+        .team-img-wrapper {
+            width: clamp(120px, 25vw, 160px);
+            height: clamp(80px, 15vw, 100px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: var(--frame-border);
             margin: 0 auto 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .team-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensure proper scaling */
+            object-fit: cover;
             display: block;
         }
 
@@ -254,19 +273,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            min-height: 250px; /* Smaller for content */
-            padding: 0.5rem; /* Reduced padding */
+            justify-content: flex-end;
+            min-height: 360px;
+            padding: 0.5rem;
             text-align: center;
             box-sizing: border-box;
-            overflow: hidden; /* Prevent content spillover */
-            width: clamp(180px, 80%, 220px); /* Smaller card width */
+            overflow: hidden;
+            width: clamp(200px, 85%, 240px);
+        }
+
+        .team-card .details {
+            width: 100%;
+            text-align: center;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .team-card h3 {
             margin: 0.3rem 0;
-            font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Smaller font size */
-            font-weight: 600;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-weight: 700;
             overflow-wrap: break-word;
             max-width: 95%;
             text-overflow: ellipsis;
@@ -274,9 +303,10 @@
         }
 
         .team-card .text-sm {
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem); /* Smaller font size */
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
             margin: 0.2rem 0;
-            line-height: 1.3;
+            line-height: 1.6;
             max-width: 95%;
             overflow-wrap: break-word;
             text-overflow: ellipsis;
@@ -305,19 +335,27 @@
             animation: slide-in 0.3s ease;
         }
 
+        .modal-content h2 {
+            font-size: clamp(1.6rem, 5vw, 2rem);
+        }
+
+        .modal-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+
         @keyframes slide-in {
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
-        .close {
+        .close, .chatbot-close {
             color: var(--text-light);
             float: right;
             font-size: 1.5rem;
             cursor: pointer;
         }
 
-        .close:hover, .close:focus {
+        .close:hover, .close:focus, .chatbot-close:hover, .chatbot-close:focus {
             color: var(--accent);
         }
 
@@ -335,7 +373,8 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 20px var(--secondary), 0 0 10px var(--accent);
-            font-weight: bold;
+            font-weight: 700;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             transition: transform 0.3s;
         }
 
@@ -361,7 +400,8 @@
             flex-direction: column;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             animation: slide-in 0.3s ease;
-            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
         }
 
         #chatMessages {
@@ -379,6 +419,8 @@
             color: var(--text-light);
             border-radius: 5px;
             margin-top: 0.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
         }
 
         button {
@@ -390,6 +432,8 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 0 10px var(--accent);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
         }
 
         button:hover, button:focus {
@@ -405,9 +449,11 @@
             border-radius: 5px;
             margin-bottom: 0.5rem;
             width: 100%;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
         }
 
-        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus {
+        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .chatbot-close:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
@@ -421,6 +467,11 @@
             border-top: 1px solid var(--glass-border);
             display: grid;
             gap: 0.5rem;
+        }
+
+        footer p, footer a {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
         }
 
         footer a {
@@ -468,12 +519,12 @@
         }
 
         .card-clone {
-            display: none; /* Hidden by default, used only for larger screens */
+            display: none;
         }
 
         .ribbon-card {
             flex: 0 0 auto;
-            width: clamp(180px, 80%, 220px); /* Smaller card width */
+            width: clamp(200px, 85%, 240px);
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
@@ -482,7 +533,7 @@
         .ribbon-card.active {
             opacity: 1;
             visibility: visible;
-            transform: translateX(0);
+            transform: scale(1);
         }
 
         .nav-dots {
@@ -505,9 +556,14 @@
             background: var(--accent);
         }
 
-        @keyframes ribbonFade {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes carouselFade {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         @keyframes moveCards {
@@ -537,7 +593,6 @@
             animation: fade-in-up 0.8s ease-out;
         }
 
-        /* Media Queries */
         @media (max-width: 640px) {
             .navbar ul {
                 display: none;
@@ -569,24 +624,22 @@
 
             .card {
                 width: 90%;
-                max-width: 220px;
-                min-height: 130px; /* Adjusted for Key Market */
+                max-width: 240px;
+                min-height: 180px;
             }
 
             .content {
-                padding: 1rem;
+                padding: 1.8rem;
             }
 
             .chatbot {
                 width: 40px;
                 height: 40px;
-                font-size: 0.6rem;
             }
 
             .chatbot-window {
                 width: 90vw;
                 right: 5%;
-                font-size: 0.6rem;
             }
 
             .moving-cards {
@@ -605,16 +658,25 @@
             .ribbon-card {
                 position: absolute;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translateX(-50%) translateY(100%);
                 opacity: 0;
                 visibility: hidden;
             }
 
-            .ribbon-card.active {
+            .moving-cards[data-section="team"] .ribbon-card.active {
                 position: relative;
                 opacity: 1;
                 visibility: visible;
-                animation: ribbonFade 0.5s ease;
+                transform: translateX(-50%) translateY(0);
+                animation: slideUp 0.5s ease;
+            }
+
+            .moving-cards[data-section="market"] .ribbon-card.active {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) scale(1);
+                animation: carouselFade 0.5s ease;
             }
 
             .nav-dots {
@@ -622,7 +684,12 @@
             }
 
             .team-card {
-                min-height: 260px; /* Adjusted for mobile */
+                min-height: 360px;
+            }
+
+            .team-img-wrapper {
+                width: 120px;
+                height: 80px;
             }
         }
 
@@ -634,19 +701,19 @@
 
             .card {
                 width: 100%;
-                max-width: 250px;
-                min-height: 140px; /* Adjusted for Key Market */
+                max-width: 240px;
+                min-height: 180px;
             }
 
             .content {
-                padding: 2rem;
+                padding: 2.5rem;
             }
 
             .card-container {
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(250px * 12 + 0.5rem * 24); /* Adjusted for smaller cards */
+                width: calc(240px * 12 + 0.5rem * 24);
             }
 
             .card-clone {
@@ -654,7 +721,7 @@
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(250px * 12 + 0.5rem * 24);
+                width: calc(240px * 12 + 0.5rem * 24);
             }
 
             .ribbon-card {
@@ -673,7 +740,12 @@
             }
 
             .team-card {
-                min-height: 280px; /* Adjusted for tablet */
+                min-height: 380px;
+            }
+
+            .team-img-wrapper {
+                width: 140px;
+                height: 90px;
             }
         }
 
@@ -685,19 +757,19 @@
 
             .card {
                 width: 100%;
-                max-width: 220px;
-                min-height: 140px; /* Adjusted for Key Market */
+                max-width: 240px;
+                min-height: 180px;
             }
 
             .content {
-                padding: 3rem;
+                padding: 3.5rem;
             }
 
             .card-container {
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(220px * 12 + 0.5rem * 24); /* Adjusted for smaller cards */
+                width: calc(240px * 12 + 0.5rem * 24);
             }
 
             .card-clone {
@@ -705,7 +777,7 @@
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(220px * 12 + 0.5rem * 24);
+                width: calc(240px * 12 + 0.5rem * 24);
             }
 
             .ribbon-card {
@@ -724,7 +796,12 @@
             }
 
             .team-card {
-                min-height: 280px; /* Adjusted for desktop */
+                min-height: 380px;
+            }
+
+            .team-img-wrapper {
+                width: 160px;
+                height: 100px;
             }
         }
     </style>
@@ -906,102 +983,126 @@
                 <div class="moving-cards" data-section="team">
                     <div class="card-container">
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Alex Pratt</h3>
-                            <p class="text-sm">Founder, Fortizo Technologies</p>
-                            <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            <div class="details">
+                                <h3>Mr Alex Pratt</h3>
+                                <p class="text-sm">Founder, Fortizo Technologies</p>
+                                <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Jenifer E.K Kargbo</h3>
-                            <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                            <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
+                            <div class="details">
+                                <h3>Jenifer E.K Kargbo</h3>
+                                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                                <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Seth Culker</h3>
-                            <p class="text-sm">Company Secretary</p>
-                            <p class="text-sm">Ensures compliance and strategic insights.</p>
+                            <div class="details">
+                                <h3>Seth Culker</h3>
+                                <p class="text-sm">Company Secretary</p>
+                                <p class="text-sm">Ensures compliance and strategic insights.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Kamara</h3>
-                            <p class="text-sm">Software Engineer</p>
-                            <p class="text-sm">Builds digital solutions fostering innovation.</p>
+                            <div class="details">
+                                <h3>Mr Kamara</h3>
+                                <p class="text-sm">Software Engineer</p>
+                                <p class="text-sm">Builds digital solutions fostering innovation.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Charles</h3>
-                            <p class="text-sm">Software Engineer</p>
-                            <p class="text-sm">Develops solutions uniting communities.</p>
+                            <div class="details">
+                                <h3>Mr Charles</h3>
+                                <p class="text-sm">Software Engineer</p>
+                                <p class="text-sm">Develops solutions uniting communities.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Mohamed Ali</h3>
-                            <p class="text-sm">Volunteer</p>
-                            <p class="text-sm">Develops innovative software solutions.</p>
+                            <div class="details">
+                                <h3>Mr Mohamed Ali</h3>
+                                <p class="text-sm">Volunteer</p>
+                                <p class="text-sm">Develops innovative software solutions.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="card-clone">
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Alex Pratt</h3>
-                            <p class="text-sm">Founder, Fortizo Technologies</p>
-                            <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            <div class="details">
+                                <h3>Mr Alex Pratt</h3>
+                                <p class="text-sm">Founder, Fortizo Technologies</p>
+                                <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Jenifer E.K Kargbo</h3>
-                            <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                            <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
+                            <div class="details">
+                                <h3>Jenifer E.K Kargbo</h3>
+                                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
+                                <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Seth Culker</h3>
-                            <p class="text-sm">Company Secretary</p>
-                            <p class="text-sm">Ensures compliance and strategic insights.</p>
+                            <div class="details">
+                                <h3>Seth Culker</h3>
+                                <p class="text-sm">Company Secretary</p>
+                                <p class="text-sm">Ensures compliance and strategic insights.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Kamara</h3>
-                            <p class="text-sm">Software Engineer</p>
-                            <p class="text-sm">Builds digital solutions fostering innovation.</p>
+                            <div class="details">
+                                <h3>Mr Kamara</h3>
+                                <p class="text-sm">Software Engineer</p>
+                                <p class="text-sm">Builds digital solutions fostering innovation.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Charles</h3>
-                            <p class="text-sm">Software Engineer</p>
-                            <p class="text-sm">Develops solutions uniting communities.</p>
+                            <div class="details">
+                                <h3>Mr Charles</h3>
+                                <p class="text-sm">Software Engineer</p>
+                                <p class="text-sm">Develops solutions uniting communities.</p>
+                            </div>
                         </div>
                         <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-container">
+                            <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
-                            <h3>Mr Mohamed Ali</h3>
-                            <p class="text-sm">Volunteer</p>
-                            <p class="text-sm">Develops innovative software solutions.</p>
+                            <div class="details">
+                                <h3>Mr Mohamed Ali</h3>
+                                <p class="text-sm">Volunteer</p>
+                                <p class="text-sm">Develops innovative software solutions.</p>
+                            </div>
                         </div>
                     </div>
                     <div class="nav-dots" data-section="team"></div>
@@ -1042,6 +1143,7 @@
 
     <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot" tabindex="0">Chat</div>
     <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Chatbot window">
+        <span class="chatbot-close" aria-label="Close chatbot" tabindex="0">&times;</span>
         <div id="chatMessages" aria-live="polite"></div>
         <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Chatbot input" onkeypress="if(event.key === 'Enter') sendMessage()">
     </div>
@@ -1115,7 +1217,7 @@
             });
         });
 
-        // Ribbon-style card cycling for small screens
+        // Card cycling for small screens
         function cycleCards(section) {
             const container = section.querySelector('.card-container');
             const cards = container.querySelectorAll('.ribbon-card');
@@ -1177,7 +1279,7 @@
             });
         }
 
-        // Initialize ribbon-style for small screens and horizontal scroll for larger screens
+        // Initialize cards
         function initializeCards() {
             document.querySelectorAll('.moving-cards').forEach(section => {
                 if (window.innerWidth <= 640) {
@@ -1277,6 +1379,18 @@
             }
         }
 
+        // Chatbot close button
+        const chatbotClose = document.querySelector('.chatbot-close');
+        chatbotClose.addEventListener('click', () => {
+            document.getElementById('chatWindow').style.display = 'none';
+        });
+        chatbotClose.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                document.getElementById('chatWindow').style.display = 'none';
+            }
+        });
+
         async function sendMessage() {
             const input = document.getElementById('chatInput');
             const messages = document.getElementById('chatMessages');
@@ -1340,7 +1454,7 @@
         });
 
         // Keyboard navigation for accessibility
-        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .nav-dot').forEach(element => {
+        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .nav-dot, .chatbot-close').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
