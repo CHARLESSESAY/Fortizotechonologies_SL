@@ -123,9 +123,9 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        h1 { font-size: 2rem; }
-        h2 { font-size: 1.8rem; }
-        h3 { font-size: 1.5rem; }
+        h1 { font-size: clamp(1.8rem, 5vw, 2rem); }
+        h2 { font-size: clamp(1.5rem, 4vw, 1.8rem); }
+        h3 { font-size: clamp(0.8rem, 1.8vw, 0.9rem); } /* Reduced globally for both sections */
 
         .navbar {
             position: sticky;
@@ -192,17 +192,40 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 1rem;
+            padding: 0.5rem; /* Reduced padding */
             margin: 0.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: min(90%, 300px);
+            width: clamp(180px, 80%, 220px); /* Smaller card width */
             text-align: center;
+            opacity: 1;
+            visibility: visible;
+            box-sizing: border-box;
+            min-height: 120px; /* Smaller for Key Market */
+            overflow: hidden; /* Prevent content spillover */
         }
 
         .card:hover {
             transform: scale(1.05) rotate(2deg);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Smaller for Key Market */
+            margin: 0.3rem 0;
+            overflow-wrap: break-word;
+            max-width: 95%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card p {
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem); /* Smaller for Key Market */
+            margin: 0.2rem 0;
+            overflow-wrap: break-word;
+            max-width: 95%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .cards {
@@ -212,12 +235,52 @@
             gap: 0.5rem;
         }
 
-        .team-img {
-            width: 120px;
-            height: 120px;
+        .team-img-container {
+            width: 80px;
+            height: 80px; /* Fixed square size */
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 0.5rem;
+            overflow: hidden; /* Clip oversized images */
+            margin: 0 auto 0.5rem;
+        }
+
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure proper scaling */
+            display: block;
+        }
+
+        .team-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 250px; /* Smaller for content */
+            padding: 0.5rem; /* Reduced padding */
+            text-align: center;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevent content spillover */
+            width: clamp(180px, 80%, 220px); /* Smaller card width */
+        }
+
+        .team-card h3 {
+            margin: 0.3rem 0;
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem); /* Smaller font size */
+            font-weight: 600;
+            overflow-wrap: break-word;
+            max-width: 95%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .team-card .text-sm {
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem); /* Smaller font size */
+            margin: 0.2rem 0;
+            line-height: 1.3;
+            max-width: 95%;
+            overflow-wrap: break-word;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .modal {
@@ -237,8 +300,7 @@
             margin: 10% auto;
             padding: 1rem;
             border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
+            width: clamp(250px, 90%, 500px);
             color: var(--text-light);
             animation: slide-in 0.3s ease;
         }
@@ -266,8 +328,8 @@
             background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: clamp(40px, 10vw, 50px);
+            height: clamp(40px, 10vw, 50px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -286,10 +348,8 @@
             position: fixed;
             bottom: 70px;
             right: 10px;
-            width: 90vw;
-            max-width: 300px;
-            height: 80vh;
-            max-height: 400px;
+            width: clamp(250px, 90vw, 300px);
+            height: clamp(300px, 80vh, 400px);
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
@@ -301,7 +361,7 @@
             flex-direction: column;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             animation: slide-in 0.3s ease;
-            font-size: 0.9rem;
+            font-size: clamp(0.6rem, 1.5vw, 0.7rem);
         }
 
         #chatMessages {
@@ -391,28 +451,67 @@
         }
 
         .moving-cards {
+            position: relative;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             overflow: hidden;
-            width: 100%;
+            padding: 1rem 0;
         }
 
-        .card-container, .card-clone {
+        .card-container {
             display: flex;
-            flex-wrap: wrap;
-            flex-shrink: 0;
-            animation: moveCards 30s linear infinite;
-            animation-play-state: running;
-            width: 100%;
+            flex-wrap: nowrap;
             gap: 0.5rem;
+            transition: transform 0.5s ease;
         }
 
-        .moving-cards:hover .card-container,
-        .moving-cards:hover .card-clone {
-            animation-play-state: paused;
+        .card-clone {
+            display: none; /* Hidden by default, used only for larger screens */
+        }
+
+        .ribbon-card {
+            flex: 0 0 auto;
+            width: clamp(180px, 80%, 220px); /* Smaller card width */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+        }
+
+        .ribbon-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .nav-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+        }
+
+        @keyframes ribbonFade {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes moveCards {
-            0% { transform: translateX(-50%); }
+            0% { transform: translateX(-100%); }
             100% { transform: translateX(0); }
         }
 
@@ -470,7 +569,8 @@
 
             .card {
                 width: 90%;
-                max-width: 300px;
+                max-width: 220px;
+                min-height: 130px; /* Adjusted for Key Market */
             }
 
             .content {
@@ -480,26 +580,49 @@
             .chatbot {
                 width: 40px;
                 height: 40px;
-                font-size: 0.8rem;
+                font-size: 0.6rem;
             }
 
             .chatbot-window {
                 width: 90vw;
                 right: 5%;
-                font-size: 0.8rem;
+                font-size: 0.6rem;
             }
 
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            h3 { font-size: 1.2rem; }
-
-            .team-img {
-                width: 100px;
-                height: 100px;
+            .moving-cards {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .card-container, .card-clone {
-                animation-play-state: paused;
+            .card-container {
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                animation: none;
+            }
+
+            .ribbon-card {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .ribbon-card.active {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                animation: ribbonFade 0.5s ease;
+            }
+
+            .nav-dots {
+                display: flex;
+            }
+
+            .team-card {
+                min-height: 260px; /* Adjusted for mobile */
             }
         }
 
@@ -511,16 +634,47 @@
 
             .card {
                 width: 100%;
-                max-width: 350px;
+                max-width: 250px;
+                min-height: 140px; /* Adjusted for Key Market */
             }
 
             .content {
                 padding: 2rem;
             }
 
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
+            .card-container {
+                flex-wrap: nowrap;
+                animation: moveCards 30s linear infinite;
+                animation-play-state: running;
+                width: calc(250px * 12 + 0.5rem * 24); /* Adjusted for smaller cards */
+            }
+
+            .card-clone {
+                display: flex;
+                flex-wrap: nowrap;
+                animation: moveCards 30s linear infinite;
+                animation-play-state: running;
+                width: calc(250px * 12 + 0.5rem * 24);
+            }
+
+            .ribbon-card {
+                opacity: 1;
+                visibility: visible;
+                position: relative;
+            }
+
+            .moving-cards:hover .card-container,
+            .moving-cards:hover .card-clone {
+                animation-play-state: paused;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .team-card {
+                min-height: 280px; /* Adjusted for tablet */
+            }
         }
 
         @media (min-width: 1025px) {
@@ -531,19 +685,46 @@
 
             .card {
                 width: 100%;
-                max-width: 300px;
+                max-width: 220px;
+                min-height: 140px; /* Adjusted for Key Market */
             }
 
             .content {
                 padding: 3rem;
             }
 
-            h1 { font-size: 3.2rem; }
-            h2 { font-size: 2.7rem; }
-            h3 { font-size: 1.8rem; }
+            .card-container {
+                flex-wrap: nowrap;
+                animation: moveCards 30s linear infinite;
+                animation-play-state: running;
+                width: calc(220px * 12 + 0.5rem * 24); /* Adjusted for smaller cards */
+            }
 
-            .card-container, .card-clone {
-                width: calc(300px * 6 + 0.5rem * 12);
+            .card-clone {
+                display: flex;
+                flex-wrap: nowrap;
+                animation: moveCards 30s linear infinite;
+                animation-play-state: running;
+                width: calc(220px * 12 + 0.5rem * 24);
+            }
+
+            .ribbon-card {
+                opacity: 1;
+                visibility: visible;
+                position: relative;
+            }
+
+            .moving-cards:hover .card-container,
+            .moving-cards:hover .card-clone {
+                animation-play-state: paused;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .team-card {
+                min-height: 280px; /* Adjusted for desktop */
             }
         }
     </style>
@@ -657,147 +838,173 @@
         <div class="content">
             <h2 id="market-heading">Key Market</h2>
             <p>Freetown, Sierra Leone — and surrounding regions.</p>
-            <div class="moving-cards">
+            <div class="moving-cards" data-section="market">
                 <div class="card-container">
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Freetown (HQ)</h3>
                         <p>Western Area Urban</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Western Area</h3>
                         <p>Urban & Rural</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Northern Region</h3>
                         <p>Bombali • Port Loko • Tonkolili</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Southern Region</h3>
                         <p>Bo • Bonthe • Moyamba • Pujehun</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Eastern Region</h3>
                         <p>Kenema • Kono • Kailahun</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Custom Engagements</h3>
                         <p>We travel to where impact is needed most.</p>
                     </div>
                 </div>
                 <div class="card-clone">
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Freetown (HQ)</h3>
                         <p>Western Area Urban</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Western Area</h3>
                         <p>Urban & Rural</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Northern Region</h3>
                         <p>Bombali • Port Loko • Tonkolili</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Southern Region</h3>
                         <p>Bo • Bonthe • Moyamba • Pujehun</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Eastern Region</h3>
                         <p>Kenema • Kono • Kailahun</p>
                     </div>
-                    <div class="card">
+                    <div class="card ribbon-card">
                         <h3>Custom Engagements</h3>
                         <p>We travel to where impact is needed most.</p>
                     </div>
                 </div>
+                <div class="nav-dots" data-section="market"></div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-28" aria-labelledby="team-heading">
+    <section id="team" aria-labelledby="team-heading">
         <div class="content">
             <div class="text-center reveal-down is-visible">
-                <h2 id="team-heading" class="font-poppins font-bold text-white team-card p-8 rounded-2xl fade-in-up">Meet the Team</h2>
-                <p class="mt-4 text-white team-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
+                <h2 id="team-heading" class="font-poppins font-bold fade-in-up">Meet the Team</h2>
+                <p class="mt-4 fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
             </div>
             <div class="mt-14">
-                <div class="moving-cards">
+                <div class="moving-cards" data-section="team">
                     <div class="card-container">
-                        <div class="team-card scale-up">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Alex Pratt</h3>
                             <p class="text-sm">Founder, Fortizo Technologies</p>
-                            <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.2s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Jenifer E.K Kargbo</h3>
                             <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                            <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+                            <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.4s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Seth Culker</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Seth Culker</h3>
                             <p class="text-sm">Company Secretary</p>
-                            <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
+                            <p class="text-sm">Ensures compliance and strategic insights.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.6s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Kamara</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Kamara</h3>
                             <p class="text-sm">Software Engineer</p>
-                            <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
+                            <p class="text-sm">Builds digital solutions fostering innovation.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.8s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Charles</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Charles</h3>
                             <p class="text-sm">Software Engineer</p>
-                            <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
+                            <p class="text-sm">Develops solutions uniting communities.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 1s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Mohamed Ali</h3>
                             <p class="text-sm">Volunteer</p>
-                            <p class="mt-2 text-sm">Develops innovative software solutions.</p>
+                            <p class="text-sm">Develops innovative software solutions.</p>
                         </div>
                     </div>
                     <div class="card-clone">
-                        <div class="team-card scale-up">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Alex Pratt</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Alex Pratt</h3>
                             <p class="text-sm">Founder, Fortizo Technologies</p>
-                            <p class="mt-2 text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                            <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.2s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Jenifer E.K Kargbo</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Jenifer E.K Kargbo</h3>
                             <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                            <p class="mt-2 text-sm">Leads with a vision for scalable digital solutions.</p>
+                            <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.4s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Seth Culker</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Seth Culker</h3>
                             <p class="text-sm">Company Secretary</p>
-                            <p class="mt-2 text-sm">Ensures compliance and strategic insights.</p>
+                            <p class="text-sm">Ensures compliance and strategic insights.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.6s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Kamara</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Kamara</h3>
                             <p class="text-sm">Software Engineer</p>
-                            <p class="mt-2 text-sm">Builds digital solutions fostering innovation.</p>
+                            <p class="text-sm">Builds digital solutions fostering innovation.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 0.8s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Charles</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Charles</h3>
                             <p class="text-sm">Software Engineer</p>
-                            <p class="mt-2 text-sm">Develops solutions uniting communities.</p>
+                            <p class="text-sm">Develops solutions uniting communities.</p>
                         </div>
-                        <div class="team-card scale-up" style="animation-delay: 1s">
-                            <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
-                            <h3 class="mt-4 font-semibold">Mr Mohamed Ali</h3>
+                        <div class="team-card card ribbon-card scale-up">
+                            <div class="team-img-container">
+                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
+                            </div>
+                            <h3>Mr Mohamed Ali</h3>
                             <p class="text-sm">Volunteer</p>
-                            <p class="mt-2 text-sm">Develops innovative software solutions.</p>
+                            <p class="text-sm">Develops innovative software solutions.</p>
                         </div>
                     </div>
+                    <div class="nav-dots" data-section="team"></div>
                 </div>
             </div>
         </div>
@@ -908,13 +1115,94 @@
             });
         });
 
-        // Optimize animations for team and market sections
+        // Ribbon-style card cycling for small screens
+        function cycleCards(section) {
+            const container = section.querySelector('.card-container');
+            const cards = container.querySelectorAll('.ribbon-card');
+            const dotsContainer = section.querySelector('.nav-dots');
+            let currentIndex = 0;
+            let interval;
+
+            // Create navigation dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    clearInterval(interval);
+                    currentIndex = i;
+                    showCard(currentIndex);
+                    startInterval();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            function showCard(index) {
+                cards.forEach((card, i) => {
+                    card.classList.toggle('active', i === index);
+                });
+                dotsContainer.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+
+            function startInterval() {
+                interval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    showCard(currentIndex);
+                }, 3000);
+            }
+
+            showCard(currentIndex);
+            startInterval();
+
+            section.addEventListener('mouseenter', () => clearInterval(interval));
+            section.addEventListener('mouseleave', startInterval);
+
+            let touchStartX = 0;
+            section.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(interval);
+            });
+            section.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    showCard(currentIndex);
+                } else if (touchEndX - touchStartX > 50) {
+                    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                    showCard(currentIndex);
+                }
+                startInterval();
+            });
+        }
+
+        // Initialize ribbon-style for small screens and horizontal scroll for larger screens
+        function initializeCards() {
+            document.querySelectorAll('.moving-cards').forEach(section => {
+                if (window.innerWidth <= 640) {
+                    section.querySelector('.card-clone').style.display = 'none';
+                    cycleCards(section);
+                } else {
+                    section.querySelector('.card-clone').style.display = 'flex';
+                    section.querySelectorAll('.ribbon-card').forEach(card => {
+                        card.classList.add('active');
+                    });
+                    section.querySelector('.nav-dots').style.display = 'none';
+                }
+            });
+        }
+
+        initializeCards();
+        window.addEventListener('resize', initializeCards);
+
+        // Optimize animations for team and market sections on larger screens
         const animatedSections = document.querySelectorAll('#team, #market');
         const animObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const container = entry.target.querySelector('.card-container');
                 const clone = entry.target.querySelector('.card-clone');
-                if (container && clone) {
+                if (container && clone && window.innerWidth > 640) {
                     if (entry.isIntersecting) {
                         container.style.animationPlayState = 'running';
                         clone.style.animationPlayState = 'running';
@@ -927,21 +1215,22 @@
         }, { threshold: 0.1 });
         animatedSections.forEach(section => animObserver.observe(section));
 
-        // Touch support for moving cards
-        let touchStartX = 0;
-        let touchEndX = 0;
+        // Touch support for moving cards on larger screens
         document.querySelectorAll('.moving-cards').forEach(container => {
+            let touchStartX = 0;
             container.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
             });
             container.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    container.querySelector('.card-container').style.animationPlayState = 'paused';
-                    container.querySelector('.card-clone').style.animationPlayState = 'paused';
-                } else if (touchEndX - touchStartX > 50) {
-                    container.querySelector('.card-container').style.animationPlayState = 'running';
-                    container.querySelector('.card-clone').style.animationPlayState = 'running';
+                const touchEndX = e.changedTouches[0].screenX;
+                if (window.innerWidth > 640) {
+                    if (touchStartX - touchEndX > 50) {
+                        container.querySelector('.card-container').style.animationPlayState = 'paused';
+                        container.querySelector('.card-clone').style.animationPlayState = 'paused';
+                    } else if (touchEndX - touchStartX > 50) {
+                        container.querySelector('.card-container').style.animationPlayState = 'running';
+                        container.querySelector('.card-clone').style.animationPlayState = 'running';
+                    }
                 }
             });
         });
@@ -1051,7 +1340,7 @@
         });
 
         // Keyboard navigation for accessibility
-        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger').forEach(element => {
+        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .nav-dot').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
