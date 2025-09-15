@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a23; /* deep blue */
-            --accent: #a100ff; /* vibrant purple */
-            --secondary: #7200d6; /* vibrant purple */
+            --primary: #0a0a23;
+            --accent: #a100ff;
+            --secondary: #7200d6;
             --text-light: #ffffff;
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
-            --frame-border: 2px solid var(--accent); /* Frame for photos */
+            --frame-border: 2px solid var(--accent);
         }
 
         body {
@@ -118,7 +118,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 1.8rem;
+            padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
 
@@ -205,16 +205,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 0.5rem;
+            padding: 1rem;
             margin: 0.5rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             transition: transform 0.3s, box-shadow 0.3s;
-            width: clamp(200px, 85%, 240px);
             text-align: center;
             opacity: 1;
             visibility: visible;
             box-sizing: border-box;
-            min-height: 160px;
             overflow: hidden;
         }
 
@@ -224,23 +222,25 @@
         }
 
         .card h3 {
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-size: clamp(1.4rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            margin: 0.5rem 0;
+            overflow-wrap: break-word;
+            max-width: 95%;
+            max-height: 4.8em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card p {
+            font-size: clamp(1.1rem, 2.8vw, 1.3rem);
             font-weight: 700;
             margin: 0.3rem 0;
             overflow-wrap: break-word;
             max-width: 95%;
+            max-height: 4.8em;
+            overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
-            margin: 0.2rem 0;
-            overflow-wrap: break-word;
-            max-width: 95%;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .cards {
@@ -251,8 +251,8 @@
         }
 
         .team-img-wrapper {
-            width: clamp(120px, 25vw, 160px);
-            height: clamp(80px, 15vw, 100px);
+            width: clamp(160px, 40%, 200px); /* Increased photo size */
+            height: clamp(200px, 50%, 260px); /* Increased photo height */
             border-radius: 15px;
             overflow: hidden;
             border: var(--frame-border);
@@ -273,19 +273,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
-            min-height: 360px;
-            padding: 0.5rem;
+            justify-content: space-between;
+            padding: 1rem;
             text-align: center;
             box-sizing: border-box;
             overflow: hidden;
-            width: clamp(200px, 85%, 240px);
+            width: clamp(300px, 90%, 340px);
+            min-height: 520px; /* Adjusted for larger images */
         }
 
         .team-card .details {
             width: 100%;
             text-align: center;
-            margin-top: auto;
+            margin-top: 0.5rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -298,8 +299,10 @@
             font-weight: 700;
             overflow-wrap: break-word;
             max-width: 95%;
+            white-space: normal;
+            max-height: 4.8em;
+            overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .team-card .text-sm {
@@ -309,8 +312,10 @@
             line-height: 1.6;
             max-width: 95%;
             overflow-wrap: break-word;
+            white-space: normal;
+            max-height: 4.8em;
+            overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .modal {
@@ -514,26 +519,28 @@
         .card-container {
             display: flex;
             flex-wrap: nowrap;
-            gap: 0.5rem;
+            gap: 1rem;
             transition: transform 0.5s ease;
-        }
-
-        .card-clone {
-            display: none;
+            width: calc(340px * 6 + 1rem * 5);
+            will-change: transform;
         }
 
         .ribbon-card {
             flex: 0 0 auto;
-            width: clamp(200px, 85%, 240px);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+            z-index: 0;
+            will-change: opacity, transform;
         }
 
         .ribbon-card.active {
             opacity: 1;
             visibility: visible;
-            transform: scale(1);
+            transform: translateX(-50%) scale(1);
+            z-index: 1;
+            transition-delay: 0.2s;
+            animation: carouselFade 0.8s ease;
         }
 
         .nav-dots {
@@ -556,41 +563,19 @@
             background: var(--accent);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(100%); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @keyframes carouselFade {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            0% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
         }
 
         @keyframes moveCards {
-            0% { transform: translateX(-100%); }
+            0% { transform: translateX(calc(-340px * 6 - 1rem * 5)); }
             100% { transform: translateX(0); }
         }
 
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-up {
-            animation: fade-in-up 0.8s ease-out forwards;
-        }
-
-        @keyframes scale-up {
-            from { transform: scale(0.9); }
-            to { transform: scale(1); }
-        }
-
-        .scale-up {
-            animation: scale-up 0.4s ease;
-        }
-
-        .reveal-down.is-visible {
-            animation: fade-in-up 0.8s ease-out;
+        @keyframes moveCardsVertical {
+            0% { transform: translateY(calc(-240px * 6 - 1rem * 5)); }
+            100% { transform: translateY(0); }
         }
 
         @media (max-width: 640px) {
@@ -623,13 +608,12 @@
             }
 
             .card {
-                width: 90%;
-                max-width: 240px;
-                min-height: 180px;
+                width: clamp(300px, 90%, 340px);
+                min-height: 240px;
             }
 
             .content {
-                padding: 1.8rem;
+                padding: 2rem;
             }
 
             .chatbot {
@@ -652,31 +636,31 @@
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                animation: none;
+                min-height: 260px;
+                animation: moveCardsVertical 30s linear infinite;
+                animation-play-state: running;
             }
 
             .ribbon-card {
                 position: absolute;
                 left: 50%;
-                transform: translateX(-50%) translateY(100%);
+                transform: translateX(-50%) scale(0.9);
                 opacity: 0;
                 visibility: hidden;
+                transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+                z-index: 0;
+                will-change: opacity, transform;
             }
 
-            .moving-cards[data-section="team"] .ribbon-card.active {
-                position: relative;
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%) translateY(0);
-                animation: slideUp 0.5s ease;
-            }
-
-            .moving-cards[data-section="market"] .ribbon-card.active {
-                position: relative;
-                opacity: 1;
-                visibility: visible;
+            .ribbon-card.active {
+                position: absolute;
+                left: 50%;
                 transform: translateX(-50%) scale(1);
-                animation: carouselFade 0.5s ease;
+                opacity: 1;
+                visibility: visible;
+                z-index: 1;
+                transition-delay: 0.2s;
+                animation: carouselFade 0.8s ease;
             }
 
             .nav-dots {
@@ -684,12 +668,13 @@
             }
 
             .team-card {
-                min-height: 360px;
+                width: clamp(300px, 90%, 340px);
+                min-height: 520px;
             }
 
             .team-img-wrapper {
-                width: 120px;
-                height: 80px;
+                width: clamp(140px, 35%, 180px); /* Adjusted for smaller screens */
+                height: clamp(180px, 45%, 240px);
             }
         }
 
@@ -700,38 +685,32 @@
             }
 
             .card {
-                width: 100%;
-                max-width: 240px;
-                min-height: 180px;
+                width: clamp(300px, 45%, 340px);
+                min-height: 240px;
             }
 
             .content {
-                padding: 2.5rem;
+                padding: 2.8rem;
             }
 
             .card-container {
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(240px * 12 + 0.5rem * 24);
-            }
-
-            .card-clone {
-                display: flex;
-                flex-wrap: nowrap;
-                animation: moveCards 30s linear infinite;
-                animation-play-state: running;
-                width: calc(240px * 12 + 0.5rem * 24);
+                width: calc(340px * 6 + 1rem * 5);
+                scroll-snap-type: x proximity;
+                scroll-behavior: smooth;
             }
 
             .ribbon-card {
                 opacity: 1;
                 visibility: visible;
                 position: relative;
+                scroll-snap-align: start;
+                z-index: 0;
             }
 
-            .moving-cards:hover .card-container,
-            .moving-cards:hover .card-clone {
+            .moving-cards:hover .card-container {
                 animation-play-state: paused;
             }
 
@@ -740,12 +719,13 @@
             }
 
             .team-card {
-                min-height: 380px;
+                width: clamp(300px, 45%, 340px);
+                min-height: 520px;
             }
 
             .team-img-wrapper {
-                width: 140px;
-                height: 90px;
+                width: clamp(160px, 40%, 200px);
+                height: clamp(200px, 50%, 260px);
             }
         }
 
@@ -756,38 +736,32 @@
             }
 
             .card {
-                width: 100%;
-                max-width: 240px;
-                min-height: 180px;
+                width: clamp(300px, 30%, 340px);
+                min-height: 240px;
             }
 
             .content {
-                padding: 3.5rem;
+                padding: 4rem;
             }
 
             .card-container {
                 flex-wrap: nowrap;
                 animation: moveCards 30s linear infinite;
                 animation-play-state: running;
-                width: calc(240px * 12 + 0.5rem * 24);
-            }
-
-            .card-clone {
-                display: flex;
-                flex-wrap: nowrap;
-                animation: moveCards 30s linear infinite;
-                animation-play-state: running;
-                width: calc(240px * 12 + 0.5rem * 24);
+                width: calc(340px * 6 + 1rem * 5);
+                scroll-snap-type: x proximity;
+                scroll-behavior: smooth;
             }
 
             .ribbon-card {
                 opacity: 1;
                 visibility: visible;
                 position: relative;
+                scroll-snap-align: start;
+                z-index: 0;
             }
 
-            .moving-cards:hover .card-container,
-            .moving-cards:hover .card-clone {
+            .moving-cards:hover .card-container {
                 animation-play-state: paused;
             }
 
@@ -796,12 +770,13 @@
             }
 
             .team-card {
-                min-height: 380px;
+                width: clamp(300px, 30%, 340px);
+                min-height: 520px;
             }
 
             .team-img-wrapper {
-                width: 160px;
-                height: 100px;
+                width: clamp(160px, 40%, 200px);
+                height: clamp(200px, 50%, 260px);
             }
         }
     </style>
@@ -814,13 +789,23 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
         <ul>
-            <li><a href="#hero" aria-current="page">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#tech-gallery">Tech Gallery</a></li>
-            <li><a href="#market">Key Market</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html" target="_blank">About</a></li>
+            <li><a href="services.html" target="_blank">Services</a></li>
+            <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
+            <li><a href="market.html" target="_blank">Key Market</a></li>
+            <li><a href="team.html" target="_blank">Team</a></li>
+            <li><a href="terms.html" target="_blank">Terms</a></li>
+            <li><a href="privacy.html" target="_blank">Privacy</a></li>
+            <li><a href="support.html" target="_blank">Support</a></li>
+            <li><a href="events.html" target="_blank">Events</a></li>
+            <li><a href="newsroom.html" target="_blank">Newsroom</a></li>
+            <li><a href="portfolio.html" target="_blank">Portfolio</a></li>
+            <li><a href="faqs.html" target="_blank">FAQs</a></li>
+            <li><a href="careers.html" target="_blank">Careers</a></li>
+            <li><a href="contact.html" target="_blank">Contact</a></li>
+            <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
+            <li><a href="blog.html" target="_blank">Blog</a></li>
         </ul>
     </nav>
 
@@ -853,22 +838,22 @@
                 <div class="card">
                     <h3>Meeting Facilitation</h3>
                     <p>Productive, inclusive sessions that land decisions and momentum.</p>
-                    <a href="#contact" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
                 </div>
                 <div class="card">
                     <h3>Market Research</h3>
                     <p>Local insight, sharp analysis, and clear recommendations.</p>
-                    <a href="#contact" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
                 </div>
                 <div class="card">
                     <h3>Marketing & Branding</h3>
                     <p>Positioning, identity, and campaigns that build trust and curiosity.</p>
-                    <a href="#contact" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
                 </div>
                 <div class="card">
                     <h3>Digital Solutions & E-Learning</h3>
                     <p>From websites and portals to LMS rollouts and content.</p>
-                    <a href="#contact" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -917,53 +902,53 @@
             <p>Freetown, Sierra Leone — and surrounding regions.</p>
             <div class="moving-cards" data-section="market">
                 <div class="card-container">
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Freetown (HQ)</h3>
                         <p>Western Area Urban</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Western Area</h3>
                         <p>Urban & Rural</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Northern Region</h3>
                         <p>Bombali • Port Loko • Tonkolili</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Southern Region</h3>
                         <p>Bo • Bonthe • Moyamba • Pujehun</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Eastern Region</h3>
                         <p>Kenema • Kono • Kailahun</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Custom Engagements</h3>
                         <p>We travel to where impact is needed most.</p>
                     </div>
                 </div>
                 <div class="card-clone">
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Freetown (HQ)</h3>
                         <p>Western Area Urban</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Western Area</h3>
                         <p>Urban & Rural</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Northern Region</h3>
                         <p>Bombali • Port Loko • Tonkolili</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Southern Region</h3>
                         <p>Bo • Bonthe • Moyamba • Pujehun</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Eastern Region</h3>
                         <p>Kenema • Kono • Kailahun</p>
                     </div>
-                    <div class="card ribbon-card">
+                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
                         <h3>Custom Engagements</h3>
                         <p>We travel to where impact is needed most.</p>
                     </div>
@@ -982,126 +967,64 @@
             <div class="mt-14">
                 <div class="moving-cards" data-section="team">
                     <div class="card-container">
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Mr Alex Pratt</h3>
                                 <p class="text-sm">Founder, Fortizo Technologies</p>
-                                <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
+                                <p class="text-sm">Inspires innovative software and experiences.</p>
                             </div>
                         </div>
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Jenifer E.K Kargbo</h3>
                                 <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                                <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
+                                <p class="text-sm">Leads scalable digital solutions.</p>
                             </div>
                         </div>
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Seth Culker</h3>
                                 <p class="text-sm">Company Secretary</p>
-                                <p class="text-sm">Ensures compliance and strategic insights.</p>
+                                <p class="text-sm">Ensures compliance and insights.</p>
                             </div>
                         </div>
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Mr Kamara</h3>
                                 <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Builds digital solutions fostering innovation.</p>
+                                <p class="text-sm">Builds innovative digital solutions.</p>
                             </div>
                         </div>
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Mr Charles</h3>
                                 <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Develops solutions uniting communities.</p>
+                                <p class="text-sm">Develops community-uniting solutions.</p>
                             </div>
                         </div>
-                        <div class="team-card card ribbon-card scale-up">
+                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
                             <div class="team-img-wrapper">
                                 <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
                             </div>
                             <div class="details">
                                 <h3>Mr Mohamed Ali</h3>
                                 <p class="text-sm">Volunteer</p>
-                                <p class="text-sm">Develops innovative software solutions.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-clone">
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Alex Pratt</h3>
-                                <p class="text-sm">Founder, Fortizo Technologies</p>
-                                <p class="text-sm">Inspires innovative software solutions and interactive experiences.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Jenifer E.K Kargbo</h3>
-                                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                                <p class="text-sm">Leads with a vision for scalable digital solutions.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Seth Culker</h3>
-                                <p class="text-sm">Company Secretary</p>
-                                <p class="text-sm">Ensures compliance and strategic insights.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Kamara</h3>
-                                <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Builds digital solutions fostering innovation.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Charles</h3>
-                                <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Develops solutions uniting communities.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Mohamed Ali</h3>
-                                <p class="text-sm">Volunteer</p>
-                                <p class="text-sm">Develops innovative software solutions.</p>
+                                <p class="text-sm">Creates innovative software.</p>
                             </div>
                         </div>
                     </div>
@@ -1241,7 +1164,14 @@
 
             function showCard(index) {
                 cards.forEach((card, i) => {
-                    card.classList.toggle('active', i === index);
+                    const isActive = i === index;
+                    card.classList.toggle('active', isActive);
+                    card.style.opacity = isActive ? '1' : '0';
+                    card.style.visibility = isActive ? 'visible' : 'hidden';
+                    card.style.transform = isActive ? 'translateX(-50%) scale(1)' : 'translateX(-50%) scale(0.9)';
+                    card.style.zIndex = isActive ? '1' : '0';
+                    card.style.animation = isActive ? 'carouselFade 0.8s ease' : 'none';
+                    card.setAttribute('aria-current', isActive ? 'true' : 'false');
                 });
                 dotsContainer.querySelectorAll('.nav-dot').forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
@@ -1252,7 +1182,7 @@
                 interval = setInterval(() => {
                     currentIndex = (currentIndex + 1) % cards.length;
                     showCard(currentIndex);
-                }, 3000);
+                }, 5000);
             }
 
             showCard(currentIndex);
@@ -1283,19 +1213,23 @@
         function initializeCards() {
             document.querySelectorAll('.moving-cards').forEach(section => {
                 if (window.innerWidth <= 640) {
-                    section.querySelector('.card-clone').style.display = 'none';
                     cycleCards(section);
                 } else {
-                    section.querySelector('.card-clone').style.display = 'flex';
                     section.querySelectorAll('.ribbon-card').forEach(card => {
                         card.classList.add('active');
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        card.style.transform = 'translateX(0)';
+                        card.style.zIndex = '0';
+                        card.style.animation = 'none';
+                        card.setAttribute('aria-current', 'false');
                     });
                     section.querySelector('.nav-dots').style.display = 'none';
                 }
             });
         }
 
-        initializeCards();
+        window.addEventListener('load', initializeCards);
         window.addEventListener('resize', initializeCards);
 
         // Optimize animations for team and market sections on larger screens
@@ -1303,14 +1237,11 @@
         const animObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const container = entry.target.querySelector('.card-container');
-                const clone = entry.target.querySelector('.card-clone');
-                if (container && clone && window.innerWidth > 640) {
+                if (container && window.innerWidth > 640) {
                     if (entry.isIntersecting) {
                         container.style.animationPlayState = 'running';
-                        clone.style.animationPlayState = 'running';
                     } else {
                         container.style.animationPlayState = 'paused';
-                        clone.style.animationPlayState = 'paused';
                     }
                 }
             });
@@ -1322,16 +1253,15 @@
             let touchStartX = 0;
             container.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
+                if (window.innerWidth > 640) {
+                    container.querySelector('.card-container').style.animationPlayState = 'paused';
+                }
             });
             container.addEventListener('touchend', (e) => {
                 const touchEndX = e.changedTouches[0].screenX;
                 if (window.innerWidth > 640) {
-                    if (touchStartX - touchEndX > 50) {
-                        container.querySelector('.card-container').style.animationPlayState = 'paused';
-                        container.querySelector('.card-clone').style.animationPlayState = 'paused';
-                    } else if (touchEndX - touchStartX > 50) {
+                    if (Math.abs(touchStartX - touchEndX) > 50) {
                         container.querySelector('.card-container').style.animationPlayState = 'running';
-                        container.querySelector('.card-clone').style.animationPlayState = 'running';
                     }
                 }
             });
