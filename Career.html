@@ -372,29 +372,40 @@
             border-radius: 10px;
             border: 1px solid var(--glass-border);
         }
-       @media (max-width: 615px) {
+/* Default (PC & Tablet) */
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;      /* enables horizontal scroll */
+  white-space: nowrap;   /* prevents items from wrapping */
+  scrollbar-width: thin; /* for Firefox */
+  -ms-overflow-style: none; /* for IE/Edge */
+}
+
+/* Hide scrollbar in Chrome, Safari, Edge */
+.navbar ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
   .navbar ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    overflow-x: hidden; /* disable horizontal scroll on mobile */
+  }
+  .navbar ul.active {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    /* Optional: Hide the scrollbar for a cleaner look */
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For IE and Edge */
-  }
-
-  .navbar ul::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-  }
-
-  .navbar ul li {
-    flex-shrink: 0;
   }
 }
-            .navbar ul.active {
-                display: flex;
-            }
             .hamburger {
                 display: block;
                 position: absolute;
