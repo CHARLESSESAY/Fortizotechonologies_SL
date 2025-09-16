@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fortizo Technologies SL - Innovate, Transform, Succeed in Sierra Leone's tech ecosystem with digital solutions, branding, and more.">
-    <meta name="keywords" content="Fortizo, Sierra Leone, Technology, Digital Solutions, Branding, E-Learning, Market Research">
-    <title>Fortizo Technologies SL - Innovate, Transform, Succeed</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Fortizo Technologies SL - Empowering innovation through digital platforms, branding, and event experiences.">
+    <meta name="keywords" content="Fortizo, Sierra Leone, Technology, Digital Solutions, Branding, E-Learning">
+    <title>Home - Fortizo Technologies SL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0a0a23;
@@ -16,8 +17,9 @@
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
-            --nav-mobile-bg: rgba(10, 10, 35, 0.95);
+            --nav-mobile-bg: #0a0a23;
         }
+
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -29,6 +31,11 @@
             font-weight: 700;
             line-height: 1.6;
         }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -36,13 +43,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920');
+            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             filter: blur(5px);
             z-index: -1;
         }
+
         #preloader {
             position: fixed;
             top: 0;
@@ -57,6 +65,7 @@
             z-index: 2000;
             transition: opacity 0.7s ease;
         }
+
         #preloader .spinner {
             border: 4px solid var(--accent);
             border-top: 4px solid var(--secondary);
@@ -66,6 +75,7 @@
             animation: spin 1s linear infinite;
             margin-top: 1rem;
         }
+
         #preloader::before {
             content: 'Fortizo';
             font-family: 'Orbitron', sans-serif;
@@ -74,14 +84,17 @@
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         section, nav, footer, .modal, .chatbot, .chatbot-window {
             position: relative;
             z-index: 1;
         }
+
         section {
             padding: 3rem 1rem;
             min-height: 80vh;
@@ -92,10 +105,12 @@
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
+
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
         .content {
             max-width: 90%;
             margin: 0 auto;
@@ -106,20 +121,24 @@
             padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
+
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 10px var(--accent);
             font-weight: 700;
             line-height: 1.4;
         }
+
         h1 { font-size: clamp(2rem, 6vw, 2.4rem); }
         h2 { font-size: clamp(1.6rem, 5vw, 2rem); }
         h3 { font-size: clamp(1.2rem, 3vw, 1.4rem); }
+
         p, .text-sm {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
             line-height: 1.6;
         }
+
         .navbar {
             position: sticky;
             top: 0;
@@ -130,6 +149,7 @@
             z-index: 1000;
             padding: 1rem;
         }
+
         .navbar-container {
             display: flex;
             justify-content: space-between;
@@ -137,23 +157,27 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .navbar-logo {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(1.2rem, 3vw, 1.4rem);
             color: var(--accent);
             text-decoration: none;
         }
-        .navbar-menu {
-            display: flex;
+
+        .navbar ul {
             list-style: none;
-            margin: 0;
+            display: flex;
+            justify-content: center;
             padding: 0;
+            margin: 0;
         }
-        .navbar-menu li {
+
+        .navbar li {
             margin: 0 0.8rem;
         }
-        .navbar-menu a {
-            display: inline-block;
+
+        .navbar a {
             color: var(--text-light);
             text-decoration: none;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
@@ -166,13 +190,16 @@
             text-align: center;
             cursor: pointer;
         }
-        .navbar-menu a:hover, .navbar-menu a:focus {
+
+        .navbar a:hover, .navbar a:focus {
             transform: scale(1.05);
             box-shadow: 0 0 15px var(--secondary);
         }
-        .navbar-menu a.active {
+
+        .navbar a.active {
             background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
+
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -181,8 +208,9 @@
             color: var(--text-light);
             cursor: pointer;
             padding: 0.5rem;
-            z-index: 1002;
+            z-index: 2001;
         }
+
         .close-menu {
             display: none;
             font-size: 2rem;
@@ -193,11 +221,13 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            z-index: 1002;
+            z-index: 2001;
         }
+
         .close-menu:hover, .close-menu:focus {
             color: var(--accent);
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -208,6 +238,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
         .modal-content {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -218,25 +249,31 @@
             color: var(--text-light);
             animation: slide-in 0.3s ease;
         }
+
         .modal-content h2 {
             font-size: clamp(1.6rem, 5vw, 2rem);
         }
+
         .modal-content p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
+
         @keyframes slide-in {
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
         .close, .chatbot-close {
             color: var(--text-light);
             float: right;
             font-size: 1.5rem;
             cursor: pointer;
         }
+
         .close:hover, .close:focus, .chatbot-close:hover, .chatbot-close:focus {
             color: var(--accent);
         }
+
         .chatbot {
             position: fixed;
             bottom: 10px;
@@ -255,9 +292,11 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             transition: transform 0.3s;
         }
+
         .chatbot:hover, .chatbot:focus {
             transform: scale(1.1);
         }
+
         .chatbot-window {
             display: none;
             position: fixed;
@@ -279,11 +318,13 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
+
         #chatMessages {
             flex: 1;
             overflow-y: auto;
             padding: 0.5rem;
         }
+
         .chatbot-window input {
             width: 100%;
             padding: 0.5rem;
@@ -296,6 +337,7 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
+
         button {
             background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
@@ -308,10 +350,12 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
+
         button:hover, button:focus {
             transform: scale(1.05);
             box-shadow: 0 0 15px var(--secondary);
         }
+
         input, textarea {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -323,10 +367,12 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-        input:focus, button:focus, .navbar-menu a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .close-menu:focus, .chatbot-close:focus {
+
+        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .close-menu:focus, .chatbot-close:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
+
         footer {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -337,10 +383,12 @@
             display: grid;
             gap: 0.5rem;
         }
+
         footer p, footer a {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
+
         footer a {
             color: var(--accent);
             text-decoration: none;
@@ -348,6 +396,7 @@
             position: relative;
             transition: color 0.3s;
         }
+
         footer a::after {
             content: '';
             position: absolute;
@@ -358,18 +407,22 @@
             background: var(--secondary);
             transition: width 0.3s;
         }
+
         footer a:hover::after, footer a:focus::after {
             width: 100%;
         }
+
         footer a:hover, footer a:focus {
             color: var(--secondary);
         }
+
         .hero {
             text-align: center;
             padding: 4rem 1rem;
             position: relative;
             overflow: hidden;
         }
+
         .hero video {
             position: absolute;
             top: 0;
@@ -379,23 +432,28 @@
             object-fit: cover;
             z-index: -1;
         }
+
         .hero .content {
             position: relative;
             z-index: 1;
         }
+
         .hero h1 {
             font-size: clamp(2.5rem, 8vw, 3.5rem);
             margin-bottom: 1rem;
         }
+
         .hero p {
             max-width: 600px;
             margin: 0 auto 2rem;
         }
+
         .services-grid {
             display: grid;
             gap: 1rem;
             margin-bottom: 2rem;
         }
+
         .service-item {
             background: var(--glass-bg);
             padding: 1rem;
@@ -403,19 +461,22 @@
             border: 1px solid var(--glass-border);
             text-align: center;
         }
+
         .service-item a {
             color: var(--accent);
             text-decoration: none;
             transition: color 0.3s;
         }
+
         .service-item a:hover, .service-item a:focus {
             color: var(--secondary);
         }
+
         @media (max-width: 640px) {
             .navbar-container {
                 position: relative;
             }
-            .navbar-menu {
+            .navbar ul {
                 display: none;
                 position: fixed;
                 top: 0;
@@ -423,29 +484,32 @@
                 width: 100%;
                 height: 100vh;
                 background: var(--nav-mobile-bg);
-                backdrop-filter: blur(10px);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                z-index: 1001;
+                z-index: 2000;
                 transform: translateX(100%);
                 transition: transform 0.3s ease-in-out;
+                overflow-x: hidden;
             }
-            .navbar-menu.active {
+            .navbar ul.active {
                 display: flex;
                 transform: translateX(0);
             }
-            .navbar-menu li {
-                margin: 1rem 0;
+            .navbar li {
+                margin: 1.5rem 0;
             }
-            .navbar-menu a {
-                padding: 1rem;
-                font-size: 1.2rem;
-                width: 80%;
+            .navbar a {
+                padding: 1.5rem;
+                font-size: 1.3rem;
+                width: 85%;
                 text-align: center;
             }
             .hamburger {
                 display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
             }
             .close-menu {
                 display: block;
@@ -465,7 +529,20 @@
                 grid-template-columns: 1fr;
             }
         }
+
         @media (min-width: 641px) and (max-width: 1024px) {
+            .navbar ul {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .navbar ul::-webkit-scrollbar {
+                display: none;
+            }
             .content, .hero {
                 padding: 2.8rem;
             }
@@ -473,12 +550,25 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
         @media (min-width: 1025px) {
+            .navbar ul {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .navbar ul::-webkit-scrollbar {
+                display: none;
+            }
             .content, .hero {
                 padding: 4rem;
             }
             .services-grid {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
@@ -487,31 +577,28 @@
     <div id="preloader" aria-hidden="true">
         <div class="spinner"></div>
     </div>
+
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
-            <a href="index.html" class="navbar-logo" aria-label="Fortizo Technologies SL Home">Fortizo</a>
+            <a href="Home.html" class="navbar-logo" aria-label="Fortizo Technologies SL Home">Fortizo</a>
             <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" role="button" tabindex="0">☰</button>
             <button class="close-menu" aria-label="Close navigation menu" role="button" tabindex="0">✕</button>
-            <ul class="navbar-menu">
-                <li><a href="index.html" aria-current="page" class="active">Home</a></li>
-                <li><a href="about.html" target="_blank">About</a></li>
-                <li><a href="services.html" target="_blank">Services</a></li>
-                <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
-                <li><a href="market.html" target="_blank">Market</a></li>
-                <li><a href="team.html" target="_blank">Team</a></li>
-                <li><a href="terms-and-privacy.html" target="_blank">Terms & Privacy</a></li>
-                <li><a href="support.html" target="_blank">Support</a></li>
-                <li><a href="events.html" target="_blank">Events</a></li>
-                <li><a href="newsroom.html" target="_blank">Newsroom</a></li>
-                <li><a href="portfolio.html" target="_blank">Portfolio</a></li>
-                <li><a href="faqs.html" target="_blank">FAQs</a></li>
-                <li><a href="careers.html" target="_blank">Careers</a></li>
-                <li><a href="contact.html" target="_blank">Contact</a></li>
-                <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
-                <li><a href="blog.html" target="_blank">Blog</a></li>
+            <ul>
+                <li><a href="Home.html" aria-current="page" class="active">Home</a></li>
+                <li><a href="Terms.html" target="_blank">Services</a></li>
+                <li><a href="Market.html" target="_blank">Market</a></li>
+                <li><a href="Team.html" target="_blank">Team</a></li>
+                <li><a href="Policy.html" target="_blank">Privacy</a></li>
+                <li><a href="Support.html" target="_blank">Support</a></li>
+                <li><a href="Newsroom.html" target="_blank">Newsroom</a></li>
+                <li><a href="Portfolio.html" target="_blank">Portfolio</a></li>
+                <li><a href="FAQs.html" target="_blank">FAQs</a></li>
+                <li><a href="Career.html" target="_blank">Careers</a></li>
+                <li><a href="Contact.html" target="_blank">Contact</a></li>
             </ul>
         </div>
     </nav>
+
     <section id="hero" class="hero" aria-labelledby="hero-heading">
         <video autoplay loop muted playsinline aria-hidden="true">
             <source src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/youcut-20250915-221026837_7EWhf3Ty.mp4" type="video/mp4">
@@ -520,15 +607,18 @@
         <div class="content">
             <h1 id="hero-heading">Welcome to Fortizo Technologies SL</h1>
             <p>Empowering Sierra Leone’s future through innovative digital platforms, branding, and event experiences. Join us in driving the nation’s tech revolution.</p>
-            <a href="contact.html" target="_blank"><button aria-label="Contact Fortizo to join the tech revolution">Get Started</button></a>
+            <a href="Contact.html" target="_blank"><button aria-label="Get in touch with Fortizo">Get in Touch</button></a>
         </div>
     </section>
+
     <section id="about" aria-labelledby="about-heading">
         <div class="content">
             <h2 id="about-heading">About Fortizo Technologies SL</h2>
             <p>Fortizo Technologies SL is a Sierra Leone-born company of strategists, facilitators, designers, and engineers. Headquartered in Freetown, we deliver cutting-edge digital solutions, branding systems, and impactful events to drive innovation across Sierra Leone’s key markets.</p>
+            <a href="about.html" target="_blank"><button aria-label="Learn more about Fortizo">Learn More</button></a>
         </div>
     </section>
+
     <section id="services" aria-labelledby="services-heading">
         <div class="content">
             <h2 id="services-heading">Our Services</h2>
@@ -537,33 +627,36 @@
                 <div class="service-item">
                     <h3>Digital Solutions & E-Learning</h3>
                     <p>Building e-learning platforms and digital tools to enhance education and business efficiency.<br>
-                       <a href="services.html" target="_blank">Learn More</a></p>
+                       <a href="Terms.html" target="_blank">Learn More</a></p>
                 </div>
                 <div class="service-item">
                     <h3>Marketing & Branding</h3>
                     <p>Creating dynamic branding systems and marketing campaigns to elevate your presence.<br>
-                       <a href="services.html" target="_blank">Learn More</a></p>
+                       <a href="Terms.html" target="_blank">Learn More</a></p>
                 </div>
                 <div class="service-item">
                     <h3>Meeting Facilitation & Events</h3>
                     <p>Organizing tech summits and workshops to foster innovation and collaboration.<br>
-                       <a href="events.html" target="_blank">Learn More</a></p>
+                       <a href="Terms.html" target="_blank">Learn More</a></p>
                 </div>
                 <div class="service-item">
                     <h3>Market Research</h3>
                     <p>Providing data-driven insights to support business growth and innovation.<br>
-                       <a href="services.html" target="_blank">Learn More</a></p>
+                       <a href="Terms.html" target="_blank">Learn More</a></p>
                 </div>
             </div>
+            <a href="Terms.html" target="_blank"><button aria-label="Explore all services">Explore All Services</button></a>
         </div>
     </section>
+
     <section id="cta" aria-labelledby="cta-heading">
         <div class="content">
             <h2 id="cta-heading">Join the Tech Revolution</h2>
             <p>Ready to transform your business or community with innovative solutions? Contact us today to explore collaboration opportunities.</p>
-            <a href="contact.html" target="_blank"><button aria-label="Contact Fortizo for collaboration">Contact Us</button></a>
+            <a href="Contact.html" target="_blank"><button aria-label="Contact Fortizo now">Contact Us Now</button></a>
         </div>
     </section>
+
     <footer role="contentinfo">
         <p>&copy; 2025 Fortizo Technologies SL. All rights reserved.</p>
         <div>
@@ -571,82 +664,102 @@
             <a href="https://linkedin.com/company/fortizotechnologies" target="_blank" rel="noopener" aria-label="Follow Fortizo on LinkedIn">LinkedIn</a>
         </div>
     </footer>
+
     <div id="modal" class="modal" role="dialog" aria-labelledby="modal-heading" aria-modal="true">
         <div class="modal-content">
             <span class="close" aria-label="Close modal" tabindex="0">&times;</span>
             <h2 id="modal-heading">Subscribe to Our Newsletter</h2>
-            <p>Stay updated with Fortizo Technologies SL’s latest innovations and events!</p>
+            <p>Stay updated with the latest tech innovations and events in Sierra Leone!</p>
             <form id="newsletter-form">
                 <input type="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
     </div>
+
     <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot" tabindex="0">Chat</div>
     <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Chatbot window">
         <span class="chatbot-close" aria-label="Close chatbot" tabindex="0">&times;</span>
         <div id="chatMessages" aria-live="polite"></div>
         <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Chatbot input" onkeypress="if(event.key === 'Enter') sendMessage()">
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, initializing navigation');
+
+            // Preloader
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 700);
 
+            // Hamburger menu
             const hamburger = document.querySelector('.hamburger');
             const closeMenu = document.querySelector('.close-menu');
-            const navMenu = document.querySelector('.navbar-menu');
-            if (!hamburger || !closeMenu || !navMenu) {
-                console.error('Navigation elements not found');
+            const navUl = document.querySelector('.navbar ul');
+            if (!hamburger || !closeMenu || !navUl) {
+                console.error('Navigation elements missing: hamburger, close-menu, or navbar ul');
                 return;
             }
 
             const toggleMenu = () => {
-                const isOpen = navMenu.classList.contains('active');
-                navMenu.classList.toggle('active');
+                console.log('Toggling menu');
+                const isOpen = navUl.classList.contains('active');
+                navUl.classList.toggle('active');
                 hamburger.setAttribute('aria-expanded', !isOpen);
                 hamburger.style.display = isOpen ? 'block' : 'none';
                 closeMenu.style.display = isOpen ? 'none' : 'block';
+                document.body.classList.toggle('no-scroll', !isOpen);
+                if (!isOpen) {
+                    document.querySelector('.navbar a').focus();
+                }
             };
 
             hamburger.addEventListener('click', toggleMenu);
             hamburger.addEventListener('touchstart', (e) => {
                 e.preventDefault();
+                console.log('Hamburger touchstart');
                 toggleMenu();
             });
             closeMenu.addEventListener('click', toggleMenu);
             closeMenu.addEventListener('touchstart', (e) => {
                 e.preventDefault();
+                console.log('Close button touchstart');
                 toggleMenu();
             });
             hamburger.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
+                    console.log('Hamburger keydown');
                     toggleMenu();
                 }
             });
             closeMenu.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
+                    console.log('Close button keydown');
                     toggleMenu();
                 }
             });
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                if (e.key === 'Escape' && navUl.classList.contains('active')) {
+                    console.log('Escape key pressed, closing menu');
                     toggleMenu();
                 }
             });
 
-            document.querySelectorAll('.navbar-menu a').forEach(link => {
+            document.querySelectorAll('.navbar a').forEach(link => {
                 link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
+                    console.log('Link clicked:', link.textContent);
+                    navUl.classList.remove('active');
                     hamburger.setAttribute('aria-expanded', 'false');
                     hamburger.style.display = 'block';
                     closeMenu.style.display = 'none';
+                    document.body.classList.remove('no-scroll');
                 });
             });
 
+            // Section reveal animations
             const sections = document.querySelectorAll('section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -657,48 +770,56 @@
             }, { threshold: 0.1 });
             sections.forEach(section => observer.observe(section));
 
+            // Site knowledge base
             const siteKnowledge = {
                 about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
-                services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning. Visit our Services page for details!",
-                team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer). Visit our Team page for more details!",
+                services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
+                team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer).",
                 market: "Key markets: Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), Eastern Region (Kenema, Kono, Kailahun).",
-                contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456.",
-                careers: "Join Fortizo Technologies SL to work on innovative projects in Sierra Leone’s tech ecosystem. Check our Careers page for current openings or contact us at info@fortizo.sl."
+                contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456."
             };
-            const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or to join our team, contact Fortizo at info@fortizo.sl.";
 
+            // Sierra Leone Tech Ecosystem Summary
+            const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or customized solutions, contact Fortizo at info@fortizo.sl.";
+
+            // Modal functionality
             const modal = document.getElementById('modal');
             const closeBtn = document.querySelector('.close');
             setTimeout(() => {
                 modal.style.display = 'block';
                 document.querySelector('.modal-content input').focus();
             }, 3000);
+
             closeBtn.addEventListener('click', () => {
                 modal.style.display = 'none';
             });
+
             closeBtn.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     modal.style.display = 'none';
                 }
             });
+
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                 }
             });
+
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     modal.style.display = 'none';
                 }
             });
 
+            // Chatbot functionality
             function toggleChat() {
                 const chatWindow = document.getElementById('chatWindow');
                 const chatMessages = document.getElementById('chatMessages');
                 chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
                 if (chatWindow.style.display === 'block') {
-                    chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Ask about our services or how to collaborate!</p>`;
+                    chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Ask about our services, projects, or how we’re driving innovation in Sierra Leone.</p>`;
                     document.getElementById('chatInput').focus();
                 }
             }
@@ -721,13 +842,14 @@
                 if (msg) {
                     messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
                     input.value = '';
+
                     let response = 'For more information, explore our website or email info@fortizo.sl.';
                     if (msg.includes('about') || msg.includes('fortizo')) {
                         response = siteKnowledge.about + ' Visit our About page for more details!';
                     } else if (msg.includes('services')) {
                         response = siteKnowledge.services + ' Check our Services page for more information!';
                     } else if (msg.includes('team')) {
-                        response = siteKnowledge.team + ' Meet our team members on the Team page!';
+                        response = siteKnowledge.team + ' Visit our Team page for more details!';
                     } else if (msg.includes('market')) {
                         response = siteKnowledge.market + ' Visit our Key Markets page for more details!';
                     } else if (msg.includes('portfolio') || msg.includes('project')) {
@@ -740,24 +862,24 @@
                             if (!searchResponse.ok) throw new Error('API request failed');
                             const data = await searchResponse.json();
                             const abstract = data.Abstract || data.RelatedTopics?.[0]?.Text || 'No brief info found.';
-                            response = `Brief explanation: ${abstract}. For more in-depth information or to join our team, please contact Fortizo at info@fortizo.sl.`;
+                            response = `Brief explanation: ${abstract}. For more in-depth information or customized solutions, please contact Fortizo at info@fortizo.sl.`;
                         } catch (error) {
                             response = 'Unable to fetch tech information due to a network issue. Please contact Fortizo at info@fortizo.sl for assistance.';
                         }
-                    } else if (msg.includes('contact') || msg.includes('collaborate') || msg.includes('join') || msg.includes('careers') || msg.includes('job') || msg.includes('work')) {
-                        response = siteKnowledge.contact + ' Visit our Contact page to get in touch!';
-                    } else if (msg.includes('faq') || msg.includes('question') || msg.includes('support') || msg.includes('help')) {
-                        response = 'Need help? Check our FAQs page for common questions, submit a support request on our Support page, or contact us at info@fortizo.sl.';
-                    } else if (msg.includes('event') || msg.includes('summit') || msg.includes('expo') || msg.includes('robotics')) {
-                        response = 'Explore our upcoming events like the Sierra Leone Innovates: Digital Government Summit, SLinT Tech Expo 2025, and VEX IQ Robotics Competition on our Events page. Contact us at info@fortizo.sl for details!';
-                    } else if (msg.includes('terms') || msg.includes('privacy') || msg.includes('policy')) {
-                        response = 'Review our Terms of Service and Privacy Policy on our Terms & Privacy page. For further questions, contact us at info@fortizo.sl.';
+                    } else if (msg.includes('contact') || msg.includes('collaborate') || msg.includes('join') || msg.includes('careers')) {
+                        response = 'For inquiries about collaboration, careers, or other questions, email info@fortizo.sl or visit our Contact and Careers pages.';
+                    } else if (msg.includes('faq') || msg.includes('question')) {
+                        response = 'Check our FAQs page for answers to common questions about our services, markets, and how to work with us. Need more help? Email info@fortizo.sl.';
+                    } else if (msg.includes('privacy') || msg.includes('policy')) {
+                        response = 'Review our Privacy Policy on our Privacy page. For further questions, contact us at info@fortizo.sl.';
                     }
+
                     messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
                     messages.scrollTop = messages.scrollHeight;
                 }
             }
 
+            // Newsletter form submission (placeholder for backend integration)
             document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const email = document.querySelector('#modal input[type="email"]').value;
@@ -779,7 +901,8 @@
                 }
             });
 
-            document.querySelectorAll('.navbar-menu a, .chatbot, .close, button, .hamburger, .close-menu, .chatbot-close').forEach(element => {
+            // Keyboard navigation for accessibility
+            document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .close-menu, .chatbot-close').forEach(element => {
                 element.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
