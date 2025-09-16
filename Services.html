@@ -158,32 +158,26 @@
         }
 
         .navbar a {
+            display: inline-block;
             color: var(--text-light);
             text-decoration: none;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
-            position: relative;
-            transition: color 0.3s;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--accent);
+            text-align: center;
         }
 
         .navbar a:hover, .navbar a:focus {
-            color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--secondary);
         }
 
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .navbar a:hover::after, .navbar a.active::after, .navbar a:focus::after {
-            width: 100%;
+        .navbar a.active {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
 
         .hamburger {
@@ -501,7 +495,7 @@
             <li><a href="about.html" target="_blank">About</a></li>
             <li><a href="services.html" aria-current="page">Services</a></li>
             <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
-            <li><a href="market.html" target="_blank">Key Market</a></li>
+            <li><a href="market.html" target="_blank">Market</a></li>
             <li><a href="team.html" target="_blank">Team</a></li>
             <li><a href="terms.html" target="_blank">Terms</a></li>
             <li><a href="privacy.html" target="_blank">Privacy</a></li>
