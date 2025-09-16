@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fortizo Technologies Sierra Leone offers digital solutions, event marketing, and branding services in Freetown and beyond.">
-    <meta name="keywords" content="Fortizo, Sierra Leone, tech, digital solutions, event marketing, branding, Freetown">
-    <meta property="og:title" content="Fortizo Technologies Sierra Leone">
-    <meta property="og:description" content="Innovative digital platforms, brand systems, and event experiences in Sierra Leone.">
-    <meta property="og:image" content="https://your-cdn.com/images/fortizo-logo.jpg">
-    <meta property="og:url" content="https://fortizo.sl">
-    <title>Fortizo Technologies Sierra Leone</title>
+    <meta name="description" content="Fortizo Technologies SL - Empowering innovation through digital platforms, branding, and event experiences.">
+    <meta name="keywords" content="Fortizo, Sierra Leone, Technology, Digital Solutions, Branding, E-Learning">
+    <title>Home - Fortizo Technologies SL</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -200,124 +196,6 @@
             padding: 0.5rem;
         }
 
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 1rem;
-            margin: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-            opacity: 1;
-            visibility: visible;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h3 {
-            font-size: clamp(1.4rem, 3.5vw, 1.6rem);
-            font-weight: 700;
-            margin: 0.5rem 0;
-            overflow-wrap: break-word;
-            max-width: 95%;
-            max-height: 4.8em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card p {
-            font-size: clamp(1.1rem, 2.8vw, 1.3rem);
-            font-weight: 700;
-            margin: 0.3rem 0;
-            overflow-wrap: break-word;
-            max-width: 95%;
-            max-height: 4.8em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .team-img-wrapper {
-            width: clamp(160px, 40%, 200px); /* Increased photo size */
-            height: clamp(200px, 50%, 260px); /* Increased photo height */
-            border-radius: 15px;
-            overflow: hidden;
-            border: var(--frame-border);
-            margin: 0 auto 0.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .team-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .team-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            text-align: center;
-            box-sizing: border-box;
-            overflow: hidden;
-            width: clamp(300px, 90%, 340px);
-            min-height: 520px; /* Adjusted for larger images */
-        }
-
-        .team-card .details {
-            width: 100%;
-            text-align: center;
-            margin-top: 0.5rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .team-card h3 {
-            margin: 0.3rem 0;
-            font-size: clamp(1.2rem, 3vw, 1.4rem);
-            font-weight: 700;
-            overflow-wrap: break-word;
-            max-width: 95%;
-            white-space: normal;
-            max-height: 4.8em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .team-card .text-sm {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
-            margin: 0.2rem 0;
-            line-height: 1.6;
-            max-width: 95%;
-            overflow-wrap: break-word;
-            white-space: normal;
-            max-height: 4.8em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
         .modal {
             display: none;
             position: fixed;
@@ -506,76 +384,49 @@
             color: var(--secondary);
         }
 
-        .moving-cards {
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
             overflow: hidden;
-            padding: 1rem 0;
         }
 
-        .card-container {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            transition: transform 0.5s ease;
-            width: calc(340px * 6 + 1rem * 5);
-            will-change: transform;
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
 
-        .ribbon-card {
-            flex: 0 0 auto;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
-            z-index: 0;
-            will-change: opacity, transform;
-        }
-
-        .ribbon-card.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) scale(1);
+        .hero .content {
+            position: relative;
             z-index: 1;
-            transition-delay: 0.2s;
-            animation: carouselFade 0.8s ease;
         }
 
-        .nav-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
         }
 
-        .nav-dot {
-            width: 10px;
-            height: 10px;
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-item {
             background: var(--glass-bg);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .nav-dot.active {
-            background: var(--accent);
-        }
-
-        @keyframes carouselFade {
-            0% { opacity: 0; transform: translateX(-50%) scale(0.9); }
-            100% { opacity: 1; transform: translateX(-50%) scale(1); }
-        }
-
-        @keyframes moveCards {
-            0% { transform: translateX(calc(-340px * 6 - 1rem * 5)); }
-            100% { transform: translateX(0); }
-        }
-
-        @keyframes moveCardsVertical {
-            0% { transform: translateY(calc(-240px * 6 - 1rem * 5)); }
-            100% { transform: translateY(0); }
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
         }
 
         @media (max-width: 640px) {
@@ -602,17 +453,7 @@
                 top: 1rem;
             }
 
-            .cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card {
-                width: clamp(300px, 90%, 340px);
-                min-height: 240px;
-            }
-
-            .content {
+            .content, .hero {
                 padding: 2rem;
             }
 
@@ -625,158 +466,25 @@
                 width: 90vw;
                 right: 5%;
             }
-
-            .moving-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card-container {
-                position: relative;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                min-height: 260px;
-                animation: moveCardsVertical 30s linear infinite;
-                animation-play-state: running;
-            }
-
-            .ribbon-card {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%) scale(0.9);
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
-                z-index: 0;
-                will-change: opacity, transform;
-            }
-
-            .ribbon-card.active {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%) scale(1);
-                opacity: 1;
-                visibility: visible;
-                z-index: 1;
-                transition-delay: 0.2s;
-                animation: carouselFade 0.8s ease;
-            }
-
-            .nav-dots {
-                display: flex;
-            }
-
-            .team-card {
-                width: clamp(300px, 90%, 340px);
-                min-height: 520px;
-            }
-
-            .team-img-wrapper {
-                width: clamp(140px, 35%, 180px); /* Adjusted for smaller screens */
-                height: clamp(180px, 45%, 240px);
-            }
         }
 
         @media (min-width: 641px) and (max-width: 1024px) {
-            .cards {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .card {
-                width: clamp(300px, 45%, 340px);
-                min-height: 240px;
-            }
-
-            .content {
+            .content, .hero {
                 padding: 2.8rem;
             }
 
-            .card-container {
-                flex-wrap: nowrap;
-                animation: moveCards 30s linear infinite;
-                animation-play-state: running;
-                width: calc(340px * 6 + 1rem * 5);
-                scroll-snap-type: x proximity;
-                scroll-behavior: smooth;
-            }
-
-            .ribbon-card {
-                opacity: 1;
-                visibility: visible;
-                position: relative;
-                scroll-snap-align: start;
-                z-index: 0;
-            }
-
-            .moving-cards:hover .card-container {
-                animation-play-state: paused;
-            }
-
-            .nav-dots {
-                display: none;
-            }
-
-            .team-card {
-                width: clamp(300px, 45%, 340px);
-                min-height: 520px;
-            }
-
-            .team-img-wrapper {
-                width: clamp(160px, 40%, 200px);
-                height: clamp(200px, 50%, 260px);
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (min-width: 1025px) {
-            .cards {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .card {
-                width: clamp(300px, 30%, 340px);
-                min-height: 240px;
-            }
-
-            .content {
+            .content, .hero {
                 padding: 4rem;
             }
 
-            .card-container {
-                flex-wrap: nowrap;
-                animation: moveCards 30s linear infinite;
-                animation-play-state: running;
-                width: calc(340px * 6 + 1rem * 5);
-                scroll-snap-type: x proximity;
-                scroll-behavior: smooth;
-            }
-
-            .ribbon-card {
-                opacity: 1;
-                visibility: visible;
-                position: relative;
-                scroll-snap-align: start;
-                z-index: 0;
-            }
-
-            .moving-cards:hover .card-container {
-                animation-play-state: paused;
-            }
-
-            .nav-dots {
-                display: none;
-            }
-
-            .team-card {
-                width: clamp(300px, 30%, 340px);
-                min-height: 520px;
-            }
-
-            .team-img-wrapper {
-                width: clamp(160px, 40%, 200px);
-                height: clamp(200px, 50%, 260px);
+            .services-grid {
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
@@ -809,243 +517,62 @@
         </ul>
     </nav>
 
-    <section id="hero" aria-labelledby="hero-heading">
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+        <video autoplay loop muted playsinline aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/youcut-20250915-221026837_7EWhf3Ty.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="content">
-            <h1 id="hero-heading">Fortizo SL — Tech Innovation in Sierra Leone</h1>
-            <p>Tech • Innovation • Impact</p>
-            <h2>Digital Solutions & Event Marketing built for impact in Sierra Leone</h2>
-            <p>We help organizations in Freetown and across Sierra Leone launch brands, run standout events, and modernize with smart digital tools.</p>
+            <h1 id="hero-heading">Welcome to Fortizo Technologies SL</h1>
+            <p>Empowering Sierra Leone’s future through innovative digital platforms, branding, and event experiences. Join us in driving the nation’s tech revolution.</p>
+            <a href="contact.html" target="_blank"><button aria-label="Get in touch with Fortizo">Get in Touch</button></a>
         </div>
     </section>
 
     <section id="about" aria-labelledby="about-heading">
         <div class="content">
-            <h2 id="about-heading">About Fortizo</h2>
-            <p>Fortizo is a Sierra Leone–born team of strategists, facilitators, designers, and engineers. We bridge ideas, people, and opportunities—delivering digital platforms, brand systems, and event experiences that actually move the needle.</p>
-            <ul>
-                <li>Human-centered discovery and clear, measurable outcomes.</li>
-                <li>Modern, scalable solutions that grow with you.</li>
-                <li>Transparent process, collaborative delivery.</li>
-            </ul>
+            <h2 id="about-heading">About Fortizo Technologies SL</h2>
+            <p>Fortizo Technologies SL is a Sierra Leone-born company of strategists, facilitators, designers, and engineers. Headquartered in Freetown, we deliver cutting-edge digital solutions, branding systems, and impactful events to drive innovation across Sierra Leone’s key markets.</p>
+            <a href="about.html" target="_blank"><button aria-label="Learn more about Fortizo">Learn More</button></a>
         </div>
     </section>
 
     <section id="services" aria-labelledby="services-heading">
         <div class="content">
-            <h2 id="services-heading">What We Do</h2>
-            <p>End-to-end support across strategy, design, delivery, and scale.</p>
-            <div class="cards">
-                <div class="card">
-                    <h3>Meeting Facilitation</h3>
-                    <p>Productive, inclusive sessions that land decisions and momentum.</p>
-                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
-                </div>
-                <div class="card">
-                    <h3>Market Research</h3>
-                    <p>Local insight, sharp analysis, and clear recommendations.</p>
-                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
-                </div>
-                <div class="card">
-                    <h3>Marketing & Branding</h3>
-                    <p>Positioning, identity, and campaigns that build trust and curiosity.</p>
-                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
-                </div>
-                <div class="card">
+            <h2 id="services-heading">Our Services</h2>
+            <p>Explore our core offerings designed to empower businesses and communities in Sierra Leone.</p>
+            <div class="services-grid">
+                <div class="service-item">
                     <h3>Digital Solutions & E-Learning</h3>
-                    <p>From websites and portals to LMS rollouts and content.</p>
-                    <a href="contact.html" target="_blank" style="color: var(--accent); text-decoration: none;">Contact Us</a>
+                    <p>Building e-learning platforms and digital tools to enhance education and business efficiency.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Marketing & Branding</h3>
+                    <p>Creating dynamic branding systems and marketing campaigns to elevate your presence.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Meeting Facilitation & Events</h3>
+                    <p>Organizing tech summits and workshops to foster innovation and collaboration.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Market Research</h3>
+                    <p>Providing data-driven insights to support business growth and innovation.</p>
                 </div>
             </div>
+            <a href="services.html" target="_blank"><button aria-label="Explore all services">Explore All Services</button></a>
         </div>
     </section>
 
-    <section id="tech-gallery" aria-labelledby="tech-gallery-heading">
+    <section id="cta" aria-labelledby="cta-heading">
         <div class="content">
-            <h2 id="tech-gallery-heading">Tech Focus Areas</h2>
-            <p>Explore images representing our expertise in various tech domains.</p>
-            <div class="cards">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89ca52a72399?auto=format&fit=crop&q=80&w=500" alt="Artificial Intelligence technology concept" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Artificial Intelligence</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1557838923-2985c2009b8d?auto=format&fit=crop&q=80&w=500" alt="Digital marketing strategy on laptop" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Digital Marketing</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1461749289074-182d292773ee?auto=format&fit=crop&q=80&w=500" alt="Web development coding on computer" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Web Development</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=500" alt="Web design creative workspace" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Web Design</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=500" alt="Large Language Models concept with AI text processing" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Large Language Models</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1597733336794-12d05021d4ee?auto=format&fit=crop&q=80&w=500" alt="Agentic AI systems concept with autonomous decision-making" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Agentic</h3>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&q=80&w=500" alt="Robotics technology with robotic arm" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 0.5rem;" decoding="async" loading="lazy">
-                    <h3>Robotics</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="market" aria-labelledby="market-heading">
-        <div class="content">
-            <h2 id="market-heading">Key Market</h2>
-            <p>Freetown, Sierra Leone — and surrounding regions.</p>
-            <div class="moving-cards" data-section="market">
-                <div class="card-container">
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Freetown (HQ)</h3>
-                        <p>Western Area Urban</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Western Area</h3>
-                        <p>Urban & Rural</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Northern Region</h3>
-                        <p>Bombali • Port Loko • Tonkolili</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Southern Region</h3>
-                        <p>Bo • Bonthe • Moyamba • Pujehun</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Eastern Region</h3>
-                        <p>Kenema • Kono • Kailahun</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Custom Engagements</h3>
-                        <p>We travel to where impact is needed most.</p>
-                    </div>
-                </div>
-                <div class="card-clone">
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Freetown (HQ)</h3>
-                        <p>Western Area Urban</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Western Area</h3>
-                        <p>Urban & Rural</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Northern Region</h3>
-                        <p>Bombali • Port Loko • Tonkolili</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Southern Region</h3>
-                        <p>Bo • Bonthe • Moyamba • Pujehun</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Eastern Region</h3>
-                        <p>Kenema • Kono • Kailahun</p>
-                    </div>
-                    <div class="card ribbon-card" style="width: clamp(300px, 90%, 340px); min-height: 240px;">
-                        <h3>Custom Engagements</h3>
-                        <p>We travel to where impact is needed most.</p>
-                    </div>
-                </div>
-                <div class="nav-dots" data-section="market"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" aria-labelledby="team-heading">
-        <div class="content">
-            <div class="text-center reveal-down is-visible">
-                <h2 id="team-heading" class="font-poppins font-bold fade-in-up">Meet the Team</h2>
-                <p class="mt-4 fade-in-up" style="animation-delay: 0.2s">Small, senior, and hands-on across strategy, design, and engineering.</p>
-            </div>
-            <div class="mt-14">
-                <div class="moving-cards" data-section="team">
-                    <div class="card-container">
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Mr Alex Pratt, Founder of Fortizo Technologies" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Alex Pratt</h3>
-                                <p class="text-sm">Founder, Fortizo Technologies</p>
-                                <p class="text-sm">Inspires innovative software and experiences.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Sierra Leone" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Jenifer E.K Kargbo</h3>
-                                <p class="text-sm">C.E.O Fortizo Sierra Leone</p>
-                                <p class="text-sm">Leads scalable digital solutions.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Company Secretary" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Seth Culker</h3>
-                                <p class="text-sm">Company Secretary</p>
-                                <p class="text-sm">Ensures compliance and insights.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Kamara</h3>
-                                <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Builds innovative digital solutions.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Charles</h3>
-                                <p class="text-sm">Software Engineer</p>
-                                <p class="text-sm">Develops community-uniting solutions.</p>
-                            </div>
-                        </div>
-                        <div class="team-card card ribbon-card scale-up" style="width: clamp(300px, 90%, 340px); min-height: 520px;">
-                            <div class="team-img-wrapper">
-                                <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_160021%5B1%5D.png" alt="Portrait of Mr Mohamed Ali, Volunteer" class="team-img" loading="lazy" decoding="async"/>
-                            </div>
-                            <div class="details">
-                                <h3>Mr Mohamed Ali</h3>
-                                <p class="text-sm">Volunteer</p>
-                                <p class="text-sm">Creates innovative software.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nav-dots" data-section="team"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-heading">
-        <div class="content">
-            <h2 id="contact-heading">Get in Touch</h2>
-            <p>Ready to start your next project? Tell us about your goals and timelines.</p>
-            <p>Location: Freetown, Sierra Leone</p>
-            <p>Email: info@fortizo.sl</p>
-            <p>Phone: +232 76 123 456</p>
+            <h2 id="cta-heading">Join the Tech Revolution</h2>
+            <p>Ready to transform your business or community with innovative solutions? Contact us today to explore collaboration opportunities.</p>
+            <a href="contact.html" target="_blank"><button aria-label="Contact Fortizo now">Contact Us Now</button></a>
         </div>
     </section>
 
     <footer role="contentinfo">
-        <p>&copy; 2025 Fortizo Technologies Sierra Leone. All rights reserved.</p>
+        <p>&copy; 2025 Fortizo Technologies SL. All rights reserved.</p>
         <div>
             <a href="https://x.com/fortizotech" target="_blank" rel="noopener" aria-label="Follow Fortizo on X">X</a>
             <a href="https://linkedin.com/company/fortizotechnologies" target="_blank" rel="noopener" aria-label="Follow Fortizo on LinkedIn">LinkedIn</a>
@@ -1112,7 +639,7 @@
 
         // Site knowledge base
         const siteKnowledge = {
-            about: "Fortizo is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
+            about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
             services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
             team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer).",
             market: "Key markets: Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), Eastern Region (Kenema, Kono, Kailahun).",
@@ -1121,151 +648,6 @@
 
         // Sierra Leone Tech Ecosystem Summary
         const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or customized solutions, contact Fortizo at info@fortizo.sl.";
-
-        // Navbar highlight on scroll
-        const navLinks = document.querySelectorAll('.navbar a');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 60) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Card cycling for small screens
-        function cycleCards(section) {
-            const container = section.querySelector('.card-container');
-            const cards = container.querySelectorAll('.ribbon-card');
-            const dotsContainer = section.querySelector('.nav-dots');
-            let currentIndex = 0;
-            let interval;
-
-            // Create navigation dots
-            cards.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.classList.add('nav-dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
-                    clearInterval(interval);
-                    currentIndex = i;
-                    showCard(currentIndex);
-                    startInterval();
-                });
-                dotsContainer.appendChild(dot);
-            });
-
-            function showCard(index) {
-                cards.forEach((card, i) => {
-                    const isActive = i === index;
-                    card.classList.toggle('active', isActive);
-                    card.style.opacity = isActive ? '1' : '0';
-                    card.style.visibility = isActive ? 'visible' : 'hidden';
-                    card.style.transform = isActive ? 'translateX(-50%) scale(1)' : 'translateX(-50%) scale(0.9)';
-                    card.style.zIndex = isActive ? '1' : '0';
-                    card.style.animation = isActive ? 'carouselFade 0.8s ease' : 'none';
-                    card.setAttribute('aria-current', isActive ? 'true' : 'false');
-                });
-                dotsContainer.querySelectorAll('.nav-dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-            }
-
-            function startInterval() {
-                interval = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    showCard(currentIndex);
-                }, 5000);
-            }
-
-            showCard(currentIndex);
-            startInterval();
-
-            section.addEventListener('mouseenter', () => clearInterval(interval));
-            section.addEventListener('mouseleave', startInterval);
-
-            let touchStartX = 0;
-            section.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                clearInterval(interval);
-            });
-            section.addEventListener('touchend', (e) => {
-                const touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    showCard(currentIndex);
-                } else if (touchEndX - touchStartX > 50) {
-                    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-                    showCard(currentIndex);
-                }
-                startInterval();
-            });
-        }
-
-        // Initialize cards
-        function initializeCards() {
-            document.querySelectorAll('.moving-cards').forEach(section => {
-                if (window.innerWidth <= 640) {
-                    cycleCards(section);
-                } else {
-                    section.querySelectorAll('.ribbon-card').forEach(card => {
-                        card.classList.add('active');
-                        card.style.opacity = '1';
-                        card.style.visibility = 'visible';
-                        card.style.transform = 'translateX(0)';
-                        card.style.zIndex = '0';
-                        card.style.animation = 'none';
-                        card.setAttribute('aria-current', 'false');
-                    });
-                    section.querySelector('.nav-dots').style.display = 'none';
-                }
-            });
-        }
-
-        window.addEventListener('load', initializeCards);
-        window.addEventListener('resize', initializeCards);
-
-        // Optimize animations for team and market sections on larger screens
-        const animatedSections = document.querySelectorAll('#team, #market');
-        const animObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const container = entry.target.querySelector('.card-container');
-                if (container && window.innerWidth > 640) {
-                    if (entry.isIntersecting) {
-                        container.style.animationPlayState = 'running';
-                    } else {
-                        container.style.animationPlayState = 'paused';
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
-        animatedSections.forEach(section => animObserver.observe(section));
-
-        // Touch support for moving cards on larger screens
-        document.querySelectorAll('.moving-cards').forEach(container => {
-            let touchStartX = 0;
-            container.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                if (window.innerWidth > 640) {
-                    container.querySelector('.card-container').style.animationPlayState = 'paused';
-                }
-            });
-            container.addEventListener('touchend', (e) => {
-                const touchEndX = e.changedTouches[0].screenX;
-                if (window.innerWidth > 640) {
-                    if (Math.abs(touchStartX - touchEndX) > 50) {
-                        container.querySelector('.card-container').style.animationPlayState = 'running';
-                    }
-                }
-            });
-        });
 
         // Modal functionality
         const modal = document.getElementById('modal');
@@ -1304,12 +686,11 @@
             const chatMessages = document.getElementById('chatMessages');
             chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
             if (chatWindow.style.display === 'block') {
-                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome! Ask about Fortizo, our services, team, or the Sierra Leone tech ecosystem.</p>`;
+                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Ask about our services, projects, or how we’re driving innovation in Sierra Leone.</p>`;
                 document.getElementById('chatInput').focus();
             }
         }
 
-        // Chatbot close button
         const chatbotClose = document.querySelector('.chatbot-close');
         chatbotClose.addEventListener('click', () => {
             document.getElementById('chatWindow').style.display = 'none';
@@ -1329,17 +710,17 @@
                 messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
                 input.value = '';
 
-                let response = 'Sorry, I didn\'t understand that. Please contact info@fortizo.sl for more help.';
+                let response = 'For more information, explore our website or email info@fortizo.sl.';
                 if (msg.includes('about') || msg.includes('fortizo')) {
-                    response = siteKnowledge.about;
+                    response = siteKnowledge.about + ' Visit our About page for more details!';
                 } else if (msg.includes('services')) {
-                    response = siteKnowledge.services;
+                    response = siteKnowledge.services + ' Check our Services page for more information!';
                 } else if (msg.includes('team')) {
-                    response = siteKnowledge.team;
+                    response = siteKnowledge.team + ' Visit our Team page for more details!';
                 } else if (msg.includes('market')) {
-                    response = siteKnowledge.market;
-                } else if (msg.includes('contact')) {
-                    response = siteKnowledge.contact;
+                    response = siteKnowledge.market + ' Visit our Key Markets page for more details!';
+                } else if (msg.includes('portfolio') || msg.includes('project')) {
+                    response = 'Our portfolio includes e-learning platforms, branding campaigns, tech events, market research, and digital payment solutions. Visit our Portfolio page for details!';
                 } else if (msg.includes('sierra leone tech') || msg.includes('sl tech ecosystem')) {
                     response = slTechSummary;
                 } else if (msg.includes('tech') || msg.includes('technology') || msg.includes('innovation') || msg.includes('llm') || msg.includes('agentic') || msg.includes('robotics')) {
@@ -1352,6 +733,10 @@
                     } catch (error) {
                         response = 'Unable to fetch tech information due to a network issue. Please contact Fortizo at info@fortizo.sl for assistance.';
                     }
+                } else if (msg.includes('contact') || msg.includes('collaborate') || msg.includes('join') || msg.includes('careers')) {
+                    response = 'For inquiries about collaboration, careers, or other questions, email info@fortizo.sl or visit our Contact and Careers pages.';
+                } else if (msg.includes('faq') || msg.includes('question')) {
+                    response = 'Check our FAQs page for answers to common questions about our services, markets, and how to work with us. Need more help? Email info@fortizo.sl.';
                 }
 
                 messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
@@ -1363,9 +748,7 @@
         document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.querySelector('#modal input[type="email"]').value;
-
             try {
-                // Replace with actual backend endpoint
                 const response = await fetch('https://your-backend-endpoint.com/subscribe', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1384,7 +767,7 @@
         });
 
         // Keyboard navigation for accessibility
-        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .nav-dot, .chatbot-close').forEach(element => {
+        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .chatbot-close').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
