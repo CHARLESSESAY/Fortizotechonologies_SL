@@ -10,14 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a23;
-            --accent: #a100ff;
-            --secondary: #7200d6;
-            --text-light: #ffffff;
+            --primary: #1A1A1A;
+            --accent: #A100FF;
+            --text-light: #FFFFFF;
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.25);
-            --nav-mobile-bg: #0a0a23;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         body {
@@ -30,6 +28,8 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
             line-height: 1.6;
+            backdrop-filter: blur(5px);
+            background: var(--glass-bg);
         }
 
         body.no-scroll {
@@ -47,7 +47,6 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            filter: blur(5px);
             z-index: -1;
         }
 
@@ -57,18 +56,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--primary);
+            background: var(--glass-bg);
+            border: var(--glass-border);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 2000;
             transition: opacity 0.7s ease;
+            backdrop-filter: blur(10px);
         }
 
         #preloader .spinner {
             border: 4px solid var(--accent);
-            border-top: 4px solid var(--secondary);
+            border-top: 4px solid var(--primary);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -93,6 +94,10 @@
         section, nav, footer, .modal, .chatbot, .chatbot-window {
             position: relative;
             z-index: 1;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
         }
 
         section {
@@ -114,12 +119,7 @@
         .content {
             max-width: 90%;
             margin: 0 auto;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
 
         h1, h2, h3 {
@@ -143,11 +143,10 @@
             position: sticky;
             top: 0;
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: var(--glass-border);
             z-index: 1000;
             padding: 1rem;
+            backdrop-filter: blur(10px);
         }
 
         .navbar-container {
@@ -183,21 +182,11 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
             padding: 0.5rem 1rem;
-            border-radius: 5px;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 10px var(--accent);
-            text-align: center;
-            cursor: pointer;
+            transition: color 0.3s;
         }
 
         .navbar a:hover, .navbar a:focus {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--secondary);
-        }
-
-        .navbar a.active {
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: var(--accent);
         }
 
         .hamburger {
@@ -241,13 +230,14 @@
 
         .modal-content {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
+            border: var(--glass-border);
             margin: 10% auto;
             padding: 1rem;
             border-radius: 15px;
             width: clamp(250px, 90%, 500px);
             color: var(--text-light);
             animation: slide-in 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .modal-content h2 {
@@ -278,8 +268,9 @@
             position: fixed;
             bottom: 10px;
             right: 10px;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--text-light);
+            border: var(--glass-border);
             border-radius: 50%;
             width: clamp(40px, 10vw, 50px);
             height: clamp(40px, 10vw, 50px);
@@ -287,10 +278,11 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px var(--secondary), 0 0 10px var(--accent);
+            box-shadow: 0 4px 20px var(--primary), 0 0 10px var(--accent);
             font-weight: 700;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             transition: transform 0.3s;
+            backdrop-filter: blur(10px);
         }
 
         .chatbot:hover, .chatbot:focus {
@@ -305,8 +297,7 @@
             width: clamp(250px, 90vw, 300px);
             height: clamp(300px, 80vh, 400px);
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: var(--glass-border);
             border-radius: 15px;
             padding: 0.5rem;
             overflow-y: auto;
@@ -315,6 +306,7 @@
             flex-direction: column;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
             animation: slide-in 0.3s ease;
+            backdrop-filter: blur(10px);
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
@@ -329,41 +321,44 @@
             width: 100%;
             padding: 0.5rem;
             box-sizing: border-box;
-            background: transparent;
-            border: 1px solid var(--accent);
+            background: var(--glass-bg);
+            border: var(--glass-border);
             color: var(--text-light);
             border-radius: 5px;
             margin-top: 0.5rem;
+            backdrop-filter: blur(10px);
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
 
         button {
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            color: var(--primary);
-            border: none;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--text-light);
+            border: var(--glass-border);
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 0 10px var(--accent);
+            backdrop-filter: blur(10px);
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
 
         button:hover, button:focus {
             transform: scale(1.05);
-            box-shadow: 0 0 15px var(--secondary);
+            box-shadow: 0 0 15px var(--primary);
         }
 
         input, textarea {
             background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            border: var(--glass-border);
             color: var(--text-light);
             padding: 0.5rem;
             border-radius: 5px;
             margin-bottom: 0.5rem;
             width: 100%;
+            backdrop-filter: blur(10px);
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
@@ -375,11 +370,11 @@
 
         footer {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
+            border: var(--glass-border);
             padding: 1rem;
             text-align: center;
             color: var(--text-light);
-            border-top: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
             display: grid;
             gap: 0.5rem;
         }
@@ -404,7 +399,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: var(--secondary);
+            background: var(--accent);
             transition: width 0.3s;
         }
 
@@ -413,7 +408,7 @@
         }
 
         footer a:hover, footer a:focus {
-            color: var(--secondary);
+            color: var(--text-light);
         }
 
         .hero {
@@ -421,6 +416,9 @@
             padding: 4rem 1rem;
             position: relative;
             overflow: hidden;
+            background: var(--glass-bg);
+            border: var(--glass-border);
+            backdrop-filter: blur(10px);
         }
 
         .hero video {
@@ -456,9 +454,10 @@
 
         .service-item {
             background: var(--glass-bg);
+            border: var(--glass-border);
             padding: 1rem;
             border-radius: 10px;
-            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
             text-align: center;
         }
 
@@ -469,7 +468,7 @@
         }
 
         .service-item a:hover, .service-item a:focus {
-            color: var(--secondary);
+            color: var(--text-light);
         }
 
         @media (max-width: 640px) {
@@ -483,7 +482,7 @@
                 right: 0;
                 width: 100%;
                 height: 100vh;
-                background: var(--nav-mobile-bg);
+                background: var(--accent); /* Solid purple when open */
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
@@ -501,18 +500,37 @@
             }
             .navbar a {
                 padding: 1.5rem;
-                font-size: 1.3rem;
+                font-size: 1.5rem;
                 width: 85%;
                 text-align: center;
+                color: var(--text-light);
+                background: var(--glass-bg); /* Glassmorphic links */
+                border: var(--glass-border);
+                backdrop-filter: blur(10px);
+            }
+            .navbar a:hover, .navbar a:focus {
+                color: var(--accent);
             }
             .hamburger {
                 display: block;
                 position: absolute;
                 right: 1rem;
                 top: 1rem;
+                color: var(--text-light);
+                background: var(--accent); /* Solid purple hamburger */
+                border-radius: 5px;
+                padding: 0.5rem;
             }
             .close-menu {
                 display: block;
+                font-size: 2rem;
+                background: var(--accent); /* Solid purple close button */
+                border-radius: 5px;
+                padding: 0.5rem;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 2001;
             }
             .content, .hero {
                 padding: 2rem;
@@ -686,24 +704,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, initializing navigation');
-
-            // Preloader
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 700);
 
-            // Hamburger menu
             const hamburger = document.querySelector('.hamburger');
             const closeMenu = document.querySelector('.close-menu');
             const navUl = document.querySelector('.navbar ul');
-            if (!hamburger || !closeMenu || !navUl) {
-                console.error('Navigation elements missing: hamburger, close-menu, or navbar ul');
-                return;
-            }
 
             const toggleMenu = () => {
-                console.log('Toggling menu');
                 const isOpen = navUl.classList.contains('active');
                 navUl.classList.toggle('active');
                 hamburger.setAttribute('aria-expanded', !isOpen);
@@ -716,41 +725,29 @@
             };
 
             hamburger.addEventListener('click', toggleMenu);
-            hamburger.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                console.log('Hamburger touchstart');
-                toggleMenu();
-            });
+            hamburger.addEventListener('touchstart', (e) => { e.preventDefault(); toggleMenu(); });
             closeMenu.addEventListener('click', toggleMenu);
-            closeMenu.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                console.log('Close button touchstart');
-                toggleMenu();
-            });
+            closeMenu.addEventListener('touchstart', (e) => { e.preventDefault(); toggleMenu(); });
             hamburger.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    console.log('Hamburger keydown');
                     toggleMenu();
                 }
             });
             closeMenu.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    console.log('Close button keydown');
                     toggleMenu();
                 }
             });
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && navUl.classList.contains('active')) {
-                    console.log('Escape key pressed, closing menu');
                     toggleMenu();
                 }
             });
 
             document.querySelectorAll('.navbar a').forEach(link => {
                 link.addEventListener('click', () => {
-                    console.log('Link clicked:', link.textContent);
                     navUl.classList.remove('active');
                     hamburger.setAttribute('aria-expanded', 'false');
                     hamburger.style.display = 'block';
@@ -759,7 +756,6 @@
                 });
             });
 
-            // Section reveal animations
             const sections = document.querySelectorAll('section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -770,7 +766,6 @@
             }, { threshold: 0.1 });
             sections.forEach(section => observer.observe(section));
 
-            // Site knowledge base
             const siteKnowledge = {
                 about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
                 services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
@@ -779,10 +774,8 @@
                 contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456."
             };
 
-            // Sierra Leone Tech Ecosystem Summary
             const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or customized solutions, contact Fortizo at info@fortizo.sl.";
 
-            // Modal functionality
             const modal = document.getElementById('modal');
             const closeBtn = document.querySelector('.close');
             setTimeout(() => {
@@ -813,13 +806,12 @@
                 }
             });
 
-            // Chatbot functionality
             function toggleChat() {
                 const chatWindow = document.getElementById('chatWindow');
                 const chatMessages = document.getElementById('chatMessages');
                 chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
                 if (chatWindow.style.display === 'block') {
-                    chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Ask about our services, projects, or how we’re driving innovation in Sierra Leone.</p>`;
+                    chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px; border: var(--glass-border); backdrop-filter: blur(10px);">Bot: Welcome to Fortizo Technologies SL! Ask about our services, projects, or how we’re driving innovation in Sierra Leone.</p>`;
                     document.getElementById('chatInput').focus();
                 }
             }
@@ -840,7 +832,7 @@
                 const messages = document.getElementById('chatMessages');
                 const msg = input.value.trim().toLowerCase();
                 if (msg) {
-                    messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
+                    messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px; border: var(--glass-border); backdrop-filter: blur(10px);">You: ${input.value}</p>`;
                     input.value = '';
 
                     let response = 'For more information, explore our website or email info@fortizo.sl.';
@@ -874,12 +866,11 @@
                         response = 'Review our Privacy Policy on our Privacy page. For further questions, contact us at info@fortizo.sl.';
                     }
 
-                    messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
+                    messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px; border: var(--glass-border); backdrop-filter: blur(10px);">Bot: ${response}</p>`;
                     messages.scrollTop = messages.scrollHeight;
                 }
             }
 
-            // Newsletter form submission (placeholder for backend integration)
             document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const email = document.querySelector('#modal input[type="email"]').value;
@@ -901,7 +892,6 @@
                 }
             });
 
-            // Keyboard navigation for accessibility
             document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .close-menu, .chatbot-close').forEach(element => {
                 element.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
