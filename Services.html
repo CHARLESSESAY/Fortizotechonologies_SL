@@ -423,22 +423,40 @@
             border: 1px solid var(--glass-border);
         }
 
-        @media (max-width: 640px) {
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--glass-bg);
-                backdrop-filter: blur(10px);
-                padding: 1rem;
-            }
+      /* Default (PC & Tablet) */
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;      /* enables horizontal scroll */
+  white-space: nowrap;   /* prevents items from wrapping */
+  scrollbar-width: thin; /* for Firefox */
+  -ms-overflow-style: none; /* for IE/Edge */
+}
 
-            .navbar ul.active {
-                display: flex;
-            }
+/* Hide scrollbar in Chrome, Safari, Edge */
+.navbar ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    overflow-x: hidden; /* disable horizontal scroll on mobile */
+  }
+  .navbar ul.active {
+    display: flex;
+  }
+}
 
             .hamburger {
                 display: block;
@@ -488,26 +506,26 @@
         <div class="spinner"></div>
     </div>
 
-   <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰<button>
         <ul>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html" target="_blank">Home</a></li>
-            <li><a href="about.html" target="_blank">About</a></li>
+            
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Services</a></li>
-            <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
+    
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Market.html" target="_blank">Market</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Team.html" target="_blank">Team</a></li>
-            <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Terms</a></li>
+           
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html" target="_blank">Privacy</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html" target="_blank">Support</a></li>
-            <l><a href="events.html" target="_blank">Events</a></li>
+           
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html" target="_blank">Newsroom</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html" target="_blank">Portfolio</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" target="_blank">FAQs</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" aria-current="page" class="active">Careers</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" target="_blank">Contact</a></li>
-            <l><a href="testimonials.html" target="_blank">Testimonials</a></li>
-            <l><a href="blog.html" target="_blank">Blog</a></li>
+            
+          
         </ul>
     </nav>
 
