@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fortizo Technologies SL - Empowering innovation through digital platforms, branding, and event experiences.">
-    <meta name="keywords" content="Fortizo, Sierra Leone, Technology, Digital Solutions, Branding, E-Learning">
-    <title>Home - Fortizo Technologies SL</title>
+    <meta name="description" content="Fortizo Technologies SL - Innovators in digital solutions, branding, events, and market research in Sierra Leone.">
+    <meta name="keywords" content="Fortizo, Sierra Leone, Technology, Digital Solutions, Branding, E-Learning, Events, Market Research">
+    <title>Fortizo Technologies SL - Innovators in Sierra Leone</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -158,32 +158,26 @@
         }
 
         .navbar a {
+            display: inline-block;
             color: var(--text-light);
             text-decoration: none;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
-            position: relative;
-            transition: color 0.3s;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--accent);
+            text-align: center;
         }
 
         .navbar a:hover, .navbar a:focus {
-            color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--secondary);
         }
 
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
-        }
-
-        .navbar a:hover::after, .navbar a.active::after, .navbar a:focus::after {
-            width: 100%;
+        .navbar a.active {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
 
         .hamburger {
@@ -501,7 +495,7 @@
             <li><a href="about.html" target="_blank">About</a></li>
             <li><a href="services.html" target="_blank">Services</a></li>
             <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
-            <li><a href="market.html" target="_blank">Key Market</a></li>
+            <li><a href="market.html" target="_blank">Market</a></li>
             <li><a href="team.html" target="_blank">Team</a></li>
             <li><a href="terms.html" target="_blank">Terms</a></li>
             <li><a href="privacy.html" target="_blank">Privacy</a></li>
@@ -524,49 +518,44 @@
         </video>
         <div class="content">
             <h1 id="hero-heading">Welcome to Fortizo Technologies SL</h1>
-            <p>Empowering Sierra Leone’s future through innovative digital platforms, branding, and event experiences. Join us in driving the nation’s tech revolution.</p>
+            <p>Sierra Leone's hub for innovative digital solutions, branding, events, and market research.</p>
             <a href="contact.html" target="_blank"><button aria-label="Get in touch with Fortizo">Get in Touch</button></a>
-        </div>
-    </section>
-
-    <section id="about" aria-labelledby="about-heading">
-        <div class="content">
-            <h2 id="about-heading">About Fortizo Technologies SL</h2>
-            <p>Fortizo Technologies SL is a Sierra Leone-born company of strategists, facilitators, designers, and engineers. Headquartered in Freetown, we deliver cutting-edge digital solutions, branding systems, and impactful events to drive innovation across Sierra Leone’s key markets.</p>
-            <a href="about.html" target="_blank"><button aria-label="Learn more about Fortizo">Learn More</button></a>
         </div>
     </section>
 
     <section id="services" aria-labelledby="services-heading">
         <div class="content">
             <h2 id="services-heading">Our Services</h2>
-            <p>Explore our core offerings designed to empower businesses and communities in Sierra Leone.</p>
+            <p>Explore our innovative solutions designed to empower businesses and communities in Sierra Leone.</p>
             <div class="services-grid">
                 <div class="service-item">
                     <h3>Digital Solutions & E-Learning</h3>
-                    <p>Building e-learning platforms and digital tools to enhance education and business efficiency.</p>
+                    <p>Transform education and business with cutting-edge digital platforms and e-learning systems.</p>
+                    <a href="portfolio.html" target="_blank"><button aria-label="View Digital Solutions Portfolio">View Portfolio</button></a>
                 </div>
                 <div class="service-item">
                     <h3>Marketing & Branding</h3>
-                    <p>Creating dynamic branding systems and marketing campaigns to elevate your presence.</p>
+                    <p>Elevate your brand with dynamic campaigns and visually stunning designs.</p>
+                    <a href="portfolio.html" target="_blank"><button aria-label="View Branding Portfolio">View Portfolio</button></a>
                 </div>
                 <div class="service-item">
                     <h3>Meeting Facilitation & Events</h3>
-                    <p>Organizing tech summits and workshops to foster innovation and collaboration.</p>
+                    <p>Engage communities through impactful tech summits and workshops.</p>
+                    <a href="events.html" target="_blank"><button aria-label="Explore Upcoming Events">Explore Events</button></a>
                 </div>
                 <div class="service-item">
                     <h3>Market Research</h3>
-                    <p>Providing data-driven insights to support business growth and innovation.</p>
+                    <p>Gain actionable insights with data-driven market analysis.</p>
+                    <a href="contact.html" target="_blank"><button aria-label="Request Research Insights">Request Insights</button></a>
                 </div>
             </div>
-            <a href="services.html" target="_blank"><button aria-label="Explore all services">Explore All Services</button></a>
         </div>
     </section>
 
     <section id="cta" aria-labelledby="cta-heading">
         <div class="content">
-            <h2 id="cta-heading">Join the Tech Revolution</h2>
-            <p>Ready to transform your business or community with innovative solutions? Contact us today to explore collaboration opportunities.</p>
+            <h2 id="cta-heading">Ready to Innovate?</h2>
+            <p>Partner with Fortizo Technologies SL to drive transformation in Sierra Leone’s tech ecosystem.</p>
             <a href="contact.html" target="_blank"><button aria-label="Contact Fortizo now">Contact Us Now</button></a>
         </div>
     </section>
@@ -640,7 +629,7 @@
         // Site knowledge base
         const siteKnowledge = {
             about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
-            services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
+            services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning. Visit our Services page for details!",
             team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer).",
             market: "Key markets: Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), Eastern Region (Kenema, Kono, Kailahun).",
             contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456."
