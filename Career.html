@@ -372,18 +372,26 @@
             border-radius: 10px;
             border: 1px solid var(--glass-border);
         }
-        @media (max-width: 615px) {
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--glass-bg);
-                backdrop-filter: blur(10px);
-                padding: 1rem;
-            }
+       @media (max-width: 615px) {
+  .navbar ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    /* Optional: Hide the scrollbar for a cleaner look */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+  }
+
+  .navbar ul::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+
+  .navbar ul li {
+    flex-shrink: 0;
+  }
+}
             .navbar ul.active {
                 display: flex;
             }
