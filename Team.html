@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meet the team behind Fortizo Technologies Sierra Leone. Learn about our innovators and leaders.">
-    <meta name="keywords" content="Fortizo, Team, Sierra Leone, Technology">
-    <title>Team - Fortizo Technologies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Fortizo Technologies SL - Meet our team of innovators driving digital solutions, branding, events, and market research in Sierra Leone.">
+    <meta name="keywords" content="Fortizo, Sierra Leone, Team, Technology, Digital Solutions, Branding, Events, Market Research">
+    <title>Team - Fortizo Technologies SL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0a0a23;
@@ -17,9 +16,7 @@
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
-            --frame-border: 2px solid var(--accent);
         }
-
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -31,7 +28,6 @@
             font-weight: 700;
             line-height: 1.6;
         }
-
         body::before {
             content: '';
             position: fixed;
@@ -39,14 +35,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
+            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             filter: blur(5px);
             z-index: -1;
         }
-
         #preloader {
             position: fixed;
             top: 0;
@@ -61,7 +56,6 @@
             z-index: 2000;
             transition: opacity 0.7s ease;
         }
-
         #preloader .spinner {
             border: 4px solid var(--accent);
             border-top: 4px solid var(--secondary);
@@ -71,7 +65,6 @@
             animation: spin 1s linear infinite;
             margin-top: 1rem;
         }
-
         #preloader::before {
             content: 'Fortizo';
             font-family: 'Orbitron', sans-serif;
@@ -80,17 +73,14 @@
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         section, nav, footer, .modal, .chatbot, .chatbot-window {
             position: relative;
             z-index: 1;
         }
-
         section {
             padding: 3rem 1rem;
             min-height: 80vh;
@@ -101,12 +91,10 @@
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         .content {
             max-width: 90%;
             margin: 0 auto;
@@ -117,24 +105,20 @@
             padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
         }
-
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 10px var(--accent);
             font-weight: 700;
             line-height: 1.4;
         }
-
         h1 { font-size: clamp(2rem, 6vw, 2.4rem); }
         h2 { font-size: clamp(1.6rem, 5vw, 2rem); }
         h3 { font-size: clamp(1.2rem, 3vw, 1.4rem); }
-
         p, .text-sm {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
             line-height: 1.6;
         }
-
         .navbar {
             position: sticky;
             top: 0;
@@ -144,7 +128,6 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
-
         .navbar ul {
             list-style: none;
             display: flex;
@@ -152,40 +135,29 @@
             padding: 1rem;
             margin: 0;
         }
-
         .navbar li {
             margin: 0 0.8rem;
         }
-
         .navbar a {
+            display: inline-block;
             color: var(--text-light);
             text-decoration: none;
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
-            position: relative;
-            transition: color 0.3s;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 10px var(--accent);
+            text-align: center;
         }
-
         .navbar a:hover, .navbar a:focus {
-            color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--secondary);
         }
-
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s;
+        .navbar a.active {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
-
-        .navbar a:hover::after, .navbar a.active::after, .navbar a:focus::after {
-            width: 100%;
-        }
-
         .hamburger {
             display: none;
             font-size: 1.5rem;
@@ -195,7 +167,6 @@
             cursor: pointer;
             padding: 0.5rem;
         }
-
         .modal {
             display: none;
             position: fixed;
@@ -206,7 +177,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
-
         .modal-content {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -217,31 +187,25 @@
             color: var(--text-light);
             animation: slide-in 0.3s ease;
         }
-
         .modal-content h2 {
             font-size: clamp(1.6rem, 5vw, 2rem);
         }
-
         .modal-content p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
-
         @keyframes slide-in {
             from { transform: translateY(-20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-
         .close, .chatbot-close {
             color: var(--text-light);
             float: right;
             font-size: 1.5rem;
             cursor: pointer;
         }
-
         .close:hover, .close:focus, .chatbot-close:hover, .chatbot-close:focus {
             color: var(--accent);
         }
-
         .chatbot {
             position: fixed;
             bottom: 10px;
@@ -260,11 +224,9 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             transition: transform 0.3s;
         }
-
         .chatbot:hover, .chatbot:focus {
             transform: scale(1.1);
         }
-
         .chatbot-window {
             display: none;
             position: fixed;
@@ -286,13 +248,11 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-
         #chatMessages {
             flex: 1;
             overflow-y: auto;
             padding: 0.5rem;
         }
-
         .chatbot-window input {
             width: 100%;
             padding: 0.5rem;
@@ -305,7 +265,6 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-
         button {
             background: linear-gradient(45deg, var(--accent), var(--secondary));
             color: var(--primary);
@@ -318,12 +277,10 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-
         button:hover, button:focus {
             transform: scale(1.05);
             box-shadow: 0 0 15px var(--secondary);
         }
-
         input, textarea {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -335,12 +292,10 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-
         input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .chatbot-close:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
-
         footer {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -351,12 +306,10 @@
             display: grid;
             gap: 0.5rem;
         }
-
         footer p, footer a {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-
         footer a {
             color: var(--accent);
             text-decoration: none;
@@ -364,7 +317,6 @@
             position: relative;
             transition: color 0.3s;
         }
-
         footer a::after {
             content: '';
             position: absolute;
@@ -375,40 +327,78 @@
             background: var(--secondary);
             transition: width 0.3s;
         }
-
         footer a:hover::after, footer a:focus::after {
             width: 100%;
         }
-
         footer a:hover, footer a:focus {
             color: var(--secondary);
         }
-
-        .team-members {
-            display: grid;
-            gap: 1rem;
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero .content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .team-carousel {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
             margin-bottom: 2rem;
         }
-
+        .team-grid {
+            display: flex;
+            animation: slide 20s linear infinite;
+            width: calc(300px * 6); /* 6 team members, 300px each */
+        }
+        .team-grid:hover {
+            animation-play-state: paused;
+        }
         .team-member {
             background: var(--glass-bg);
             padding: 1rem;
             border-radius: 10px;
             border: 1px solid var(--glass-border);
             text-align: center;
+            width: 300px;
+            flex-shrink: 0;
+            margin-right: 1rem;
         }
-
         .team-member img {
-            width: 100%;
-            max-width: 150px;
-            height: auto;
+            width: clamp(150px, 20vw, 200px);
+            height: clamp(150px, 20vw, 200px);
             border-radius: 50%;
-            border: 2px solid var(--accent);
             margin-bottom: 1rem;
             object-fit: cover;
-            aspect-ratio: 1/1;
+            transition: transform 0.3s ease;
         }
-
+        .team-member:hover img {
+            transform: scale(1.1);
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-300px * 6)); }
+        }
         @media (max-width: 640px) {
             .navbar ul {
                 display: none;
@@ -421,62 +411,53 @@
                 backdrop-filter: blur(10px);
                 padding: 1rem;
             }
-
             .navbar ul.active {
                 display: flex;
             }
-
             .hamburger {
                 display: block;
                 position: absolute;
                 right: 1rem;
                 top: 1rem;
             }
-
-            .content {
+            .content, .hero {
                 padding: 2rem;
             }
-
             .chatbot {
                 width: 40px;
                 height: 40px;
             }
-
             .chatbot-window {
                 width: 90vw;
                 right: 5%;
             }
-
-            .team-member img {
-                max-width: 120px;
+            .team-grid {
+                width: calc(250px * 6); /* Adjust for smaller screens */
+            }
+            .team-member {
+                width: 250px;
             }
         }
-
         @media (min-width: 641px) and (max-width: 1024px) {
-            .content {
+            .content, .hero {
                 padding: 2.8rem;
             }
-
-            .team-members {
-                grid-template-columns: 1fr 1fr;
+            .team-grid {
+                width: calc(280px * 6); /* Adjust for tablet */
             }
-
-            .team-member img {
-                max-width: 140px;
+            .team-member {
+                width: 280px;
             }
         }
-
         @media (min-width: 1025px) {
-            .content {
+            .content, .hero {
                 padding: 4rem;
             }
-
-            .team-members {
-                grid-template-columns: 1fr 1fr 1fr;
+            .team-grid {
+                width: calc(300px * 6);
             }
-
-            .team-member img {
-                max-width: 150px;
+            .team-member {
+                width: 300px;
             }
         }
     </style>
@@ -485,7 +466,6 @@
     <div id="preloader" aria-hidden="true">
         <div class="spinner"></div>
     </div>
-
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
         <ul>
@@ -493,8 +473,8 @@
             <li><a href="about.html" target="_blank">About</a></li>
             <li><a href="services.html" target="_blank">Services</a></li>
             <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
-            <li><a href="market.html" target="_blank">Key Market</a></li>
-            <li><a href="team.html" aria-current="page">Team</a></li>
+            <li><a href="market.html" target="_blank">Market</a></li>
+            <li><a href="team.html" aria-current="page" class="active">Team</a></li>
             <li><a href="terms.html" target="_blank">Terms</a></li>
             <li><a href="privacy.html" target="_blank">Privacy</a></li>
             <li><a href="support.html" target="_blank">Support</a></li>
@@ -508,92 +488,100 @@
             <li><a href="blog.html" target="_blank">Blog</a></li>
         </ul>
     </nav>
-
-    <section id="team" aria-labelledby="team-heading">
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+        <video autoplay loop muted playsinline aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/youcut-20250915-221026837_7EWhf3Ty.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="content">
-            <h1 id="team-heading">Our Team</h1>
-            <p>Meet the dedicated professionals driving innovation at Fortizo Technologies Sierra Leone.</p>
-            
-            <div class="team-members">
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Alex Pratt, Founder of Fortizo Technologies">
-                    <h2>Alex Pratt</h2>
-                    <h3>Founder</h3>
-                    <p>A visionary leader with a passion for advancing technology and fostering innovation in Sierra Leone.</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Technologies">
-                    <h2>Jenifer E.K Kargbo</h2>
-                    <h3>CEO</h3>
-                    <p>Guides Fortizo’s strategic direction, ensuring impactful digital and branding solutions.</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Secretary of Fortizo Technologies">
-                    <h2>Seth Culker</h2>
-                    <h3>Secretary</h3>
-                    <p>Manages operations and coordination, keeping Fortizo’s projects on track.</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr. Kamara, Software Engineer at Fortizo Technologies">
-                    <h2>Mr. Kamara</h2>
-                    <h3>Software Engineer</h3>
-                    <p>Expert in developing robust digital platforms and e-learning solutions.</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr. Charles, Software Engineer at Fortizo Technologies">
-                    <h2>Mr. Charles</h2>
-                    <h3>Software Engineer</h3>
-                    <p>Specializes in cutting-edge software development for Fortizo’s tech initiatives.</p>
-                </div>
-                <div class="team-member">
-                    <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250823_160021%5B1%5D.png" alt="Portrait of Mohamed Ali, Volunteer at Fortizo Technologies">
-                    <h2>Mohamed Ali</h2>
-                    <h3>Volunteer</h3>
-                    <p>Contributes enthusiasm and support to Fortizo’s community and tech projects.</p>
-                </div>
-            </div>
-
-            <h2>Join Our Team</h2>
-            <p>Interested in working with us? Visit our <a href="careers.html" target="_blank">Careers</a> page or contact us at <a href="mailto:careers@fortizo.sl">careers@fortizo.sl</a>.</p>
+            <h1 id="hero-heading">Meet the Fortizo Team</h1>
+            <p>Our passionate team drives innovation in Sierra Leone’s tech ecosystem through digital solutions, branding, events, and market research.</p>
+            <a href="contact.html" target="_blank"><button aria-label="Connect with Fortizo team">Connect with Us</button></a>
         </div>
     </section>
-
+    <section id="team" aria-labelledby="team-heading">
+        <div class="content">
+            <h2 id="team-heading">Our Team</h2>
+            <p>Meet the talented individuals behind Fortizo Technologies SL’s mission to transform Sierra Leone’s tech landscape.</p>
+            <div class="team-carousel" role="region" aria-label="Team members carousel">
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/IMG-20250824-WA0003%5B1%5D.jpg" alt="Portrait of Alex Pratt, Founder of Fortizo Technologies SL">
+                        <h3>Alex Pratt</h3>
+                        <p>Founder</p>
+                        <p>Visionary leader driving Fortizo’s mission to empower Sierra Leone with innovative technology solutions.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250821-WA0031%5B1%5D.jpg" alt="Portrait of Jenifer E.K Kargbo, CEO of Fortizo Technologies SL">
+                        <h3>Jenifer E.K Kargbo</h3>
+                        <p>CEO</p>
+                        <p>Strategic executive guiding Fortizo’s growth and impact in digital solutions and branding.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/20250823_155744%5B2%5D.png" alt="Portrait of Seth Culker, Secretary of Fortizo Technologies SL">
+                        <h3>Seth Culker</h3>
+                        <p>Secretary</p>
+                        <p>Organized professional ensuring seamless operations and communication within Fortizo.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/images/IMG-20250823-WA0005%5B1%5D.jpg" alt="Portrait of Mr Kamara, Software Engineer at Fortizo Technologies SL">
+                        <h3>Mr Kamara</h3>
+                        <p>Software Engineer</p>
+                        <p>Expert developer building cutting-edge digital platforms and e-learning solutions.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250122_163838%5B1%5D.jpg" alt="Portrait of Mr Charles, Software Engineer at Fortizo Technologies SL">
+                        <h3>Mr Charles</h3>
+                        <p>Software Engineer</p>
+                        <p>Skilled coder creating innovative tools to drive Fortizo’s tech initiatives.</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://raw.githubusercontent.com/CHARLESSESAY/Fortizotechonologies_SL/main/20250823_160021%5B1%5D.png" alt="Portrait of Mohamed Ali, Volunteer at Fortizo Technologies SL">
+                        <h3>Mohamed Ali</h3>
+                        <p>Volunteer</p>
+                        <p>Dedicated contributor supporting Fortizo’s events and community outreach efforts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cta" aria-labelledby="cta-heading">
+        <div class="content">
+            <h2 id="cta-heading">Join Our Team</h2>
+            <p>Want to work with our talented team to shape Sierra Leone’s tech future? Explore opportunities with Fortizo Technologies SL!</p>
+            <a href="careers.html" target="_blank"><button aria-label="Explore career opportunities at Fortizo">Explore Careers</button></a>
+        </div>
+    </section>
     <footer role="contentinfo">
-        <p>&copy; 2025 Fortizo Technologies Sierra Leone. All rights reserved.</p>
+        <p>&copy; 2025 Fortizo Technologies SL. All rights reserved.</p>
         <div>
             <a href="https://x.com/fortizotech" target="_blank" rel="noopener" aria-label="Follow Fortizo on X">X</a>
             <a href="https://linkedin.com/company/fortizotechnologies" target="_blank" rel="noopener" aria-label="Follow Fortizo on LinkedIn">LinkedIn</a>
         </div>
     </footer>
-
     <div id="modal" class="modal" role="dialog" aria-labelledby="modal-heading" aria-modal="true">
         <div class="modal-content">
             <span class="close" aria-label="Close modal" tabindex="0">&times;</span>
             <h2 id="modal-heading">Subscribe to Our Newsletter</h2>
-            <p>Stay updated with the latest tech innovations and events in Sierra Leone!</p>
+            <p>Stay updated with the latest team updates and tech innovations at Fortizo Technologies SL!</p>
             <form id="newsletter-form">
                 <input type="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
     </div>
-
     <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot" tabindex="0">Chat</div>
     <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Chatbot window">
         <span class="chatbot-close" aria-label="Close chatbot" tabindex="0">&times;</span>
         <div id="chatMessages" aria-live="polite"></div>
         <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Chatbot input" onkeypress="if(event.key === 'Enter') sendMessage()">
     </div>
-
     <script>
-        // Preloader
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 700);
         });
-
-        // Hamburger menu
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('.navbar ul');
         hamburger.addEventListener('click', () => {
@@ -605,15 +593,11 @@
                 navUl.classList.toggle('active');
             }
         });
-
-        // Close hamburger menu when a link is clicked
         document.querySelectorAll('.navbar a').forEach(link => {
             link.addEventListener('click', () => {
                 navUl.classList.remove('active');
             });
         });
-
-        // Section reveal animations
         const sections = document.querySelectorAll('section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -623,61 +607,49 @@
             });
         }, { threshold: 0.1 });
         sections.forEach(section => observer.observe(section));
-
-        // Site knowledge base
         const siteKnowledge = {
-            about: "Fortizo is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
-            services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
-            team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer).",
+            about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
+            services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning. Visit our Services page for details!",
+            team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer). Visit our Team page for more details!",
             market: "Key markets: Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), Eastern Region (Kenema, Kono, Kailahun).",
-            contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456."
+            contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456.",
+            careers: "Join Fortizo Technologies SL to work on innovative projects in Sierra Leone’s tech ecosystem. Check our Careers page for current openings or contact us at info@fortizo.sl."
         };
-
-        // Sierra Leone Tech Ecosystem Summary
-        const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or customized solutions, contact Fortizo at info@fortizo.sl.";
-
-        // Modal functionality
+        const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or to join our team, contact Fortizo at info@fortizo.sl.";
         const modal = document.getElementById('modal');
         const closeBtn = document.querySelector('.close');
         setTimeout(() => {
             modal.style.display = 'block';
             document.querySelector('.modal-content input').focus();
         }, 3000);
-
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
         });
-
         closeBtn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 modal.style.display = 'none';
             }
         });
-
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
-
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 modal.style.display = 'none';
             }
         });
-
-        // Chatbot functionality
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
             const chatMessages = document.getElementById('chatMessages');
             chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
             if (chatWindow.style.display === 'block') {
-                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to the Team page! Ask about our team members or the Sierra Leone tech ecosystem.</p>`;
+                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Ask about our team or how we’re driving innovation in Sierra Leone.</p>`;
                 document.getElementById('chatInput').focus();
             }
         }
-
         const chatbotClose = document.querySelector('.chatbot-close');
         chatbotClose.addEventListener('click', () => {
             document.getElementById('chatWindow').style.display = 'none';
@@ -688,7 +660,6 @@
                 document.getElementById('chatWindow').style.display = 'none';
             }
         });
-
         async function sendMessage() {
             const input = document.getElementById('chatInput');
             const messages = document.getElementById('chatMessages');
@@ -696,18 +667,17 @@
             if (msg) {
                 messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
                 input.value = '';
-
-                let response = 'For more information about our team, check the profiles above or email info@fortizo.sl.';
+                let response = 'For more information, explore our website or email info@fortizo.sl.';
                 if (msg.includes('about') || msg.includes('fortizo')) {
-                    response = siteKnowledge.about;
+                    response = siteKnowledge.about + ' Visit our About page for more details!';
                 } else if (msg.includes('services')) {
-                    response = siteKnowledge.services;
+                    response = siteKnowledge.services + ' Check our Services page for more information!';
                 } else if (msg.includes('team')) {
-                    response = siteKnowledge.team + ' Check the profiles above for more details!';
+                    response = siteKnowledge.team + ' Meet our team members on the Team page!';
                 } else if (msg.includes('market')) {
-                    response = siteKnowledge.market;
-                } else if (msg.includes('contact')) {
-                    response = 'For team-related inquiries, email info@fortizo.sl or visit our Contact page.';
+                    response = siteKnowledge.market + ' Visit our Key Markets page for more details!';
+                } else if (msg.includes('portfolio') || msg.includes('project')) {
+                    response = 'Our portfolio includes e-learning platforms, branding campaigns, tech events, market research, and digital payment solutions. Visit our Portfolio page for details!';
                 } else if (msg.includes('sierra leone tech') || msg.includes('sl tech ecosystem')) {
                     response = slTechSummary;
                 } else if (msg.includes('tech') || msg.includes('technology') || msg.includes('innovation') || msg.includes('llm') || msg.includes('agentic') || msg.includes('robotics')) {
@@ -716,18 +686,19 @@
                         if (!searchResponse.ok) throw new Error('API request failed');
                         const data = await searchResponse.json();
                         const abstract = data.Abstract || data.RelatedTopics?.[0]?.Text || 'No brief info found.';
-                        response = `Brief explanation: ${abstract}. For more in-depth information or customized solutions, please contact Fortizo at info@fortizo.sl.`;
+                        response = `Brief explanation: ${abstract}. For more in-depth information or to join our team, please contact Fortizo at info@fortizo.sl.`;
                     } catch (error) {
                         response = 'Unable to fetch tech information due to a network issue. Please contact Fortizo at info@fortizo.sl for assistance.';
                     }
+                } else if (msg.includes('contact') || msg.includes('collaborate') || msg.includes('join') || msg.includes('careers') || msg.includes('job') || msg.includes('work')) {
+                    response = siteKnowledge.careers + ' Visit our Careers page for current openings or contact us at info@fortizo.sl.';
+                } else if (msg.includes('faq') || msg.includes('question')) {
+                    response = 'Check our FAQs page for answers to common questions about our services, team, and how to work with us. Need more help? Email info@fortizo.sl.';
                 }
-
                 messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
                 messages.scrollTop = messages.scrollHeight;
             }
         }
-
-        // Newsletter form submission (placeholder for backend integration)
         document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.querySelector('#modal input[type="email"]').value;
@@ -748,14 +719,21 @@
                 alert('Network error. Please try again later.');
             }
         });
-
-        // Keyboard navigation for accessibility
         document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .chatbot-close').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     element.click();
                 }
+            });
+        });
+        // Carousel pause/resume on focus
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('focus', () => {
+                document.querySelector('.team-grid').style.animationPlayState = 'paused';
+            });
+            member.addEventListener('blur', () => {
+                document.querySelector('.team-grid').style.animationPlayState = 'running';
             });
         });
     </script>
