@@ -16,6 +16,7 @@
             --text-dark: #000000;
             --glass-bg: rgba(255, 255, 255, 0.15);
             --glass-border: rgba(255, 255, 255, 0.25);
+            --nav-mobile-bg: rgba(10, 10, 35, 0.95);
         }
         body {
             margin: 0;
@@ -127,18 +128,31 @@
             border-bottom: 1px solid var(--glass-border);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
             padding: 1rem;
-            margin: 0;
         }
-        .navbar li {
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .navbar-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-menu li {
             margin: 0 0.8rem;
         }
-        .navbar a {
+        .navbar-menu a {
             display: inline-block;
             color: var(--text-light);
             text-decoration: none;
@@ -152,21 +166,37 @@
             text-align: center;
             cursor: pointer;
         }
-        .navbar a:hover, .navbar a:focus {
+        .navbar-menu a:hover, .navbar-menu a:focus {
             transform: scale(1.05);
             box-shadow: 0 0 15px var(--secondary);
         }
-        .navbar a.active {
+        .navbar-menu a.active {
             background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
         .hamburger {
             display: none;
-            font-size: 1.5rem;
+            font-size: 2rem;
             background: none;
             border: none;
             color: var(--text-light);
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1002;
+        }
+        .close-menu {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1002;
+        }
+        .close-menu:hover, .close-menu:focus {
+            color: var(--accent);
         }
         .modal {
             display: none;
@@ -293,7 +323,7 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .chatbot-close:focus {
+        input:focus, button:focus, .navbar-menu a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .close-menu:focus, .chatbot-close:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
@@ -382,30 +412,43 @@
             color: var(--secondary);
         }
         @media (max-width: 640px) {
-            .navbar ul {
+            .navbar-container {
+                position: relative;
+            }
+            .navbar-menu {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
+                position: fixed;
+                top: 0;
+                right: 0;
                 width: 100%;
-                background: rgba(255, 255, 255, 0.25);
+                height: 100vh;
+                background: var(--nav-mobile-bg);
                 backdrop-filter: blur(10px);
-                padding: 1rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 z-index: 1001;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
             }
-            .navbar ul.active {
+            .navbar-menu.active {
                 display: flex;
+                transform: translateX(0);
             }
-            .navbar a {
-                padding: 0.75rem 1rem;
+            .navbar-menu li {
+                margin: 1rem 0;
+            }
+            .navbar-menu a {
+                padding: 1rem;
+                font-size: 1.2rem;
+                width: 80%;
+                text-align: center;
             }
             .hamburger {
                 display: block;
-                position: absolute;
-                right: 1rem;
-                top: 1rem;
+            }
+            .close-menu {
+                display: block;
             }
             .content, .hero {
                 padding: 2rem;
@@ -445,25 +488,29 @@
         <div class="spinner"></div>
     </div>
     <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
-        <ul>
-            <li><a href="index.html" aria-current="page" class="active">Home</a></li>
-            <li><a href="about.html" target="_blank">About</a></li>
-            <li><a href="services.html" target="_blank">Services</a></li>
-            <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
-            <li><a href="market.html" target="_blank">Market</a></li>
-            <li><a href="team.html" target="_blank">Team</a></li>
-            <li><a href="terms-and-privacy.html" target="_blank">Terms & Privacy</a></li>
-            <li><a href="support.html" target="_blank">Support</a></li>
-            <li><a href="events.html" target="_blank">Events</a></li>
-            <li><a href="newsroom.html" target="_blank">Newsroom</a></li>
-            <li><a href="portfolio.html" target="_blank">Portfolio</a></li>
-            <li><a href="faqs.html" target="_blank">FAQs</a></li>
-            <li><a href="careers.html" target="_blank">Careers</a></li>
-            <li><a href="contact.html" target="_blank">Contact</a></li>
-            <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
-            <li><a href="blog.html" target="_blank">Blog</a></li>
-        </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo" aria-label="Fortizo Technologies SL Home">Fortizo</a>
+            <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" role="button" tabindex="0">☰</button>
+            <button class="close-menu" aria-label="Close navigation menu" role="button" tabindex="0">✕</button>
+            <ul class="navbar-menu">
+                <li><a href="index.html" aria-current="page" class="active">Home</a></li>
+                <li><a href="about.html" target="_blank">About</a></li>
+                <li><a href="services.html" target="_blank">Services</a></li>
+                <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
+                <li><a href="market.html" target="_blank">Market</a></li>
+                <li><a href="team.html" target="_blank">Team</a></li>
+                <li><a href="terms-and-privacy.html" target="_blank">Terms & Privacy</a></li>
+                <li><a href="support.html" target="_blank">Support</a></li>
+                <li><a href="events.html" target="_blank">Events</a></li>
+                <li><a href="newsroom.html" target="_blank">Newsroom</a></li>
+                <li><a href="portfolio.html" target="_blank">Portfolio</a></li>
+                <li><a href="faqs.html" target="_blank">FAQs</a></li>
+                <li><a href="careers.html" target="_blank">Careers</a></li>
+                <li><a href="contact.html" target="_blank">Contact</a></li>
+                <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
+                <li><a href="blog.html" target="_blank">Blog</a></li>
+            </ul>
+        </div>
     </nav>
     <section id="hero" class="hero" aria-labelledby="hero-heading">
         <video autoplay loop muted playsinline aria-hidden="true">
@@ -548,19 +595,28 @@
             setTimeout(() => preloader.style.display = 'none', 700);
 
             const hamburger = document.querySelector('.hamburger');
-            const navUl = document.querySelector('.navbar ul');
-            if (!hamburger || !navUl) {
-                console.error('Hamburger or navUl not found');
+            const closeMenu = document.querySelector('.close-menu');
+            const navMenu = document.querySelector('.navbar-menu');
+            if (!hamburger || !closeMenu || !navMenu) {
+                console.error('Navigation elements not found');
                 return;
             }
 
             const toggleMenu = () => {
-                console.log('Toggling menu');
-                navUl.classList.toggle('active');
+                const isOpen = navMenu.classList.contains('active');
+                navMenu.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', !isOpen);
+                hamburger.style.display = isOpen ? 'block' : 'none';
+                closeMenu.style.display = isOpen ? 'none' : 'block';
             };
 
             hamburger.addEventListener('click', toggleMenu);
             hamburger.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                toggleMenu();
+            });
+            closeMenu.addEventListener('click', toggleMenu);
+            closeMenu.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 toggleMenu();
             });
@@ -570,11 +626,24 @@
                     toggleMenu();
                 }
             });
+            closeMenu.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleMenu();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
 
-            document.querySelectorAll('.navbar a').forEach(link => {
+            document.querySelectorAll('.navbar-menu a').forEach(link => {
                 link.addEventListener('click', () => {
-                    console.log('Link clicked, closing menu');
-                    navUl.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.style.display = 'block';
+                    closeMenu.style.display = 'none';
                 });
             });
 
@@ -710,7 +779,7 @@
                 }
             });
 
-            document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .chatbot-close').forEach(element => {
+            document.querySelectorAll('.navbar-menu a, .chatbot, .close, button, .hamburger, .close-menu, .chatbot-close').forEach(element => {
                 element.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
