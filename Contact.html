@@ -380,21 +380,41 @@
         .contact-item a:hover, .contact-item a:focus {
             color: var(--secondary);
         }
-        @media (max-width: 640px) {
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--glass-bg);
-                backdrop-filter: blur(10px);
-                padding: 1rem;
-            }
-            .navbar ul.active {
-                display: flex;
-            }
+        /* Default (PC & Tablet) */
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;      /* enables horizontal scroll */
+  white-space: nowrap;   /* prevents items from wrapping */
+  scrollbar-width: thin; /* for Firefox */
+  -ms-overflow-style: none; /* for IE/Edge */
+}
+
+/* Hide scrollbar in Chrome, Safari, Edge */
+.navbar ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    overflow-x: hidden; /* disable horizontal scroll on mobile */
+  }
+  .navbar ul.active {
+    display: flex;
+  }
+}
+
             .hamburger {
                 display: block;
                 position: absolute;
