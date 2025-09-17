@@ -211,49 +211,50 @@
             position: fixed;
             inset: 0;
             display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
+            justify-content: flex-start;
+            align-items: stretch;
             z-index: 60;
+            background: rgba(0, 0, 0, 0.5);
             pointer-events: none;
         }
         .menu-panel {
-            width: min(88vw, 400px);
-            height: 60vh;
-            margin: 20px;
-            border-radius: 20px;
-            padding: 30px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            transform: translateY(20px) scale(.95);
-            opacity: 0;
+            width: 300px;
+            height: 80vh;
+            margin: 0;
+            padding: 20px;
+            background: var(--secondary);
+            color: var(--text-light);
+            transform: translateX(-100%);
             transition: .4s var(--ease);
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 10px;
+            overflow-y: auto;
         }
         .menu-panel.open {
-            transform: none;
-            opacity: 1;
+            transform: translateX(0);
             pointer-events: auto;
         }
         .menu-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 10px;
         }
         .menu-list a {
             color: var(--text-light);
-            font-size: 18px;
+            font-size: 16px;
             font-family: 'Roboto', sans-serif;
             font-weight: 600;
             text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
         }
         .menu-list a:hover {
-            text-decoration: underline;
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
         }
         .menu-list a.active {
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            padding: 10px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
             border-radius: 8px;
         }
         .modal {
@@ -594,8 +595,8 @@
                 flex-direction: column;
                 position: fixed;
                 inset: 0;
-                justify-content: flex-end;
-                align-items: flex-end;
+                justify-content: flex-start;
+                align-items: flex-start;
                 z-index: 60;
                 pointer-events: none;
             }
@@ -603,20 +604,17 @@
                 display: flex;
             }
             .menu-panel {
-                width: min(88vw, 400px);
-                height: 60vh;
-                margin: 20px;
-                border-radius: 20px;
-                padding: 30px;
-                background: var(--glass-bg);
-                backdrop-filter: blur(10px);
-                transform: translateY(20px) scale(.95);
-                opacity: 0;
+                width: 300px;
+                height: 80vh;
+                margin: 0;
+                padding: 20px;
+                background: var(--secondary);
+                color: var(--text-light);
+                transform: translateX(-100%);
                 transition: .4s var(--ease);
             }
             .navbar ul.active .menu-panel {
-                transform: none;
-                opacity: 1;
+                transform: translateX(0);
                 pointer-events: auto;
             }
             .hamburger {
@@ -992,23 +990,14 @@
                     body: JSON.stringify({ email })
                 });
                 if (response.ok) {
-                    alert('Subscribed successfully!');
+                    alert('Thank you for subscribing!');
                     modal.style.display = 'none';
-                    document.getElementById('newsletter-form').reset();
                 } else {
-                    alert('Error subscribing. Please try again.');
+                    alert('Subscription failed. Please try again.');
                 }
             } catch (error) {
-                alert('Network error. Please try again later.');
+                alert('Error subscribing. Please contact info@fortizo.sl.');
             }
-        });
-        document.querySelectorAll('.navbar a, .menu-list a, .chat-button, .close, button, .hamburger, .chat-close').forEach(element => {
-            element.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    element.click();
-                }
-            });
         });
     </script>
 </body>
