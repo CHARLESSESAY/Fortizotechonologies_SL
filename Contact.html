@@ -470,6 +470,7 @@
             opacity: 0;
             transform: translateY(50px);
             text-align: center;
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
         }
         .teaser-bubble.show {
             animation: slideUpFade 0.6s ease forwards;
@@ -490,10 +491,11 @@
             .navbar ul { display: none; }
             .chatbot-container { width: 90vw; height: 60vh; right: 5%; }
             .teaser-bubble { 
-                width: 90vw;
-                max-width: 550px;
-                right: 5%;
-                min-width: 0; /* Override min-width for mobile */
+                width: 90vw !important; /* Force override */
+                max-width: 550px !important;
+                right: 5% !important;
+                min-width: 0 !important; /* Override min-width */
+                box-sizing: border-box; /* Ensure padding fits within width */
             }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
