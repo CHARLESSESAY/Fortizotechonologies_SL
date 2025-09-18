@@ -14,7 +14,7 @@
             --secondary: #7200d6;
             --text-light: #ffffff;
             --text-dark: #000000;
-            --glass-bg: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.3); /* Enhanced glassmorphism opacity */
             --glass-border: rgba(255, 255, 255, 0.25);
             --ease: cubic-bezier(.2,.9,.3,1);
         }
@@ -470,7 +470,7 @@
             opacity: 0;
             transform: translateY(50px);
             text-align: center;
-            box-sizing: border-box;
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
         }
         .teaser-bubble.show {
             animation: slideUpFade 0.6s ease forwards;
@@ -486,17 +486,17 @@
             from { opacity: 1; transform: translateY(0); }
             to { opacity: 0; transform: translateY(-50px); }
         }
-
-        /* ✅ Mobile fix (like Career page) */
         @media (max-width: 768px) {
-            .teaser-bubble {
-                min-width: 250px;
-                max-width: 90%;
-                font-size: 20px;
-                padding: 20px 24px;
-                bottom: 100px;
-                right: 20px;
-                margin: 0;
+            .hamburger { display: block; }
+            .navbar ul { display: none; }
+            .chatbot-container { width: 90vw; height: 60vh; right: 5%; }
+            body .teaser-bubble { /* Increased specificity */
+                width: 90vw !important;
+                max-width: 550px !important;
+                right: 5% !important; /* Matching career page behavior */
+                min-width: 0 !important;
+                box-sizing: border-box !important;
+                margin: 0 auto; /* Center if needed */
             }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
@@ -661,11 +661,11 @@
                     setTimeout(() => {
                         teaser.classList.remove("show");
                         teaser.classList.add("hide");
-                        setTimeout(updateTeaser, 500);
-                    }, 5000);
+                        setTimeout(updateTeaser, 500); // Short delay before next message
+                    }, 5000); // Display each message for 5 seconds
                 }
 
-                setTimeout(updateTeaser, 1500);
+                setTimeout(updateTeaser, 1500); // Start after 1.5s
             }, 700);
         });
 
