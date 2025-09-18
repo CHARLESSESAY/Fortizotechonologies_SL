@@ -490,12 +490,13 @@
             .hamburger { display: block; }
             .navbar ul { display: none; }
             .chatbot-container { width: 90vw; height: 60vh; right: 5%; }
-            .teaser-bubble { 
-                width: 90vw !important; /* Force override */
+            body .teaser-bubble { /* Increased specificity */
+                width: 90vw !important;
                 max-width: 550px !important;
-                right: 5% !important;
-                min-width: 0 !important; /* Override min-width */
-                box-sizing: border-box; /* Ensure padding fits within width */
+                right: 5% !important; /* Matching career page behavior */
+                min-width: 0 !important;
+                box-sizing: border-box !important;
+                margin: 0 auto; /* Center if needed */
             }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
