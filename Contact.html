@@ -489,7 +489,12 @@
             .hamburger { display: block; }
             .navbar ul { display: none; }
             .chatbot-container { width: 90vw; height: 60vh; right: 5%; }
-            .teaser-bubble { right: 5%; }
+            .teaser-bubble { 
+                width: 90vw;
+                max-width: 550px;
+                right: 5%;
+                min-width: 0; /* Override min-width for mobile */
+            }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
             .content, .hero { padding: 2.8rem; }
