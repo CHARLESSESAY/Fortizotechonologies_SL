@@ -14,8 +14,9 @@
             --secondary: #7200d6;
             --text-light: #ffffff;
             --text-dark: #000000;
-            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.3); /* Increased opacity for stronger glassmorphism */
             --glass-border: rgba(255, 255, 255, 0.25);
+            --ease: cubic-bezier(.2,.9,.3,1);
         }
         body {
             margin: 0;
@@ -77,7 +78,7 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        section, nav, footer, .modal, .chatbot, .chatbot-window {
+        section, nav, footer, .modal {
             position: relative;
             z-index: 1;
         }
@@ -125,7 +126,6 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
         .navbar ul {
@@ -139,131 +139,162 @@
             margin: 0 0.8rem;
         }
         .navbar a {
-            display: inline-block;
             color: var(--text-light);
             text-decoration: none;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
             padding: 0.5rem 1rem;
-            border-radius: 5px;
             background: linear-gradient(45deg, var(--accent), var(--secondary));
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 5px;
             box-shadow: 0 0 10px var(--accent);
-            text-align: center;
-        }
-        .navbar a:hover, .navbar a:focus {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--secondary);
-        }
-        .navbar a.active {
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
         }
         .hamburger {
             display: none;
             font-size: 1.5rem;
-            background: none;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
             border: none;
             color: var(--text-light);
             cursor: pointer;
             padding: 0.5rem;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-light);
+            position: relative;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        .hamburger span::before,
+        .hamburger span::after {
+            content: "";
+            position: absolute;
             left: 0;
-            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: .35s var(--ease);
         }
-        .modal-content {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            margin: 10% auto;
-            padding: 1rem;
-            border-radius: 15px;
-            width: clamp(250px, 90%, 500px);
-            color: var(--text-light);
-            animation: slide-in 0.3s ease;
-        }
-        .modal-content h2 {
-            font-size: clamp(1.6rem, 5vw, 2rem);
-        }
-        .modal-content p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-        }
-        @keyframes slide-in {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .close, .chatbot-close {
-            color: var(--text-light);
-            float: right;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .close:hover, .close:focus, .chatbot-close:hover, .chatbot-close:focus {
-            color: var(--accent);
-        }
-        .chatbot {
+        .hamburger span::before { top: -6px; }
+        .hamburger span::after { top: 6px; }
+        .hamburger.open span { transform: rotate(45deg); }
+        .hamburger.open span::before { transform: translateY(6px) rotate(90deg); }
+        .hamburger.open span::after { opacity: 0; }
+        .overlay {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            color: var(--primary);
+            inset: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            z-index: 60;
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+        .menu-panel {
+            width: 300px;
+            height: 100vh;
+            background: var(--secondary);
+            color: var(--text-light);
+            transform: translateX(-100%);
+            transition: .4s var(--ease);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .menu-panel.open {
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+        .menu-list a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            display: block;
+            border-radius: 5px;
+        }
+        .menu-list a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            width: clamp(40px, 10vw, 50px);
-            height: clamp(40px, 10vw, 50px);
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px var(--secondary), 0 0 10px var(--accent);
-            font-weight: 700;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            transition: transform 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+            z-index: 1001;
         }
-        .chatbot:hover, .chatbot:focus {
-            transform: scale(1.1);
+        .chat-button svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--text-light);
         }
-        .chatbot-window {
-            display: none;
+        .chatbot-container {
             position: fixed;
-            bottom: 70px;
-            right: 10px;
-            width: clamp(250px, 90vw, 300px);
-            height: clamp(300px, 80vh, 400px);
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 0.5rem;
-            overflow-y: auto;
-            color: var(--text-light);
-            display: flex;
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25);
+            display: none;
             flex-direction: column;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            animation: slide-in 0.3s ease;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
+            overflow: hidden;
+            z-index: 1002;
         }
-        #chatMessages {
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--glass-border);
+            font-weight: bold;
+        }
+        .chat-close {
+            cursor: pointer;
+        }
+        .chat-body {
             flex: 1;
+            padding: 12px;
             overflow-y: auto;
-            padding: 0.5rem;
+            font-size: 14px;
         }
-        .chatbot-window input {
-            width: 100%;
-            padding: 0.5rem;
-            box-sizing: border-box;
-            background: transparent;
-            border: 1px solid var(--accent);
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .chat-footer input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255,255,255,0.15);
             color: var(--text-light);
-            border-radius: 5px;
-            margin-top: 0.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            font-weight: 700;
+        }
+        .chat-footer button {
+            margin-left: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: var(--text-light);
+            cursor: pointer;
         }
         button {
             background: linear-gradient(45deg, var(--accent), var(--secondary));
@@ -292,7 +323,7 @@
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 700;
         }
-        input:focus, button:focus, .navbar a:focus, .close:focus, .chatbot:focus, .hamburger:focus, .chatbot-close:focus {
+        input:focus, button:focus {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
         }
@@ -380,77 +411,85 @@
         .contact-item a:hover, .contact-item a:focus {
             color: var(--secondary);
         }
-        /* Default (PC & Tablet) */
-.navbar ul {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  overflow-x: auto;      /* enables horizontal scroll */
-  white-space: nowrap;   /* prevents items from wrapping */
-  scrollbar-width: thin; /* for Firefox */
-  -ms-overflow-style: none; /* for IE/Edge */
-}
-
-/* Hide scrollbar in Chrome, Safari, Edge */
-.navbar ul::-webkit-scrollbar {
-  display: none;
-}
-
-/* Mobile view */
-@media (max-width: 640px) {
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    overflow-x: hidden; /* disable horizontal scroll on mobile */
-  }
-  .navbar ul.active {
-    display: flex;
-  }
-}
-
-            .hamburger {
-                display: block;
-                position: absolute;
-                right: 1rem;
-                top: 1rem;
-            }
-            .content, .hero {
-                padding: 2rem;
-            }
-            .chatbot {
-                width: 40px;
-                height: 40px;
-            }
-            .chatbot-window {
-                width: 90vw;
-                right: 5%;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .content, .hero {
-                padding: 2.8rem;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            margin: 10% auto;
+            padding: 1rem;
+            border-radius: 15px;
+            width: clamp(250px, 90%, 500px);
+            color: var(--text-light);
+            animation: slide-in 0.3s ease;
+        }
+        .modal-content h2 {
+            font-size: clamp(1.6rem, 5vw, 2rem);
+        }
+        .modal-content p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+        @keyframes slide-in {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            color: var(--text-light);
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus {
+            color: var(--accent);
+        }
+        .teaser {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            max-width: 550px;
+            min-width: 380px;
+            padding: 42px 48px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+            color: var(--text-light);
+            font-family: 'Roboto', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1.8em;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUpFade 0.6s ease forwards;
+            text-align: center;
+        }
+        .teaser.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .navbar ul { display: none; }
+            .chatbot-container { width: 90vw; height: 60vh; right: 5%; }
+            .teaser { right: 5%; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .content, .hero { padding: 2.8rem; }
+            .contact-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (min-width: 1025px) {
-            .content, .hero {
-                padding: 4rem;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .content, .hero { padding: 4rem; }
+            .contact-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -458,8 +497,8 @@
     <div id="preloader" aria-hidden="true">
         <div class="spinner"></div>
     </div>
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-        <button class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">☰</button>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <button class="hamburger"><span></span></button>
         <ul>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html" target="_blank">Home</a></li>
             <li><a href="about.html" target="_blank">About</a></li>
@@ -470,15 +509,38 @@
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Terms</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html" target="_blank">Privacy</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html" target="_blank">Support</a></li>
-            <l><a href="events.html" target="_blank">Events</a></li>
+            <li><a href="events.html" target="_blank">Events</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html" target="_blank">Newsroom</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html" target="_blank">Portfolio</a></li>
             <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" target="_blank">FAQs</a></li>
-            <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" aria-current="page" class="active">Careers</a></li>
-            <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" target="_blank">Contact</a></li>
-            <l><a href="testimonials.html" target="_blank">Testimonials</a></li>
-            <l><a href="blog.html" target="_blank">Blog</a></li>
+            <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" target="_blank">Careers</a></li>
+            <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" aria-current="page" class="active">Contact</a></li>
+            <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
+            <li><a href="blog.html" target="_blank">Blog</a></li>
         </ul>
+        <div class="overlay" id="overlay">
+            <div class="menu-panel" id="menuPanel">
+                <nav class="menu-list">
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html" target="_blank">Home</a>
+                    <a href="about.html" target="_blank">About</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Services</a>
+                    <a href="tech-gallery.html" target="_blank">Tech Gallery</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Market.html" target="_blank">Market</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Team.html" target="_blank">Team</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Terms</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html" target="_blank">Privacy</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html" target="_blank">Support</a>
+                    <a href="events.html" target="_blank">Events</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html" target="_blank">Newsroom</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html" target="_blank">Portfolio</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" target="_blank">FAQs</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" target="_blank">Careers</a>
+                    <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" class="active" aria-current="page">Contact</a>
+                    <a href="testimonials.html" target="_blank">Testimonials</a>
+                    <a href="blog.html" target="_blank">Blog</a>
+                </nav>
+            </div>
+        </div>
     </nav>
     <section id="hero" class="hero" aria-labelledby="hero-heading">
         <video autoplay loop muted playsinline aria-hidden="true">
@@ -544,34 +606,72 @@
             </form>
         </div>
     </div>
-    <div class="chatbot" onclick="toggleChat()" role="button" aria-label="Open chatbot" tabindex="0">Chat</div>
-    <div class="chatbot-window" id="chatWindow" role="dialog" aria-label="Chatbot window">
-        <span class="chatbot-close" aria-label="Close chatbot" tabindex="0">&times;</span>
-        <div id="chatMessages" aria-live="polite"></div>
-        <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Chatbot input" onkeypress="if(event.key === 'Enter') sendMessage()">
+    <div class="chat-button" id="chat-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7 3 3 6.58 3 11c0 2.05 1.02 3.9 2.72 5.29-.09.89-.39 2.14-1.39 3.37-.23.29-.03.72.34.72 1.37 0 2.74-.7 3.64-1.34.84.24 1.73.36 2.69.36 5 0 9-3.58 9-8s-4-8-9-8z"/></svg>
     </div>
+    <div class="chatbot-container" id="chatbot">
+        <div class="chat-header">
+            <span>Assistant</span>
+            <span class="chat-close" id="chat-close">&times;</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div>👋 Hello! How can I help you today?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+    <div class="teaser" id="teaser"></div>
     <script>
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
-            setTimeout(() => preloader.style.display = 'none', 700);
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                const teaser = document.getElementById("teaser");
+                const messages = [
+                    "👋 Ready to connect? Send us a message!",
+                    "📧 Need help? Email us at info@fortizo.sl!",
+                    "🤝 Let’s collaborate! Contact us today!"
+                ];
+                let messageIndex = 0;
+
+                function updateTeaser() {
+                    teaser.textContent = messages[messageIndex];
+                    teaser.classList.add("show");
+                    messageIndex = (messageIndex + 1) % messages.length;
+                    setTimeout(() => {
+                        teaser.classList.remove("show");
+                        setTimeout(updateTeaser, 500); // Short delay before next message
+                    }, 5000); // Display each message for 5 seconds
+                }
+
+                setTimeout(updateTeaser, 1500); // Start after 1.5s
+            }, 700);
         });
+
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('.navbar ul');
+        const overlay = document.getElementById('overlay');
+        const panel = document.getElementById('menuPanel');
+
         hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('open');
             navUl.classList.toggle('active');
+            overlay.style.pointerEvents = isOpen ? 'auto' : 'none';
+            panel.classList.toggle('open');
         });
-        hamburger.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                navUl.classList.toggle('active');
+
+        overlay.addEventListener('click', (e) => {
+            if (!panel.contains(e.target)) {
+                hamburger.classList.remove('open');
+                navUl.classList.remove('active');
+                overlay.style.pointerEvents = 'none';
+                panel.classList.remove('open');
             }
         });
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', () => {
-                navUl.classList.remove('active');
-            });
-        });
+
         const sections = document.querySelectorAll('section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -581,6 +681,7 @@
             });
         }, { threshold: 0.1 });
         sections.forEach(section => observer.observe(section));
+
         const siteKnowledge = {
             about: "Fortizo Technologies SL is a Sierra Leone-born team of strategists, facilitators, designers, and engineers. We deliver digital platforms, brand systems, and event experiences.",
             services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning. Visit our Services page for details!",
@@ -590,6 +691,7 @@
             careers: "Join Fortizo Technologies SL to work on innovative projects in Sierra Leone’s tech ecosystem. Check our Careers page for current openings or contact us at info@fortizo.sl."
         };
         const slTechSummary = "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with a focus on digital transformation and innovation. Key highlights: Internet users at ~2.32 million. Government initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025, Freetown), Big 5 Innovation Investment Challenge, National Tech and Innovation Summit, launch of West Africa's first open-access 5G network, Innovators Awards, Tech Job Fair, and EduCube Hub. Startup ecosystem features growing startups (estimated 196, with 30 funded raising $271M total), though some reports vary. Key sectors: Ecommerce, Fintech, Agri-tech, Solar energy, AI, robotics, and digital banking projected to reach $15.8M by 2025. Notable companies: Easy Solar, EntoTech Innovations, Salone Agro Market. Innovations in CivicTech, EdTech, climate adaptation (e.g., solar solutions), and responsible AI. Projects like ITC READY Salone empower youth in the digital economy. Events: SLinT Tech Expo 2025, VEX IQ Robotics Competition, MIT A+ Education Conference participation. Investments: Over $132M in tech and innovation. For more details or to join our team, contact Fortizo at info@fortizo.sl.";
+
         const modal = document.getElementById('modal');
         const closeBtn = document.querySelector('.close');
         setTimeout(() => {
@@ -615,32 +717,31 @@
                 modal.style.display = 'none';
             }
         });
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatMessages = document.getElementById('chatMessages');
-            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-            if (chatWindow.style.display === 'block') {
-                chatMessages.innerHTML = `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: Welcome to Fortizo Technologies SL! Have a question or want to collaborate? Contact us or ask away!</p>`;
-                document.getElementById('chatInput').focus();
-            }
-        }
-        const chatbotClose = document.querySelector('.chatbot-close');
-        chatbotClose.addEventListener('click', () => {
-            document.getElementById('chatWindow').style.display = 'none';
+
+        const chatButton = document.getElementById('chat-button');
+        const chatbot = document.getElementById('chatbot');
+        const chatClose = document.getElementById('chat-close');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatBody = document.getElementById('chat-body');
+        const chatInput = document.getElementById('chatInput');
+        const teaser = document.getElementById("teaser");
+
+        chatButton.addEventListener('click', () => {
+            chatbot.style.display = 'flex';
+            teaser.classList.remove("show");
         });
-        chatbotClose.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                document.getElementById('chatWindow').style.display = 'none';
-            }
+        chatClose.addEventListener('click', () => {
+            chatbot.style.display = 'none';
         });
-        async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            const msg = input.value.trim().toLowerCase();
+
+        sendBtn.addEventListener('click', () => {
+            const msg = chatInput.value.trim().toLowerCase();
             if (msg) {
-                messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">You: ${input.value}</p>`;
-                input.value = '';
+                const userMsg = document.createElement('div');
+                userMsg.textContent = `You: ${msg}`;
+                userMsg.style.textAlign = "right";
+                chatBody.appendChild(userMsg);
+                chatInput.value = "";
                 let response = 'For more information, explore our website or email info@fortizo.sl.';
                 if (msg.includes('about') || msg.includes('fortizo')) {
                     response = siteKnowledge.about + ' Visit our About page for more details!';
@@ -654,25 +755,24 @@
                     response = 'Our portfolio includes e-learning platforms, branding campaigns, tech events, market research, and digital payment solutions. Visit our Portfolio page for details!';
                 } else if (msg.includes('sierra leone tech') || msg.includes('sl tech ecosystem')) {
                     response = slTechSummary;
-                } else if (msg.includes('tech') || msg.includes('technology') || msg.includes('innovation') || msg.includes('llm') || msg.includes('agentic') || msg.includes('robotics')) {
-                    try {
-                        const searchResponse = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(msg)}&format=json&pretty=1`);
-                        if (!searchResponse.ok) throw new Error('API request failed');
-                        const data = await searchResponse.json();
-                        const abstract = data.Abstract || data.RelatedTopics?.[0]?.Text || 'No brief info found.';
-                        response = `Brief explanation: ${abstract}. For more in-depth information or to join our team, please contact Fortizo at info@fortizo.sl.`;
-                    } catch (error) {
-                        response = 'Unable to fetch tech information due to a network issue. Please contact Fortizo at info@fortizo.sl for assistance.';
-                    }
                 } else if (msg.includes('contact') || msg.includes('collaborate') || msg.includes('join') || msg.includes('careers') || msg.includes('job') || msg.includes('work')) {
                     response = siteKnowledge.contact + ' Use the contact form on this page or email info@fortizo.sl to get in touch!';
                 } else if (msg.includes('faq') || msg.includes('question') || msg.includes('support') || msg.includes('help')) {
                     response = 'Need help? Check our FAQs page for common questions, submit a support request on our Support page, or use the contact form on this page.';
                 }
-                messages.innerHTML += `<p style="margin: 5px; background: var(--glass-bg); padding: 8px; border-radius: 5px;">Bot: ${response}</p>`;
-                messages.scrollTop = messages.scrollHeight;
+                const botMsg = document.createElement('div');
+                botMsg.textContent = `Bot: ${response}`;
+                botMsg.style.textAlign = "left";
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
             }
-        }
+        });
+
+        teaser.addEventListener("click", () => {
+            teaser.classList.remove("show");
+            chatbot.style.display = 'flex';
+        });
+
         document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.querySelector('#modal input[type="email"]').value;
@@ -693,6 +793,7 @@
                 alert('Network error. Please try again later.');
             }
         });
+
         document.getElementById('contact-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.querySelector('#contact-form input[type="text"]').value;
@@ -714,7 +815,8 @@
                 alert('Network error. Please try again later or email info@fortizo.sl.');
             }
         });
-        document.querySelectorAll('.navbar a, .chatbot, .close, button, .hamburger, .chatbot-close').forEach(element => {
+
+        document.querySelectorAll('.navbar a, .chat-button, .close, button, .hamburger').forEach(element => {
             element.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
