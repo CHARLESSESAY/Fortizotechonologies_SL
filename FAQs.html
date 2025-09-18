@@ -186,7 +186,7 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* Hero section with video */
+    /* Hero section with image slideshow */
     .hero {
       position: relative;
       height: 65vh;
@@ -196,12 +196,23 @@
       text-align: center;
       overflow: hidden;
     }
-    .hero-video {
+    .hero-slideshow {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      object-fit: cover;
       z-index: -2;
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .hero-slide.active {
+      opacity: 1;
     }
     .hero-overlay {
       position: absolute;
@@ -424,53 +435,49 @@
     <button class="hamburger"><span></span></button>
     <ul>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html" target="_blank">Home</a></li>
-      <li><a href="about.html" target="_blank">About</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Services</a></li>
-      <li><a href="tech-gallery.html" target="_blank">Tech Gallery</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Market.html" target="_blank">Market</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Team.html" target="_blank">Team</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Terms</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html" target="_blank">Privacy</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html" target="_blank">Support</a></li>
-      <li><a href="events.html" target="_blank">Events</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html" target="_blank">Newsroom</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html" target="_blank">Portfolio</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" target="_blank" aria-current="page" class="active">FAQs</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" target="_blank">Careers</a></li>
       <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" target="_blank">Contact</a></li>
-      <li><a href="testimonials.html" target="_blank">Testimonials</a></li>
-      <li><a href="blog.html" target="_blank">Blog</a></li>
     </ul>
     <div class="overlay" id="overlay">
       <div class="menu-panel" id="menuPanel">
         <nav class="menu-list">
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html" target="_blank">Home</a>
-          <a href="about.html" target="_blank">About</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Services</a>
-          <a href="tech-gallery.html" target="_blank">Tech Gallery</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Market.html" target="_blank">Market</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Team.html" target="_blank">Team</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html" target="_blank">Terms</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html" target="_blank">Privacy</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html" target="_blank">Support</a>
-          <a href="events.html" target="_blank">Events</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html" target="_blank">Newsroom</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html" target="_blank">Portfolio</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" class="active" aria-current="page" target="_blank">FAQs</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html" target="_blank">Careers</a>
           <a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html" target="_blank">Contact</a>
-          <a href="testimonials.html" target="_blank">Testimonials</a>
-          <a href="blog.html" target="_blank">Blog</a>
         </nav>
       </div>
     </div>
   </nav>
 
-  <!-- Hero with video -->
+  <!-- Hero with image slideshow -->
   <section class="hero">
-    <video autoplay muted loop playsinline class="hero-video">
-      <source src="your-video.mp4" type="video/mp4">
-    </video>
+    <div class="hero-slideshow">
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1516321310764-8a07b4a4f0c2?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1531297484001-8002211f3d0f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1517976487498-3b0b1c86a7c7?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Frequently Asked Questions</h1>
@@ -484,9 +491,36 @@
       <h2>FAQs</h2>
       <div class="faq-item">
         <div class="faq-question">What services does Fortizo offer? <span>+</span></div>
-        <div class="faq-answer"><p>We offer Meeting Facilitation, Market Research, Marketing & Branding, and Digital Solutions & E-Learning.</p></div>
+        <div class="faq-answer"><p>We offer Meeting Facilitation, Market Research, Marketing & Branding, and Digital Solutions & E-Learning. Visit our Services page for more details.</p></div>
       </div>
-      <!-- Repeat FAQ items... -->
+      <div class="faq-item">
+        <div class="faq-question">Who is on the Fortizo team? <span>+</span></div>
+        <div class="faq-answer"><p>Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), and Mr Mohamed Ali (Volunteer). Learn more on our Team page.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Where does Fortizo operate? <span>+</span></div>
+        <div class="faq-answer"><p>We operate across Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), and Eastern Region (Kenema, Kono, Kailahun). See our Market page for details.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How can I contact Fortizo? <span>+</span></div>
+        <div class="faq-answer"><p>You can reach us at our Freetown, Sierra Leone office via email at info@fortizo.sl or by phone at +232 76 123 456. Visit our Contact page to get in touch.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What kind of projects are in Fortizo’s portfolio? <span>+</span></div>
+        <div class="faq-answer"><p>Our portfolio includes e-learning platforms, branding campaigns, tech events, market research, and digital payment solutions. Check out our Portfolio page for examples.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Does Fortizo offer career opportunities? <span>+</span></div>
+        <div class="faq-answer"><p>Yes, we’re always looking for talent to join our innovative projects. Visit our Careers page for current openings or email us at info@fortizo.sl.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What is the Sierra Leone tech ecosystem like? <span>+</span></div>
+        <div class="faq-answer"><p>Sierra Leone’s tech ecosystem in 2025 is vibrant, with ~2.32 million internet users and a focus on digital transformation. Key sectors include Ecommerce, Fintech, Agri-tech, and AI. Notable initiatives include the Sierra Leone Innovates: Digital Government Summit (June 4-6, 2025) and SLinT Tech Expo 2025. For more, ask our chatbot or visit our Newsroom.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How can I get support from Fortizo? <span>+</span></div>
+        <div class="faq-answer"><p>Check our Support page for resources or submit a request. You can also use our chatbot or email info@fortizo.sl for assistance.</p></div>
+      </div>
     </div>
   </section>
 
@@ -541,6 +575,26 @@
         overlay.style.pointerEvents = 'none';
         panel.classList.remove('open');
       }
+    });
+
+    // Hero slideshow
+    window.addEventListener('load', () => {
+      const slides = document.querySelectorAll('.hero-slide');
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      showSlide(currentSlide);
+      setInterval(nextSlide, 7000); // Change slide every 7 seconds
     });
 
     // FAQ accordion
@@ -628,19 +682,25 @@
       const teaser = document.getElementById("teaser");
       const messages = [
         "❓ Got questions? Explore our FAQs below!",
-        "💡 Find quick answers about Fortizo’s services!",
-        "🤔 Need more help? Chat with us now!"
+        "💡 Find quick answers about Fortizo’s services!"
       ];
       let messageIndex = 0;
 
       function updateTeaser() {
+        if (messageIndex >= messages.length) {
+          messageIndex = 0;
+          setTimeout(updateTeaser, 14000); // Wait 14s before restarting
+          return;
+        }
+
         teaser.textContent = messages[messageIndex];
         teaser.classList.remove("hide");
         teaser.classList.add("show");
-        messageIndex = (messageIndex + 1) % messages.length;
+
         setTimeout(() => {
           teaser.classList.remove("show");
           teaser.classList.add("hide");
+          messageIndex++;
           setTimeout(updateTeaser, 500); // Short delay before next message
         }, 5000); // Display each message for 5 seconds
       }
