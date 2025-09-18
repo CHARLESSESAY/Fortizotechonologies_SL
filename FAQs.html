@@ -13,16 +13,20 @@
       --accent: #a100ff;
       --secondary: #7200d6;
       --text-light: #ffffff;
+      --text-dark: #000000;
       --glass-bg: rgba(255, 255, 255, 0.15);
       --glass-border: rgba(255, 255, 255, 0.25);
     }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       color: var(--text-light);
       overflow-x: hidden;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       line-height: 1.6;
     }
+
     body::before {
       content: '';
       position: fixed;
@@ -31,33 +35,38 @@
       background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1920&ixlib=rb-4.0.3');
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       filter: blur(5px);
       z-index: -1;
     }
-    /* ===== NAVBAR ===== */
+
+    /* Navbar (Career style) */
     .navbar {
       position: sticky;
       top: 0;
+      width: 100%;
       background: var(--glass-bg);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--glass-border);
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
     }
     .navbar ul {
       list-style: none;
       display: flex;
-      justify-content: center;
+      margin: 0;
+      padding: 0;
       gap: 1rem;
-      margin: 0; padding: 1rem;
     }
     .navbar a {
       color: var(--text-light);
       text-decoration: none;
       font-weight: 700;
       position: relative;
-      padding: 0.5rem;
     }
-    .navbar a:hover, .navbar a.active { color: var(--accent); }
     .navbar a::after {
       content: '';
       position: absolute;
@@ -66,67 +75,109 @@
       background: var(--accent);
       transition: width 0.3s;
     }
-    .navbar a:hover::after, .navbar a.active::after { width: 100%; }
+    .navbar a:hover::after,
+    .navbar a.active::after { width: 100%; }
     .hamburger {
       display: none;
-      flex-direction: column;
-      gap: 5px;
-      position: absolute;
-      top: 1rem; right: 1rem;
+      font-size: 1.5rem;
       background: none;
       border: none;
+      color: var(--text-light);
       cursor: pointer;
     }
-    .hamburger span {
-      display: block;
-      width: 25px; height: 3px;
-      background: var(--text-light);
-      border-radius: 2px;
-    }
-    /* ===== TEASER BUBBLE ===== */
-    .teaser-bubble {
-      position: fixed;
-      bottom: 120px; right: 20px;
-      max-width: 550px; min-width: 380px;
-      padding: 42px 48px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border-radius: 50px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-      color: var(--text-light);
-      font-size: 30px;
-      font-weight: 700;
-      z-index: 1000;
-      opacity: 0;
-      transform: translateY(50px);
+
+    /* Hero section with video */
+    .hero {
+      position: relative;
+      height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      overflow: hidden;
     }
-    .teaser-bubble.show { animation: slideUpFade 0.6s ease forwards; }
-    .teaser-bubble.hide { animation: slideOutFade 0.6s ease forwards; }
-    @keyframes slideUpFade {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
+    .hero-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
     }
-    @keyframes slideOutFade {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-50px); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: -1;
     }
-    /* ===== CHATBOT ===== */
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      text-shadow: 0 0 15px var(--accent);
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    /* Content sections */
+    section {
+      padding: 3rem 1rem;
+      min-height: 70vh;
+    }
+    .content {
+      max-width: 90%;
+      margin: 0 auto;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    /* FAQ accordion */
+    .faq-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      cursor: pointer;
+      background: linear-gradient(45deg, var(--accent), var(--secondary));
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .faq-answer {
+      display: none;
+      padding: 1rem;
+    }
+    .faq-answer.active { display: block; }
+
+    /* Footer */
+    footer {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    /* Chatbot (Career style) */
     .chatbot {
       position: fixed;
       bottom: 20px; right: 20px;
       background: linear-gradient(135deg, var(--accent), var(--secondary));
-      color: var(--text-light);
       border-radius: 50%;
       width: 60px; height: 60px;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-      font-size: 1.2rem;
-      transition: transform 0.3s;
       z-index: 1001;
     }
-    .chatbot:hover { transform: scale(1.1); }
     .chatbot-window {
       display: none;
       position: fixed;
@@ -143,89 +194,119 @@
     }
     .chatbot-window header {
       display: flex; justify-content: space-between; align-items: center;
-      font-weight: 700; margin-bottom: 0.5rem;
+      font-weight: 700;
     }
-    .chatbot-close { cursor: pointer; font-size: 1.2rem; }
+    .chatbot-close { cursor: pointer; }
     #chatMessages { flex: 1; overflow-y: auto; padding: 0.5rem; }
-    .chatbot-window input {
-      border: 1px solid var(--accent);
-      border-radius: 8px;
-      padding: 0.5rem;
-      background: rgba(0,0,0,0.2);
+
+    /* Teaser bubble */
+    .teaser-bubble {
+      position: fixed;
+      bottom: 120px; right: 20px;
+      max-width: 550px;
+      min-width: 380px;
+      padding: 30px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-radius: 50px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
       color: var(--text-light);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUpFade 0.6s ease forwards;
     }
-    /* ===== MOBILE ===== */
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .navbar ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; left: 0;
-        width: 100%;
-        background: var(--glass-bg);
-        backdrop-filter: blur(10px);
-        padding: 1rem;
-      }
+      .hamburger { display: block; }
+      .navbar ul { display: none; flex-direction: column; background: var(--glass-bg); padding: 1rem; }
       .navbar ul.active { display: flex; }
+      .chatbot-window { width: 90vw; height: 60vh; right: 5%; }
       .teaser-bubble {
         min-width: 250px;
         max-width: 60%;
-        font-size: 20px;
-        padding: 20px 24px;
+        font-size: 1rem;
+        padding: 20px;
         bottom: 100px;
         right: 20px;
       }
-      .chatbot-window { width: 90vw; right: 5%; }
     }
   </style>
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
+
+  <!-- Navbar -->
   <nav class="navbar">
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
     <ul>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Home.html">Home</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Terms.html">Services</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Market.html">Market</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Team.html">Team</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Policy.html">Privacy</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Support.html">Support</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Newsroom.html">Newsroom</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Portfolio.html">Portfolio</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/FAQs.html" class="active">FAQs</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Career.html">Careers</a></li>
-      <li><a href="https://charlessesay.github.io/Fortizotechonologies_SL/Contact.html">Contact</a></li>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Terms.html">Services</a></li>
+      <li><a href="Market.html">Market</a></li>
+      <li><a href="Team.html">Team</a></li>
+      <li><a href="Policy.html">Privacy</a></li>
+      <li><a href="Support.html">Support</a></li>
+      <li><a href="Newsroom.html">Newsroom</a></li>
+      <li><a href="Portfolio.html">Portfolio</a></li>
+      <li><a href="FAQs.html" class="active">FAQs</a></li>
+      <li><a href="Career.html">Careers</a></li>
+      <li><a href="Contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <section>
-    <div class="content">
+  <!-- Hero with video -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="your-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
       <h1>Frequently Asked Questions</h1>
-      <p>Find answers to common questions about Fortizo Technologies Sierra Leone.</p>
+      <p>Your quick guide to Fortizo’s services and operations in Sierra Leone</p>
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section id="faqs">
+    <div class="content">
+      <h2>FAQs</h2>
+      <div class="faq-item">
+        <div class="faq-question">What services does Fortizo offer? <span>+</span></div>
+        <div class="faq-answer"><p>We offer Meeting Facilitation, Market Research, Marketing & Branding, and Digital Solutions & E-Learning.</p></div>
+      </div>
+      <!-- Repeat FAQ items... -->
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Fortizo Technologies Sierra Leone</p>
+    <p>&copy; 2025 Fortizo Technologies Sierra Leone. All rights reserved.</p>
+    <div>
+      <a href="https://x.com/fortizotech" target="_blank">X</a>
+      <a href="https://linkedin.com/company/fortizotechnologies" target="_blank">LinkedIn</a>
+    </div>
   </footer>
 
-  <!-- ===== TEASER BUBBLE ===== -->
-  <div class="teaser-bubble" id="teaser"></div>
-
-  <!-- ===== CHATBOT ===== -->
-  <div class="chatbot" onclick="toggleChat()" aria-label="Open chatbot">💬</div>
+  <!-- Chatbot -->
+  <div class="chatbot" onclick="toggleChat()">💬</div>
   <div class="chatbot-window" id="chatWindow">
     <header>
       <span>Fortizo Assistant</span>
-      <span class="chatbot-close">&times;</span>
+      <span class="chatbot-close" onclick="toggleChat()">&times;</span>
     </header>
     <div id="chatMessages"></div>
-    <input type="text" id="chatInput" placeholder="Type a message..."
-           onkeypress="if(event.key==='Enter') sendMessage()">
+    <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
   </div>
+
+  <!-- Teaser bubble -->
+  <div class="teaser-bubble" id="teaserBubble"></div>
 
   <script>
     // Hamburger
@@ -233,70 +314,63 @@
     const navUl = document.querySelector('.navbar ul');
     hamburger.addEventListener('click', () => navUl.classList.toggle('active'));
 
-    // Teaser bubble (FAQ-focused)
-    const teaser = document.getElementById("teaser");
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const ans = q.nextElementSibling;
+        ans.classList.toggle('active');
+      });
+    });
+
+    // Chatbot
+    const siteKnowledge = {
+      about: "Fortizo is a Sierra Leone-born team of strategists, facilitators, designers, and engineers.",
+      services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, Digital Solutions & E-Learning.",
+      team: "Our team includes Alex Pratt, Jenifer E.K Kargbo, Seth Culker, Mr Kamara, Mr Charles, and Mohamed Ali.",
+      market: "We operate across Freetown, Western Area, Northern, Southern, and Eastern regions.",
+      contact: "Email: info@fortizo.sl | Phone: +232 76 123 456."
+    };
+
+    function toggleChat() {
+      const win = document.getElementById('chatWindow');
+      win.style.display = win.style.display === 'block' ? 'none' : 'block';
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const messages = document.getElementById('chatMessages');
+      const msg = input.value.trim().toLowerCase();
+      if (!msg) return;
+      messages.innerHTML += `<p>You: ${msg}</p>`;
+      input.value = '';
+
+      let response = 'Check our FAQs or email info@fortizo.sl.';
+      if (msg.includes('service')) response = siteKnowledge.services;
+      else if (msg.includes('team')) response = siteKnowledge.team;
+      else if (msg.includes('market')) response = siteKnowledge.market;
+      else if (msg.includes('about')) response = siteKnowledge.about;
+      else if (msg.includes('contact')) response = siteKnowledge.contact;
+
+      messages.innerHTML += `<p>Bot: ${response}</p>`;
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Teaser bubble messages
     const teaserMessages = [
       "❓ Got questions? Check our FAQs below!",
-      "💡 Quick answers about our services.",
+      "💡 Find quick answers about our services.",
       "🤔 Still unsure? Chat with us anytime!"
     ];
     let teaserIndex = 0;
-    function cycleTeaser() {
-      teaser.textContent = teaserMessages[teaserIndex];
-      teaser.classList.add("show"); teaser.classList.remove("hide");
-      setTimeout(() => {
-        teaser.classList.add("hide"); teaser.classList.remove("show");
-        teaserIndex = (teaserIndex + 1) % teaserMessages.length;
-        setTimeout(cycleTeaser, 1000);
-      }, 3000);
+    const teaserBubble = document.getElementById('teaserBubble');
+    function showTeaser() {
+      teaserBubble.innerText = teaserMessages[teaserIndex];
+      teaserBubble.style.opacity = 1;
+      setTimeout(() => teaserBubble.style.opacity = 0, 4000);
+      teaserIndex = (teaserIndex + 1) % teaserMessages.length;
     }
-    cycleTeaser();
-    teaser.addEventListener("click", () => {
-      toggleChat();
-      teaser.style.display = "none";
-    });
-
-    // Knowledge base
-    const siteKnowledge = {
-      about: "Fortizo is a Sierra Leone-born team of strategists, facilitators, designers, and engineers delivering digital platforms, brand systems, and event experiences.",
-      services: "We offer Meeting Facilitation, Market Research, Marketing & Branding, and Digital Solutions & E-Learning.",
-      team: "Our team includes Mr Alex Pratt (Founder), Jenifer E.K Kargbo (CEO), Seth Culker (Secretary), Mr Kamara (Software Engineer), Mr Charles (Software Engineer), Mr Mohamed Ali (Volunteer).",
-      market: "Key markets: Freetown (HQ), Western Area, Northern Region (Bombali, Port Loko, Tonkolili), Southern Region (Bo, Bonthe, Moyamba, Pujehun), Eastern Region (Kenema, Kono, Kailahun).",
-      contact: "Location: Freetown, Sierra Leone. Email: info@fortizo.sl. Phone: +232 76 123 456.",
-      slTech: "Sierra Leone's tech ecosystem in 2025 is rapidly emerging with startups, fintech, e-learning, solar innovation, and 5G connectivity. Over $132M invested into innovation."
-    };
-
-    // Chatbot
-    function toggleChat() {
-      const chatWindow = document.getElementById('chatWindow');
-      chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-      if (chatWindow.style.display === 'block') {
-        document.getElementById('chatMessages').innerHTML =
-          `<p>Bot: Welcome! Ask about our services, markets, or team.</p>`;
-      }
-    }
-    document.querySelector('.chatbot-close').addEventListener('click', () => {
-      document.getElementById('chatWindow').style.display = 'none';
-    });
-
-    function sendMessage() {
-      const input = document.getElementById('chatInput');
-      const msg = input.value.trim().toLowerCase();
-      if (msg) {
-        const messages = document.getElementById('chatMessages');
-        messages.innerHTML += `<p>You: ${msg}</p>`;
-        let response = "For more information, please check the FAQs above or email info@fortizo.sl.";
-        if (msg.includes("about")) response = siteKnowledge.about;
-        else if (msg.includes("services")) response = siteKnowledge.services;
-        else if (msg.includes("team")) response = siteKnowledge.team;
-        else if (msg.includes("market")) response = siteKnowledge.market;
-        else if (msg.includes("contact")) response = siteKnowledge.contact;
-        else if (msg.includes("tech")) response = siteKnowledge.slTech;
-        messages.innerHTML += `<p>Bot: ${response}</p>`;
-        input.value = '';
-        messages.scrollTop = messages.scrollHeight;
-      }
-    }
+    setInterval(showTeaser, 6000);
+    showTeaser();
   </script>
 </body>
 </html>
